@@ -8,6 +8,10 @@ Device titled "Virtual Device Pixel 4 XL".
 I think it'd be helpful to have this template on the main branch but for future commits can we each
 create our own branch and have other people approve merge requests to the main branch?
 
+I also copied the .gitignore file [here](https://github.gatech.edu/gtobdes/M1_Android/blob/master/.gitignore)
+and added it to what already exists in my .gitignore file (idk if this is the right thing to do but
+can't hurt)
+
 ## M2
 1. Starting the application will open to a welcome screen for the application which:
     * Has some way to start the game (e.g., a start button).
