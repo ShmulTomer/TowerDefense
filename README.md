@@ -40,5 +40,7 @@ is where most of the functionality in later milestones is implemented. For now, 
 to learn how to set up a basic button and its clicking method using ViewBinding.
     * The video is done in Kotlin, but the ViewBinding features are different in Java. See the Java
     version [here](https://developer.android.com/topic/libraries/view-binding#java).
+    * Make sure to edit build.gradle for ViewBinding! It's in the gitignore so it won't be pushed to
+    github, so make sure you edit it on your local device
 2. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")
 and the output will be in Logcat; search up the tag name
