@@ -34,3 +34,11 @@ is where most of the functionality in later milestones is implemented. For now, 
     by monsters and protected by towers.
     * Display/describe monument health.
         * Monument health should vary based on difficulty.
+
+## Helpful Resources
+1. I watched [these three videos](https://www.youtube.com/watch?v=kMI2jy-WlGM&list=PLt72zDbwBnAVt653VpUPS8mzXoJWMfRxb)
+to learn how to set up a basic button and its clicking method using ViewBinding.
+    * The video is done in Kotlin, but the ViewBinding features are different in Java. See the Java
+    version [here](https://developer.android.com/topic/libraries/view-binding#java).
+2. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")
+and the output will be in Logcat; search up the tag name
