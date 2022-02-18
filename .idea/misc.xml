@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerDefense/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerJackets/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerJackets/app/src/main/res/layout/initial_config.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerJackets/app/src/main/res/layout/initial_config_screen.xml" value="0.17916666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
