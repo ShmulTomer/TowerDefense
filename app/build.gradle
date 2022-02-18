@@ -6,8 +6,8 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.towerdefense"
-        minSdk 24
+        applicationId "com.cs2340.towerjackets"
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"

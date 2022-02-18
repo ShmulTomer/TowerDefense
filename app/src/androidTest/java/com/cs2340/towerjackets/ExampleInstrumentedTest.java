@@ -1,4 +1,4 @@
-package com.example.towerdefense;
+package com.cs2340.towerjackets;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.towerdefense", appContext.getPackageName());
+        assertEquals("com.cs2340.towerjackets", appContext.getPackageName());
     }
 }

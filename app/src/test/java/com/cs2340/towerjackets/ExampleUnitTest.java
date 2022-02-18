@@ -1,4 +1,4 @@
-package com.example.towerdefense;
+package com.cs2340.towerjackets;
 
 import org.junit.Test;
 
