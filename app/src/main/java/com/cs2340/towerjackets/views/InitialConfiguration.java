@@ -22,6 +22,8 @@ public class InitialConfiguration extends AppCompatActivity {
     private Spinner difficultySpinner;
     private EditText nameField;
     private Button continueButton;
+    private static Player player;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,12 +48,16 @@ public class InitialConfiguration extends AppCompatActivity {
             public void onClick(View view) {
                 Difficulty diffSelected = (Difficulty) difficultySpinner.getSelectedItem();
                 GameConfiguration config = new GameConfiguration(diffSelected);
-                Player newPlayer = new Player(nameField.getText().toString(), config);
+                player = new Player(nameField.getText().toString(), config);
 
                 // open game activity screen
                 Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);
                 startActivity(intention);
             }
         });
+    }
+
+    public static Player getPlayer() {
+        return player;
     }
 }

@@ -12,7 +12,7 @@
         android:id="@+id/monument"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Monument Health: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -23,7 +23,7 @@
         android:id="@+id/monumentValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +44,7 @@
         android:id="@+id/money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Money: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.767"
@@ -55,7 +55,7 @@
         android:id="@+id/moneyValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="$0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -85,160 +85,160 @@
 
             <ImageView
                 android:id="@+id/iv0_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
 
             <ImageView
                 android:id="@+id/iv0_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -253,141 +253,141 @@
 
             <ImageView
                 android:id="@+id/iv1_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv1_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv1_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
@@ -401,141 +401,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv2_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv2_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv2_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -549,141 +549,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv3_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv3_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv3_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv3_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -697,141 +697,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv4_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv4_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv4_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv4_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv4_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -845,141 +845,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv5_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv5_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv5_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -993,143 +993,143 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv6_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000"/>
 
             <ImageView
                 android:id="@+id/iv6_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:background="#008000"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:src="@mipmap/monument_foreground" />
             <ImageView
                 android:id="@+id/iv6_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv6_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv6_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -1143,141 +1143,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv7_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv7_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv7_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv7_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -1291,141 +1291,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv8_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv8_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#008000" />
             <ImageView
                 android:id="@+id/iv8_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
@@ -1439,141 +1439,141 @@
             android:layout_centerVertical="true">
             <ImageView
                 android:id="@+id/iv9_0"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_6"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_7"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_8"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_10"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_12"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_13"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_14"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_15"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_16"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_17"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_18"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />
             <ImageView
                 android:id="@+id/iv9_19"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="95px"
+                android:layout_height="95px"
                 android:contentDescription="@null"
                 android:scaleType="fitStart"
                 android:background="#964b00" />

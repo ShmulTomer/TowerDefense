@@ -24,9 +24,9 @@ is where most of the functionality in later milestones is implemented. For now, 
         * Monument health should vary based on difficulty.
 
 ## M2 Issues / To-Do
-1. Can't figure out how to permanently set it to landscape mode (I can set it every single time but that shouldn't be right)
-2. I can't set it to landscape mode in emulator so I can't test if my resizing works
-3. Still need to set monument health and starting money based on difficulty.
+1. Resizing method is currently hard coded (see configurePath in GameActivity.java) because I can't figure it out
+2. Add tag and run checkstyle
+3. Check what happens when user passes in empty, null, or white-space only name
 
 ## Notes
 1. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")

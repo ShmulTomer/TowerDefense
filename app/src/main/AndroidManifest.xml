@@ -11,7 +11,8 @@
         android:theme="@style/Theme.TowerJackets">
         <activity
             android:name="com.cs2340.towerjackets.views.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +22,13 @@
 
         <activity
             android:name="com.cs2340.towerjackets.views.InitialConfiguration"
-            android:parentActivityName="com.cs2340.towerjackets.views.MainActivity" />
+            android:parentActivityName="com.cs2340.towerjackets.views.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.cs2340.towerjackets.views.GameActivity"
-            android:parentActivityName="com.cs2340.towerjackets.views.InitialConfiguration" />
+            android:parentActivityName="com.cs2340.towerjackets.views.InitialConfiguration"
+            android:screenOrientation="landscape"/>
 
     </application>
 
