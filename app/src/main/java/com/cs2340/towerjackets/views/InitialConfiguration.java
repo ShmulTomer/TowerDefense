@@ -1,6 +1,9 @@
 package com.cs2340.towerjackets.views;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,15 +39,18 @@ public class InitialConfiguration extends AppCompatActivity {
         // Configure the nameField
         nameField = findViewById(R.id.promptForName);
 
-        // Configure the "Let's Go" button
+        // Configure the "Continue" button
         continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Difficulty diffSelected = (Difficulty) difficultySpinner.getSelectedItem();
                 GameConfiguration config = new GameConfiguration(diffSelected);
-
                 Player newPlayer = new Player(nameField.getText().toString(), config);
+
+                // open game activity screen
+                Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);
+                startActivity(intention);
             }
         });
     }

@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/.Helen/Tower Jackets/TowerDefense/app/src/main/res/drawable/monument_background.xml" value="0.2265" />
+        <entry key="..\:/.Helen/Tower Jackets/TowerDefense/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/.Helen/Tower Jackets/TowerDefense/app/src/main/res/layout/game_activity.xml" value="0.264" />
+        <entry key="..\:/.Helen/Tower Jackets/TowerDefense/app/src/main/res/layout/initial_config.xml" value="0.22826086956521738" />
+        <entry key="..\:/.Helen/Tower Jackets/TowerDefense/app/src/main/res/mipmap-anydpi-v26/monument.xml" value="0.2265" />
         <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerDefense/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerJackets/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/lehoa/OneDrive/Desktop/GATech material/Spring 2022 semester/CS 2340/TowerJackets/app/src/main/res/layout/initial_config.xml" value="0.16666666666666666" />
