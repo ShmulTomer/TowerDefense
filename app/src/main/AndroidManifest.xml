@@ -23,6 +23,10 @@
             android:name="com.cs2340.towerjackets.views.InitialConfiguration"
             android:parentActivityName="com.cs2340.towerjackets.views.MainActivity" />
 
+        <activity
+            android:name="com.cs2340.towerjackets.views.GameActivity"
+            android:parentActivityName="com.cs2340.towerjackets.views.InitialConfiguration" />
+
     </application>
 
 </manifest>

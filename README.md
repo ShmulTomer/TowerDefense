@@ -24,14 +24,9 @@ is where most of the functionality in later milestones is implemented. For now, 
         * Monument health should vary based on difficulty.
 
 ## M2 Issues / To-Do
-1. When I run the emulator on my computer, it goes from the activity_main screen to the initial_config
-screen back to the activity_main screen. It should be activity_main --> initial_config --> game_activity,
-can someone check my code and see what is wrong
-2. Since I can't run the emulator for game_activity idk if my code to resize the path works.
-3. I can't figure out how to permanently set it to landscape mode. If you change it to landscape in
-the design tab my setup for game_activity will make more sense, but I have to do that every time I
-reopen android studio...?
-4. Still need to set monument health and starting money based on difficulty.
+1. Can't figure out how to permanently set it to landscape mode (I can set it every single time but that shouldn't be right)
+2. I can't set it to landscape mode in emulator so I can't test if my resizing works
+3. Still need to set monument health and starting money based on difficulty.
 
 ## Notes
 1. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")
