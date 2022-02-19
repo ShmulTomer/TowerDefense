@@ -23,6 +23,13 @@ is where most of the functionality in later milestones is implemented. For now, 
     * Display/describe monument health.
         * Monument health should vary based on difficulty.
 
+## M2 Issues / To-Do
+1. When I run the emulator on my computer, it goes from the activity_main screen to the initial_config
+screen back to the activity_main screen. It should be activity_main --> initial_config --> game_activity,
+can someone check my code and see what is wrong -Helen
+2. Since I can't run the emulator for game_activity idk if my code to resize the path works
+3. Still need to set monument health and starting money based on difficulty.
+
 ## Notes
 1. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")
 and the output will be in Logcat; search up the tag name
