@@ -1,5 +1,6 @@
 package com.cs2340.towerjackets.views;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cs2340.towerjackets.R;
@@ -48,11 +50,26 @@ public class InitialConfiguration extends AppCompatActivity {
             public void onClick(View view) {
                 Difficulty diffSelected = (Difficulty) difficultySpinner.getSelectedItem();
                 GameConfiguration config = new GameConfiguration(diffSelected);
-                player = new Player(nameField.getText().toString(), config);
+                if (nameField.getText().toString().trim().length() <= 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(InitialConfiguration.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("Invalid Name");
+                    builder.setMessage("You didn't enter a name or the name you entered is invalid. Try again.");
 
-                // open game activity screen
-                Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);
-                startActivity(intention);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    builder.show();
+                } else {
+                    player = new Player(nameField.getText().toString(), config);
+
+                    // open game activity screen
+                    Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);
+                    startActivity(intention);
+                }
             }
         });
     }
