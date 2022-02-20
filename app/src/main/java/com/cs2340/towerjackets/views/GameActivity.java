@@ -42,27 +42,24 @@ public class GameActivity extends AppCompatActivity {
     // setting width and height of each image based on screen width and height
     private void configurePath(ImageView[][] path) {
 
-        Display display = getWindowManager().getDefaultDisplay();
+        /* Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
 
         int width = size.x;
-        int height = size.y - 100;
+        int height = size.y - 100; */
 
         for (int i = 0; i < path.length; i++) {
             for (int j = 0; j < path[i].length; j++) {
                 String imageID = "iv" + i + "_" + j;
                 int resID = getResources().getIdentifier(imageID, "id", getPackageName());
                 path[i][j] = findViewById(resID);
-                Log.d("test", "total height is " + height + " and total width is " + width);
                 // path[i][j].getLayoutParams().height = height / path.length;
                 // path[i][j].getLayoutParams().width = width / path[i].length;
 
-                // currently hard coded, works for Virtual Device Pixel 4 XL
-                path[i][j].getLayoutParams().height = 108;
-                path[i][j].getLayoutParams().width = 144;
-                Log.d("test", "" + path[i][j].getLayoutParams().height
-                        + " " + path[i][j].getLayoutParams().width);
+                // currently hard coded, works for Virtual Device Pixel 5
+                path[i][j].getLayoutParams().height = 80;
+                path[i][j].getLayoutParams().width = 106;
             }
         }
     }
