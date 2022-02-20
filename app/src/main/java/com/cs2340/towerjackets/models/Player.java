@@ -21,24 +21,10 @@ public class Player {
         }
 
         // Check to see if name is empty or contain only white-space
-        if (name.equals("")) {
+        if (name.trim().length() <= 0) {
             throw new java.lang.IllegalArgumentException
                     ("Name must not be null, empty, or only contain white spaces");
         }
-
-        boolean flagNotSpace = false;
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) != ' ') {
-                flagNotSpace = true;
-                break;
-            }
-        }
-
-        if (!flagNotSpace) {
-            throw new java.lang.IllegalArgumentException
-                    ("Name must not be null, empty, or only contain white spaces");
-        }
-
         this.name = name;
         this.config = config;
     }
@@ -49,24 +35,10 @@ public class Player {
                     ("Name must not be null, empty, or only contain white spaces.");
         }
         // Check to see if name is empty or contain only white-space
-        if (name.equals("")) {
+        if (name.trim().length() <= 0) {
             throw new java.lang.IllegalArgumentException
                     ("Name must not be null, empty, or only contain white spaces");
         }
-
-        boolean flagNotSpace = false;
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) != ' ') {
-                flagNotSpace = true;
-                break;
-            }
-        }
-
-        if (!flagNotSpace) {
-            throw new java.lang.IllegalArgumentException
-                    ("Name must not be null, empty, or only contain white spaces");
-        }
-
         this.name = name;
     }
 
@@ -75,8 +47,7 @@ public class Player {
             throw new java.lang.IllegalArgumentException
                     ("Can't process without selecting Difficulty level.");
         }
-
-        this.name = name;
+        this.config = config;
     }
 
     public String getName() {
