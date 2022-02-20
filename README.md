@@ -23,10 +23,6 @@ is where most of the functionality in later milestones is implemented. For now, 
     * Display/describe monument health.
         * Monument health should vary based on difficulty.
 
-## M2 Issues / To-Do
-1. Resizing method is currently hard coded (see configurePath in GameActivity.java) because I can't figure it out
-2. Add tag and run checkstyle
-
 ## Notes
 1. Instead of using System.out.println to test if things are working, use Log.d("tag", "message")
 and the output will be in Logcat; search up the tag name
