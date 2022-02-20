@@ -1,6 +1,5 @@
 package com.cs2340.towerjackets.models;
 
-import com.cs2340.towerjackets.models.game_config.Difficulty;
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 
 public class Player {
@@ -17,13 +16,14 @@ public class Player {
     public Player(String name, GameConfiguration config) {
         // Preprocessing to check argument validity
         if ((name == null) || (config == null)) {
-            throw new java.lang.IllegalArgumentException("Can't proceed without name and difficulty level.");
+            throw new java.lang.IllegalArgumentException("Can't proceed without "
+                    + "name and difficulty level.");
         }
 
         // Check to see if name is empty or contain only white-space
         if (name.trim().length() <= 0) {
-            throw new java.lang.IllegalArgumentException
-                    ("Name must not be null, empty, or only contain white spaces");
+            throw new java.lang.IllegalArgumentException("Name must not be "
+                    + "null, empty, or only contain white spaces");
         }
         this.name = name;
         this.config = config;
@@ -31,21 +31,21 @@ public class Player {
 
     public void setName(String name) {
         if (name == null) {
-            throw new java.lang.IllegalArgumentException
-                    ("Name must not be null, empty, or only contain white spaces.");
+            throw new java.lang.IllegalArgumentException("Name must not be "
+                    + "null, empty, or only contain white spaces.");
         }
         // Check to see if name is empty or contain only white-space
         if (name.trim().length() <= 0) {
-            throw new java.lang.IllegalArgumentException
-                    ("Name must not be null, empty, or only contain white spaces");
+            throw new java.lang.IllegalArgumentException("Name must not be "
+                    + "null, empty, or only contain white spaces");
         }
         this.name = name;
     }
 
     public void setConfig(GameConfiguration config) {
         if (config == null) {
-            throw new java.lang.IllegalArgumentException
-                    ("Can't process without selecting Difficulty level.");
+            throw new java.lang.IllegalArgumentException("Can't process without "
+                    + "selecting Difficulty level.");
         }
         this.config = config;
     }

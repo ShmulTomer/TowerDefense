@@ -4,21 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
-
 import com.cs2340.towerjackets.R;
 import com.cs2340.towerjackets.models.game_config.Difficulty;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,9 +57,12 @@ public class GameActivity extends AppCompatActivity {
                 Log.d("test", "total height is " + height + " and total width is " + width);
                 // path[i][j].getLayoutParams().height = height / path.length;
                 // path[i][j].getLayoutParams().width = width / path[i].length;
-                path[i][j].getLayoutParams().height = 108; // currently hard coded, works for Virtual Device Pixel 4 XL
-                path[i][j].getLayoutParams().width = 144; // currently hard coded, works for Virtual Device Pixel 4 XL
-                Log.d("test", "" + path[i][j].getLayoutParams().height + " " + path[i][j].getLayoutParams().width);
+
+                // currently hard coded, works for Virtual Device Pixel 4 XL
+                path[i][j].getLayoutParams().height = 108;
+                path[i][j].getLayoutParams().width = 144;
+                Log.d("test", "" + path[i][j].getLayoutParams().height
+                        + " " + path[i][j].getLayoutParams().width);
             }
         }
     }
