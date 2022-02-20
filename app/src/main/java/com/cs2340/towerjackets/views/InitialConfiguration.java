@@ -2,9 +2,7 @@ package com.cs2340.towerjackets.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,10 +49,12 @@ public class InitialConfiguration extends AppCompatActivity {
                 Difficulty diffSelected = (Difficulty) difficultySpinner.getSelectedItem();
                 GameConfiguration config = new GameConfiguration(diffSelected);
                 if (nameField.getText().toString().trim().length() <= 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(InitialConfiguration.this);
+                    AlertDialog.Builder builder;
+                    builder = new AlertDialog.Builder(InitialConfiguration.this);
                     builder.setCancelable(true);
                     builder.setTitle("Invalid Name");
-                    builder.setMessage("You didn't enter a name or the name you entered is invalid. Try again.");
+                    builder.setMessage("You didn't enter a name "
+                            + "or the name you entered is invalid. Try again.");
 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
