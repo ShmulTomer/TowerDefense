@@ -90,6 +90,7 @@ public class GameActivity extends AppCompatActivity {
         moneyField.setText("$" + money);
     }
 
+    // https://developer.android.com/training/system-ui/immersive
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
                 ViewCompat.getWindowInsetsController(getWindow().getDecorView());
