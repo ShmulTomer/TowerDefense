@@ -6,10 +6,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import com.cs2340.towerjackets.R;
 import com.cs2340.towerjackets.models.game_config.Difficulty;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
 import android.widget.ImageView;
 import android.widget.TextView;
 
