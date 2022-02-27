@@ -66,12 +66,39 @@ public class InitialConfiguration extends AppCompatActivity {
                 } else {
                     player = new Player(nameField.getText().toString(), config);
 
+                    player.setTowerOneInv(0);
+                    player.setTowerTwoInv(0);
+                    player.setTowerThreeInv(0);
+                    setValuesByDifficulty();
                     // open game activity screen
                     Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);
                     startActivity(intention);
                 }
             }
         });
+    }
+
+    private void setValuesByDifficulty() {
+        Difficulty difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
+        if (difficulty.ordinal() == 0) { // easy
+            player.setMoney(100);
+            player.setHealth(100);
+            player.setTowerOneCost(60);
+            player.setTowerTwoCost(80);
+            player.setTowerThreeCost(110);
+        } else if (difficulty.ordinal() == 1) { // normal
+            player.setMoney(80);
+            player.setHealth(80);
+            player.setTowerOneCost(55);
+            player.setTowerTwoCost(90);
+            player.setTowerThreeCost(120);
+        } else if (difficulty.ordinal() == 2) { // hard
+            player.setMoney(50);
+            player.setHealth(50);
+            player.setTowerOneCost(50);
+            player.setTowerTwoCost(100);
+            player.setTowerThreeCost(130);
+        }
     }
 
     public static Player getPlayer() {
