@@ -1,96 +1,56 @@
 package com.cs2340.towerjackets.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 import com.cs2340.towerjackets.R;
-import com.cs2340.towerjackets.models.game_config.Difficulty;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.content.Intent;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import androidx.annotation.Nullable;
+import com.cs2340.towerjackets.models.Player;
 
 public class GameActivity extends AppCompatActivity {
+    private TextView moneyView;
+    private TextView healthView;
 
-    private TextView monumentField;
-    private TextView moneyField;
-    private int monumentHealth;
-    private int money;
-    private ImageView[][] path;
+    private TextView towerOneView;
+    private TextView towerTwoView;
+    private TextView towerThreeView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_activity);
+        setContentView(R.layout.game_screen);
+        // Hide status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        hideSystemBars();
+        ImageButton menuButton = findViewById(R.id.towerMenuB);
 
-        // initialize and configure path
-        path = new ImageView[10][20];
-        configurePath(path);
-
-        // initialize monument and money field and set values by difficulty
-        monumentField = findViewById(R.id.monumentValue);
-        moneyField = findViewById(R.id.moneyValue);
-        setValuesByDifficulty();
-
-    }
-
-    // setting width and height of each image based on screen width and height
-    private void configurePath(ImageView[][] path) {
-
-        /* Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-        int width = size.x;
-        int height = size.y - 100; */
-
-        for (int i = 0; i < path.length; i++) {
-            for (int j = 0; j < path[i].length; j++) {
-                String imageID = "iv" + i + "_" + j;
-                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
-                path[i][j] = findViewById(resID);
-                // path[i][j].getLayoutParams().height = height / path.length;
-                // path[i][j].getLayoutParams().width = width / path[i].length;
-
-                // currently hard coded, works for Virtual Device Pixel 5
-                path[i][j].getLayoutParams().height = 80;
-                path[i][j].getLayoutParams().width = 106;
+        // Add event listeners for button
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intention = new Intent(GameActivity.this, TowerActivity.class);
+                startActivity(intention);
             }
-        }
+        });
+        moneyView = findViewById(R.id.moneyV);
+        healthView = findViewById(R.id.hpV);
+        towerOneView = findViewById(R.id.towerOneV);
+        towerTwoView = findViewById(R.id.towerTwoV);
+        towerThreeView = findViewById(R.id.towerThreeV);
+
+        setValues();
     }
 
-    // setting monument health and starting money based on difficulty level
-    private void setValuesByDifficulty() {
-        Difficulty difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
-        if (difficulty.ordinal() == 0) { // easy
-            monumentHealth = 100;
-            money = 100;
-        } else if (difficulty.ordinal() == 1) { // normal
-            monumentHealth = 80;
-            money = 80;
-        } else if (difficulty.ordinal() == 2) { // hard
-            monumentHealth = 50;
-            money = 50;
-        }
-        monumentField.setText(Integer.toString(monumentHealth));
-        moneyField.setText("$" + money);
+    private void setValues() {
+        Player player = InitialConfiguration.getPlayer();
+        healthView.setText(Integer.toString(player.getHealth()));
+        moneyView.setText("$" + player.getMoney());
+        towerOneView.setText(Integer.toString(player.getTowerOneInv()));
+        towerTwoView.setText(Integer.toString(player.getTowerTwoInv()));
+        towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
     }
-
-    // https://developer.android.com/training/system-ui/immersive
-    private void hideSystemBars() {
-        WindowInsetsControllerCompat windowInsetsController =
-                ViewCompat.getWindowInsetsController(getWindow().getDecorView());
-        if (windowInsetsController == null) {
-            return;
-        }
-        // Configure the behavior of the hidden system bars
-        windowInsetsController.setSystemBarsBehavior(
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        );
-        // Hide both the status bar and the navigation bar
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
-    }
-
 }

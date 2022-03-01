@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cs2340.towerjackets">
 
     <application
@@ -25,10 +26,17 @@
             android:parentActivityName="com.cs2340.towerjackets.views.MainActivity"
             android:screenOrientation="portrait"/>
 
-        <activity
-            android:name="com.cs2340.towerjackets.views.GameActivity"
-            android:parentActivityName="com.cs2340.towerjackets.views.InitialConfiguration"
-            android:screenOrientation="landscape"/>
+        <activity android:name="com.cs2340.towerjackets.views.GameActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            />
+
+        <activity android:name="com.cs2340.towerjackets.views.TowerActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            />
 
     </application>
 

@@ -2,11 +2,18 @@ package com.cs2340.towerjackets.models;
 
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 
+
 public class Player {
     private String name;
     private GameConfiguration config;
     private int money;
     private int health;
+    private int towerOneInv;
+    private int towerTwoInv;
+    private int towerThreeInv;
+    private int towerOneCost;
+    private int towerTwoCost;
+    private int towerThreeCost;
 
     /**
      * Constructor for creating a new Player. More can be added later if needed.
@@ -54,7 +61,71 @@ public class Player {
         return name;
     }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
     public GameConfiguration getConfig() {
         return config;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getTowerOneInv() {
+        return towerOneInv;
+    }
+
+    public void setTowerOneInv(int towerOneInv) {
+        this.towerOneInv = towerOneInv;
+    }
+
+    public int getTowerTwoInv() {
+        return towerTwoInv;
+    }
+
+    public void setTowerTwoInv(int towerTwoInv) {
+        this.towerTwoInv = towerTwoInv;
+    }
+
+    public int getTowerThreeInv() {
+        return towerThreeInv;
+    }
+
+    public void setTowerThreeInv(int towerThreeInv) {
+        this.towerThreeInv = towerThreeInv;
+    }
+
+    public int getTowerOneCost() {
+        return towerOneCost;
+    }
+
+    public void setTowerOneCost(int towerOneCost) {
+        this.towerOneCost = towerOneCost;
+    }
+
+    public int getTowerTwoCost() {
+        return towerTwoCost;
+    }
+
+    public void setTowerTwoCost(int towerTwoCost) {
+        this.towerTwoCost = towerTwoCost;
+    }
+
+    public int getTowerThreeCost() {
+        return towerThreeCost;
+    }
+
+    public void setTowerThreeCost(int towerThreeCost) {
+        this.towerThreeCost = towerThreeCost;
     }
 }
