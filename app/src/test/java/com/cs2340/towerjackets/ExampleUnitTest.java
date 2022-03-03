@@ -18,7 +18,7 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    // Anh Le
+    // Anh Le - This tests whether our program would throw an exception when the input name is null
     @Test (expected = IllegalArgumentException.class)
     public void nameIsNull() {
         Difficulty diff = Difficulty.Easy;
@@ -26,13 +26,24 @@ public class ExampleUnitTest {
         Player newPlayer = new Player(null, new GameConfiguration(diff));
     }
 
-    // Anh Le
+    // Anh Le - This tests whether our program would correctly store the information input by the users
+    // Tested on all difficulties. Tested with 3 different input name strings.
     @Test
     public void testNameDifficultyCorrectlyStored() {
-        Difficulty diff = Difficulty.Normal;
-        Player newPlayer = new Player("Agatha", new GameConfiguration(diff));
+        Difficulty diff1 = Difficulty.Easy;
+        Player newPlayer1 = new Player("Bob", new GameConfiguration(diff1));
+        assertEquals("Bob", newPlayer1.getName());
+        assertEquals(Difficulty.Easy, newPlayer1.getConfig().getGameDifficulty());
+
+        Difficulty diff2 = Difficulty.Normal;
+        Player newPlayer = new Player("Agatha", new GameConfiguration(diff2));
         assertEquals("Agatha", newPlayer.getName());
         assertEquals(Difficulty.Normal, newPlayer.getConfig().getGameDifficulty());
+
+        Difficulty diff3 = Difficulty.Hard;
+        Player newPlayer3 = new Player("Calvin", new GameConfiguration(diff3));
+        assertEquals("Calvin", newPlayer3.getName());
+        assertEquals(Difficulty.Hard, newPlayer3.getConfig().getGameDifficulty());
     }
 
 }
