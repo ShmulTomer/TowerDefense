@@ -62,6 +62,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 placeT1.setEnabled(false);
+                placeT2.setEnabled(false);
+                placeT3.setEnabled(false);
                 if (player.getTowerOneInv() > 0) {
                     player.setTowerOneInv(player.getTowerOneInv() - 1);
                     setValues();
@@ -89,6 +91,12 @@ public class GameActivity extends AppCompatActivity {
                                 if (player.getTowerOneInv() > 0) {
                                     placeT1.setEnabled(true);
                                 }
+                                if (player.getTowerTwoInv() > 0) {
+                                    placeT2.setEnabled(true);
+                                }
+                                if (player.getTowerThreeInv() > 0) {
+                                    placeT3.setEnabled(true);
+                                }
                             }
                             return true;
                         }
@@ -105,7 +113,9 @@ public class GameActivity extends AppCompatActivity {
         placeT2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                placeT1.setEnabled(false);
                 placeT2.setEnabled(false);
+                placeT3.setEnabled(false);
                 if (player.getTowerTwoInv() > 0) {
                     player.setTowerTwoInv(player.getTowerTwoInv() - 1);
                     setValues();
@@ -130,8 +140,14 @@ public class GameActivity extends AppCompatActivity {
                                 iv.requestLayout();
                                 iv.setImageResource(R.drawable.bee);
                                 areaLayout.addView(iv);
+                                if (player.getTowerOneInv() > 0) {
+                                    placeT1.setEnabled(true);
+                                }
                                 if (player.getTowerTwoInv() > 0) {
                                     placeT2.setEnabled(true);
+                                }
+                                if (player.getTowerThreeInv() > 0) {
+                                    placeT3.setEnabled(true);
                                 }
                             }
                             return true;
@@ -150,6 +166,8 @@ public class GameActivity extends AppCompatActivity {
         placeT3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                placeT1.setEnabled(false);
+                placeT2.setEnabled(false);
                 placeT3.setEnabled(false);
                 if (player.getTowerThreeInv() > 0) {
                     player.setTowerThreeInv(player.getTowerThreeInv() - 1);
@@ -175,6 +193,12 @@ public class GameActivity extends AppCompatActivity {
                                 iv.requestLayout();
                                 iv.setImageResource(R.drawable.wasp);
                                 areaLayout.addView(iv);
+                                if (player.getTowerOneInv() > 0) {
+                                    placeT1.setEnabled(true);
+                                }
+                                if (player.getTowerTwoInv() > 0) {
+                                    placeT2.setEnabled(true);
+                                }
                                 if (player.getTowerThreeInv() > 0) {
                                     placeT3.setEnabled(true);
                                 }
