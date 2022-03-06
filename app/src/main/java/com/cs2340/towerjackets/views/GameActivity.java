@@ -53,9 +53,9 @@ public class GameActivity extends AppCompatActivity {
                             new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
                     ImageView iv = new ImageView(getApplicationContext());
-                    param.setMargins(x, y, 0, 0);
+                    param.setMargins(x, y, x + 100, y + 90);
                     iv.setLayoutParams(param);
-                    iv.setImageResource(R.drawable.enemy);
+                    iv.setImageResource(R.drawable.bee);
                     areaLayout.addView(iv);
                 }
                 return true;
