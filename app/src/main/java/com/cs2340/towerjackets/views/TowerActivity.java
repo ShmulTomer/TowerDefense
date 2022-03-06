@@ -38,6 +38,7 @@ public class TowerActivity extends AppCompatActivity {
         Player player = InitialConfiguration.getPlayer();
 
         // Add event listeners for button
+        menuButton.setImageResource(R.drawable.exitmenu_button);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
