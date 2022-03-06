@@ -53,6 +53,8 @@ public class GameActivity extends AppCompatActivity {
                             new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
                     ImageView iv = new ImageView(getApplicationContext());
+                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                    // Size of bee image: 100x90 where 100 is width, 90 is height
                     param.setMargins(x, y, x + 100, y + 90);
                     iv.setLayoutParams(param);
                     iv.setImageResource(R.drawable.bee);
