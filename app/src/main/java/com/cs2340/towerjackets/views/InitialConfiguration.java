@@ -80,7 +80,7 @@ public class InitialConfiguration extends AppCompatActivity {
     private void setValuesByDifficulty() {
         Difficulty difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
         if (difficulty.ordinal() == 0) { // easy
-            player.setMoney(100);
+            player.setMoney(1000);
             player.setHealth(100);
             player.setTowerOneCost(60);
             player.setTowerTwoCost(80);
