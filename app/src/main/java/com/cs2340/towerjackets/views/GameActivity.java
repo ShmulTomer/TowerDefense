@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import androidx.annotation.Nullable;
+import android.view.MotionEvent;
 import com.cs2340.towerjackets.models.Player;
 
 public class GameActivity extends AppCompatActivity {
@@ -19,6 +22,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView towerTwoView;
     private TextView towerThreeView;
 
+    private RelativeLayout areaLayout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
         // Hide status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        areaLayout = findViewById(R.id.relativeLayout);
         ImageButton menuButton = findViewById(R.id.towerMenuB);
 
         // Add event listeners for button
@@ -36,6 +42,25 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intention);
             }
         });
+
+        areaLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    int x = (int) motionEvent.getX();  // get x-Coordinate
+                    int y = (int) motionEvent.getY();  // get y-Coordinate
+                    RelativeLayout.LayoutParams param =
+                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+                    ImageView iv = new ImageView(getApplicationContext());
+                    param.setMargins(x, y, 0, 0);
+                    iv.setLayoutParams(param);
+                    iv.setImageResource(R.drawable.enemy);
+                    areaLayout.addView(iv);
+                }
+                return true;
+            }
+        });
         moneyView = findViewById(R.id.moneyV);
         healthView = findViewById(R.id.hpV);
         towerOneView = findViewById(R.id.towerOneV);
@@ -43,6 +68,8 @@ public class GameActivity extends AppCompatActivity {
         towerThreeView = findViewById(R.id.towerThreeV);
 
         setValues();
+
+
     }
 
     private void setValues() {

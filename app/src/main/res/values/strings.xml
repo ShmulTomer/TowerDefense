@@ -6,4 +6,5 @@
     <string name="quit_button_text">Quit game!</string>
     <string name="prompt_difficulty_level">Select Difficulty</string>
     <string name="continue_message">Continue</string>
+    <string name="monument_text">\"This is a monument\"</string>
 </resources>
