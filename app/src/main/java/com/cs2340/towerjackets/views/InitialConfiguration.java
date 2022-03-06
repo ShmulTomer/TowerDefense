@@ -86,13 +86,13 @@ public class InitialConfiguration extends AppCompatActivity {
             player.setTowerTwoCost(80);
             player.setTowerThreeCost(110);
         } else if (difficulty.ordinal() == 1) { // normal
-            player.setMoney(80);
+            player.setMoney(800);
             player.setHealth(80);
             player.setTowerOneCost(55);
             player.setTowerTwoCost(90);
             player.setTowerThreeCost(120);
         } else if (difficulty.ordinal() == 2) { // hard
-            player.setMoney(50);
+            player.setMoney(500);
             player.setHealth(50);
             player.setTowerOneCost(50);
             player.setTowerTwoCost(100);

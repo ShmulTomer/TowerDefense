@@ -220,7 +220,7 @@
         android:id="@+id/towerTwoB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="322dp"
+        android:layout_marginStart="318dp"
         android:text="Buy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/towerTwoC" />
@@ -229,7 +229,7 @@
         android:id="@+id/towerThreeB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="513dp"
+        android:layout_marginStart="527dp"
         android:text="Buy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/towerThreeC" />
@@ -250,7 +250,7 @@
         android:id="@+id/towerTwoC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="354dp"
+        android:layout_marginStart="345dp"
         android:layout_marginTop="9dp"
         android:text="$0"
         android:textColor="@color/black"

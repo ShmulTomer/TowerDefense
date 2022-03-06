@@ -104,9 +104,9 @@
     <View
         android:id="@+id/divider"
         android:layout_width="2dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="348dp"
-        android:layout_marginTop="11dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="375dp"
+        android:layout_marginTop="0dp"
         android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -151,6 +151,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/towerOneB"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="38dp"
+        android:layout_toStartOf="@+id/towerTwoB"
+        android:text="Place"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/towerTwoT"
         android:layout_width="wrap_content"
@@ -173,6 +185,18 @@
         android:layout_toStartOf="@+id/towerThreeV"
         android:text="0"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/towerTwoB"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="42dp"
+        android:layout_toStartOf="@+id/towerThreeB"
+        android:text="Place"
+        android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -201,6 +225,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/towerThreeB"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="38dp"
+        android:layout_toStartOf="@+id/towerMenuB"
+        android:text="Place"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="50dp"
@@ -212,16 +248,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/grassBackground"
         app:layout_constraintEnd_toEndOf="@+id/grassBackground"
         app:srcCompat="@drawable/beehive" />
-
-    <Button
-        android:id="@+id/towerOneB"
-        android:layout_width="54dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="286dp"
-        android:text="Place"
-        android:textSize="8sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>
