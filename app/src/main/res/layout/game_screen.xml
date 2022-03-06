@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/grassBackground"
-        android:layout_width="733dp"
-        android:layout_height="353dp"
+        android:layout_width="750dp"
+        android:layout_height="340dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
         android:scaleType="fitXY"
@@ -114,12 +114,12 @@
     <ImageButton
         android:id="@+id/towerMenuB"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/imageView"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="253dp"
+        android:layout_marginBottom="235dp"
         android:contentDescription="@string/monument_text"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,5 +212,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/grassBackground"
         app:layout_constraintEnd_toEndOf="@+id/grassBackground"
         app:srcCompat="@drawable/beehive" />
+
+    <Button
+        android:id="@+id/towerOneB"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="286dp"
+        android:text="Place"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

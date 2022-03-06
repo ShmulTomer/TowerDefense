@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +23,11 @@ public class GameActivity extends AppCompatActivity {
     private TextView towerTwoView;
     private TextView towerThreeView;
 
+    private Button placeT1;
+
     private RelativeLayout areaLayout;
+
+    private boolean placed = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
 
         areaLayout = findViewById(R.id.relativeLayout);
         ImageButton menuButton = findViewById(R.id.towerMenuB);
+        Player player = InitialConfiguration.getPlayer();
 
         // Add event listeners for button
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -43,29 +49,42 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        areaLayout.setOnTouchListener(new View.OnTouchListener() {
+        placeT1 = findViewById(R.id.towerOneB);
+        placeT1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    int x = (int) motionEvent.getX();  // get x-Coordinate
-                    int y = (int) motionEvent.getY();  // get y-Coordinate
-                    RelativeLayout.LayoutParams param =
-                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            public void onClick(View view) {
+                if (player.getTowerOneInv() > 0) {
+                    player.setTowerOneInv(player.getTowerOneInv() - 1);
+                    placed = true;
+                    areaLayout.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && placed) {
+                                placed = false;
+                                int x = (int) motionEvent.getX();  // get x-Coordinate
+                                int y = (int) motionEvent.getY();  // get y-Coordinate
+                                RelativeLayout.LayoutParams param =
+                                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                    ImageView iv = new ImageView(getApplicationContext());
-                    // Hard coded the size of the image in - that's where 100 and 90 came in.
-                    // Size of bee image: 100x90 where 100 is width, 90 is height
-                    param.setMargins(x, y, x + 100, y + 90);
-                    iv.setLayoutParams(param);
-                    iv.getLayoutParams().width = 100;
-                    iv.getLayoutParams().height = 100;
-                    iv.requestLayout();
-                    iv.setImageResource(R.drawable.bee);
-                    areaLayout.addView(iv);
+                                ImageView iv = new ImageView(getApplicationContext());
+                                // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                // Size of bee image: 100x90 where 100 is width, 90 is height
+                                param.setMargins(x, y, 0, 0);
+                                iv.setLayoutParams(param);
+                                iv.getLayoutParams().width = 100;
+                                iv.getLayoutParams().height = 100;
+                                iv.requestLayout();
+                                iv.setImageResource(R.drawable.bee);
+                                areaLayout.addView(iv);
+                            }
+                            return true;
+                        }
+                    });
                 }
-                return true;
             }
         });
+
+
         moneyView = findViewById(R.id.moneyV);
         healthView = findViewById(R.id.hpV);
         towerOneView = findViewById(R.id.towerOneV);
