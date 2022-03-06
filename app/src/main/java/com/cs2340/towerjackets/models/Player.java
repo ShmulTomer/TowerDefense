@@ -1,6 +1,8 @@
 package com.cs2340.towerjackets.models;
 
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
+import com.cs2340.towerjackets.views.InitialConfiguration;
+import com.cs2340.towerjackets.views.TowerActivity;
 
 
 public class Player {
@@ -8,12 +10,8 @@ public class Player {
     private GameConfiguration config;
     private int money;
     private int health;
-    private int towerOneInv;
-    private int towerTwoInv;
-    private int towerThreeInv;
-    private int towerOneCost;
-    private int towerTwoCost;
-    private int towerThreeCost;
+    private int[] towerInv = new int[3];
+    private int[] towerCost = new int[towerInv.length];
 
     /**
      * Constructor for creating a new Player. More can be added later if needed.
@@ -82,50 +80,59 @@ public class Player {
     }
 
     public int getTowerOneInv() {
-        return towerOneInv;
-    }
-
-    public void setTowerOneInv(int towerOneInv) {
-        this.towerOneInv = towerOneInv;
+        return towerInv[0];
     }
 
     public int getTowerTwoInv() {
-        return towerTwoInv;
-    }
-
-    public void setTowerTwoInv(int towerTwoInv) {
-        this.towerTwoInv = towerTwoInv;
+        return towerInv[1];
     }
 
     public int getTowerThreeInv() {
-        return towerThreeInv;
-    }
-
-    public void setTowerThreeInv(int towerThreeInv) {
-        this.towerThreeInv = towerThreeInv;
+        return towerInv[2];
     }
 
     public int getTowerOneCost() {
-        return towerOneCost;
-    }
-
-    public void setTowerOneCost(int towerOneCost) {
-        this.towerOneCost = towerOneCost;
+        return towerCost[0];
     }
 
     public int getTowerTwoCost() {
-        return towerTwoCost;
-    }
-
-    public void setTowerTwoCost(int towerTwoCost) {
-        this.towerTwoCost = towerTwoCost;
+        return towerCost[1];
     }
 
     public int getTowerThreeCost() {
-        return towerThreeCost;
+        return towerCost[2];
     }
 
-    public void setTowerThreeCost(int towerThreeCost) {
-        this.towerThreeCost = towerThreeCost;
+    public void initialConfiguration(int difficulty) {
+        for (int i = 0; i < towerInv.length; i++) {
+            towerInv[i] = 0;
+        }
+        if (difficulty == 0) { // easy
+            money = 100;
+            health = 100;
+            towerCost[0] = 60;
+            towerCost[1] = 80;
+            towerCost[2] = 110;
+        } else if (difficulty == 1) { // normal
+            money = 80;
+            health = 80;
+            towerCost[0] = 55;
+            towerCost[1] = 90;
+            towerCost[2] = 120;
+        } else if (difficulty == 2) { // hard
+            money = 50;
+            health = 50;
+            towerCost[0] = 50;
+            towerCost[1] = 100;
+            towerCost[2] = 130;
+        }
     }
+
+    public void buyTower(int tower) {
+        if (money >= towerCost[tower]) {
+            money -= towerCost[tower];
+            towerInv[tower]++;
+        }
+    }
+
 }

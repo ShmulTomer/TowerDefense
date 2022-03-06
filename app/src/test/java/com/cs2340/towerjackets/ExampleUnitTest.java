@@ -7,6 +7,8 @@ import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 
 import static org.junit.Assert.*;
 
+import android.widget.Button;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -18,7 +20,7 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    // Anh Le - This tests whether our program would throw an exception when the input name is null
+    // M3 - Anh Le - This tests whether our program would throw an exception when the input name is null
     @Test (expected = IllegalArgumentException.class)
     public void nameIsNull() {
         Difficulty diff = Difficulty.Easy;
@@ -26,7 +28,7 @@ public class ExampleUnitTest {
         Player newPlayer = new Player(null, new GameConfiguration(diff));
     }
 
-    // Anh Le - This tests whether our program would correctly store the information input by the users
+    // M3 - Anh Le - This tests whether our program would correctly store the information input by the users
     // Tested on all difficulties. Tested with 3 different input name strings.
     @Test
     public void testNameDifficultyCorrectlyStored() {
@@ -44,6 +46,34 @@ public class ExampleUnitTest {
         Player newPlayer3 = new Player("Calvin", new GameConfiguration(diff3));
         assertEquals("Calvin", newPlayer3.getName());
         assertEquals(Difficulty.Hard, newPlayer3.getConfig().getGameDifficulty());
+    }
+
+    // M3 - Helen Chen - This tests whether the purchase of a tower in the shop is stored in the Player.
+    // Tested at easy and normal difficulty with tower two and tower one respectively.
+    @Test
+    public void testTowerPurchaseStored() {
+        Player player1 = new Player("tower tester", new GameConfiguration(Difficulty.Easy));
+        player1.initialConfiguration(0); // easy
+        player1.buyTower(1); // tower two
+        assertEquals(20, player1.getMoney());
+        assertEquals(1, player1.getTowerTwoInv());
+
+        Player player2 = new Player("tower tester", new GameConfiguration(Difficulty.Normal));
+        player2.initialConfiguration(1); // normal
+        player2.buyTower(0); // tower one
+        assertEquals(25, player2.getMoney());
+        assertEquals(1, player2.getTowerOneInv());
+    }
+
+    // M3 - Helen Chen - This tests whether a purchase with insufficient funds is processed or not.
+    // Tested at hard difficulty, tower three. Expects not purchasable.
+    @Test
+    public void testTowerPurchaseInsufficientFunds() {
+        Player player3 = new Player("tower tester", new GameConfiguration(Difficulty.Hard));
+        player3.initialConfiguration(2);
+        player3.buyTower(2); // tower three
+        assertEquals(50, player3.getMoney());
+        assertEquals(0, player3.getTowerThreeInv());
     }
 
 }

@@ -51,11 +51,8 @@ public class TowerActivity extends AppCompatActivity {
         buyT1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (player.getMoney() >= player.getTowerOneCost()) {
-                    player.setMoney(player.getMoney() - player.getTowerOneCost());
-                    player.setTowerOneInv(player.getTowerOneInv() + 1);
-                    setValues();
-                }
+                player.buyTower(0);
+                setValues();
             }
         });
 
@@ -63,11 +60,8 @@ public class TowerActivity extends AppCompatActivity {
         buyT2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (player.getMoney() >= player.getTowerTwoCost()) {
-                    player.setMoney(player.getMoney() - player.getTowerTwoCost());
-                    player.setTowerTwoInv(player.getTowerTwoInv() + 1);
-                    setValues();
-                }
+                player.buyTower(1);
+                setValues();
             }
         });
 
@@ -75,11 +69,8 @@ public class TowerActivity extends AppCompatActivity {
         buyT3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (player.getMoney() >= player.getTowerThreeCost()) {
-                    player.setMoney(player.getMoney() - player.getTowerThreeCost());
-                    player.setTowerThreeInv(player.getTowerThreeInv() + 1);
-                    setValues();
-                }
+                player.buyTower(2);
+                setValues();
             }
         });
 
@@ -93,19 +84,18 @@ public class TowerActivity extends AppCompatActivity {
         towerTwoCostV = findViewById(R.id.towerTwoC);
         towerThreeCostV = findViewById(R.id.towerThreeC);
 
-        setValues();
     }
 
-    private void setValues() {
+    public void setValues() {
         Player player = InitialConfiguration.getPlayer();
+        System.out.println("health" + player.getHealth());
         healthView.setText(Integer.toString(player.getHealth()));
         moneyView.setText("$" + player.getMoney());
         towerOneView.setText(Integer.toString(player.getTowerOneInv()));
         towerTwoView.setText(Integer.toString(player.getTowerTwoInv()));
         towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
-
-        towerOneCostV.setText("$"+ Integer.toString(player.getTowerOneCost()));
-        towerTwoCostV.setText("$"+ Integer.toString(player.getTowerTwoCost()));
-        towerThreeCostV.setText("$"+ Integer.toString(player.getTowerThreeCost()));
+        towerOneCostV.setText("$"+ player.getTowerOneCost());
+        towerTwoCostV.setText("$"+ player.getTowerTwoCost());
+        towerThreeCostV.setText("$"+ player.getTowerThreeCost());
     }
 }
