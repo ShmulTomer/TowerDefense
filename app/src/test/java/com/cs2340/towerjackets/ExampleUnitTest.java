@@ -55,13 +55,13 @@ public class ExampleUnitTest {
         Player player1 = new Player("tower tester", new GameConfiguration(Difficulty.Easy));
         player1.initialConfiguration(0); // easy
         player1.buyTower(1); // tower two
-        assertEquals(20, player1.getMoney());
+        assertEquals(920, player1.getMoney());
         assertEquals(1, player1.getTowerTwoInv());
 
         Player player2 = new Player("tower tester", new GameConfiguration(Difficulty.Normal));
         player2.initialConfiguration(1); // normal
         player2.buyTower(0); // tower one
-        assertEquals(25, player2.getMoney());
+        assertEquals(745, player2.getMoney());
         assertEquals(1, player2.getTowerOneInv());
     }
 
@@ -70,10 +70,13 @@ public class ExampleUnitTest {
     @Test
     public void testTowerPurchaseInsufficientFunds() {
         Player player3 = new Player("tower tester", new GameConfiguration(Difficulty.Hard));
-        player3.initialConfiguration(2);
-        player3.buyTower(2); // tower three
-        assertEquals(50, player3.getMoney());
-        assertEquals(0, player3.getTowerThreeInv());
+        player3.initialConfiguration(2); // money = 500
+        player3.buyTower(2); // tower three: money = 370
+        player3.buyTower(2); // tower three: money = 240
+        player3.buyTower(2); // tower three: money = 110
+        player3.buyTower(2); // tower three: money = 110 (not enough funds)
+        assertEquals(110, player3.getMoney());
+        assertEquals(3, player3.getTowerThreeInv());
     }
 
 }

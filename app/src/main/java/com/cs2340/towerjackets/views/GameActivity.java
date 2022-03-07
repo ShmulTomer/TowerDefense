@@ -44,6 +44,13 @@ public class GameActivity extends AppCompatActivity {
         ImageButton menuButton = findViewById(R.id.towerMenuB);
         Player player = InitialConfiguration.getPlayer();
 
+        moneyView = findViewById(R.id.moneyV);
+        healthView = findViewById(R.id.hpV);
+        towerOneView = findViewById(R.id.towerOneV);
+        towerTwoView = findViewById(R.id.towerTwoV);
+        towerThreeView = findViewById(R.id.towerThreeV);
+        setValues();
+
         // Add event listeners for button
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,17 +216,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        moneyView = findViewById(R.id.moneyV);
-        healthView = findViewById(R.id.hpV);
-        towerOneView = findViewById(R.id.towerOneV);
-        towerTwoView = findViewById(R.id.towerTwoV);
-        towerThreeView = findViewById(R.id.towerThreeV);
-
-        setValues();
-
-
     }
 
     private void setValues() {

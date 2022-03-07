@@ -75,29 +75,6 @@ public class InitialConfiguration extends AppCompatActivity {
         });
     }
 
-    private void setValuesByDifficulty() {
-        Difficulty difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
-        if (difficulty.ordinal() == 0) { // easy
-            player.setMoney(1000);
-            player.setHealth(100);
-            player.setTowerOneCost(60);
-            player.setTowerTwoCost(80);
-            player.setTowerThreeCost(110);
-        } else if (difficulty.ordinal() == 1) { // normal
-            player.setMoney(800);
-            player.setHealth(80);
-            player.setTowerOneCost(55);
-            player.setTowerTwoCost(90);
-            player.setTowerThreeCost(120);
-        } else if (difficulty.ordinal() == 2) { // hard
-            player.setMoney(500);
-            player.setHealth(50);
-            player.setTowerOneCost(50);
-            player.setTowerTwoCost(100);
-            player.setTowerThreeCost(130);
-        }
-    }
-
     public static Player getPlayer() {
         return player;
     }

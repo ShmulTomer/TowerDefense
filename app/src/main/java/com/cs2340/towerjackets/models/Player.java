@@ -83,13 +83,19 @@ public class Player {
         return towerInv[0];
     }
 
+    public void setTowerOneInv(int towerOneInv) { towerInv[0] = towerOneInv; }
+
     public int getTowerTwoInv() {
         return towerInv[1];
     }
 
+    public void setTowerTwoInv(int towerTwoInv) { towerInv[1] = towerTwoInv; }
+
     public int getTowerThreeInv() {
         return towerInv[2];
     }
+
+    public void setTowerThreeInv(int towerThreeInv) { towerInv[2] = towerThreeInv; }
 
     public int getTowerOneCost() {
         return towerCost[0];
@@ -108,19 +114,19 @@ public class Player {
             towerInv[i] = 0;
         }
         if (difficulty == 0) { // easy
-            money = 100;
+            money = 1000;
             health = 100;
             towerCost[0] = 60;
             towerCost[1] = 80;
             towerCost[2] = 110;
         } else if (difficulty == 1) { // normal
-            money = 80;
+            money = 800;
             health = 80;
             towerCost[0] = 55;
             towerCost[1] = 90;
             towerCost[2] = 120;
         } else if (difficulty == 2) { // hard
-            money = 50;
+            money = 500;
             health = 50;
             towerCost[0] = 50;
             towerCost[1] = 100;

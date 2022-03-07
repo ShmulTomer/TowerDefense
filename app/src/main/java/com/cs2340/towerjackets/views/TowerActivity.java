@@ -37,6 +37,17 @@ public class TowerActivity extends AppCompatActivity {
         ImageButton menuButton = findViewById(R.id.towerMenuB);
         Player player = InitialConfiguration.getPlayer();
 
+        moneyView = findViewById(R.id.moneyV);
+        healthView = findViewById(R.id.hpV);
+        towerOneView = findViewById(R.id.towerOneV);
+        towerTwoView = findViewById(R.id.towerTwoV);
+        towerThreeView = findViewById(R.id.towerThreeV);
+
+        towerOneCostV = findViewById(R.id.towerOneC);
+        towerTwoCostV = findViewById(R.id.towerTwoC);
+        towerThreeCostV = findViewById(R.id.towerThreeC);
+        setValues();
+
         // Add event listeners for button
         menuButton.setImageResource(R.drawable.exitmenu_button);
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -74,21 +85,10 @@ public class TowerActivity extends AppCompatActivity {
             }
         });
 
-        moneyView = findViewById(R.id.moneyV);
-        healthView = findViewById(R.id.hpV);
-        towerOneView = findViewById(R.id.towerOneV);
-        towerTwoView = findViewById(R.id.towerTwoV);
-        towerThreeView = findViewById(R.id.towerThreeV);
-
-        towerOneCostV = findViewById(R.id.towerOneC);
-        towerTwoCostV = findViewById(R.id.towerTwoC);
-        towerThreeCostV = findViewById(R.id.towerThreeC);
-
     }
 
     public void setValues() {
         Player player = InitialConfiguration.getPlayer();
-        System.out.println("health" + player.getHealth());
         healthView.setText(Integer.toString(player.getHealth()));
         moneyView.setText("$" + player.getMoney());
         towerOneView.setText(Integer.toString(player.getTowerOneInv()));
