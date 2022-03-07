@@ -66,7 +66,7 @@ public class ExampleUnitTest {
     }
 
     // M3 - Helen Chen - This tests whether a purchase with insufficient funds is processed or not.
-    // Tested at hard difficulty, tower three. Expects not purchasable.
+    // Tested at hard difficulty, tower three. Expects not purchasable after 3 successful purchases.
     @Test
     public void testTowerPurchaseInsufficientFunds() {
         Player player3 = new Player("tower tester", new GameConfiguration(Difficulty.Hard));

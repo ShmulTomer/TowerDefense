@@ -16,5 +16,6 @@ This test also shows that tower costs vary based on difficulty level.
 
 4. testTowerPurchaseInsufficientFunds() - Helen Chen
 * This test tests whether or not towers can be purchased with insufficient funds.
-A player with hard difficulty is created and an attempt to purchase tower three is made.
-However, since the player doesn't have sufficient funds, it is expected that nothing changes.
+A player with hard difficulty is created and an attempt to purchase tower three is made four times.
+However, the player will no longer have sufficient funds after three purchases. Therefore, it is
+expected that the player can only purchase three towers, not four. 
