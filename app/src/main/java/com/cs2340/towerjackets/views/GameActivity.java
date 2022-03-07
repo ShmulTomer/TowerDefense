@@ -196,8 +196,8 @@ public class GameActivity extends AppCompatActivity {
                                 // Size of bee image: 100x90 where 100 is width, 90 is height
                                 param.setMargins(x, y, 0, 0);
                                 iv.setLayoutParams(param);
-                                iv.getLayoutParams().width = 100;
-                                iv.getLayoutParams().height = 100;
+                                iv.getLayoutParams().width = 160;
+                                iv.getLayoutParams().height = 160;
                                 iv.requestLayout();
                                 iv.setImageResource(R.drawable.wasp);
                                 areaLayout.addView(iv);
