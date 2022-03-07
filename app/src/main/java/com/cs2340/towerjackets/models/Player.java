@@ -141,4 +141,10 @@ public class Player {
         }
     }
 
+    public void placeTower(int tower) {
+        if (towerInv[tower] >= 1) {
+            towerInv[tower]--;
+        }
+    }
+
 }

@@ -79,4 +79,34 @@ public class ExampleUnitTest {
         assertEquals(3, player3.getTowerThreeInv());
     }
 
+    // M3 - Hyun Soo (Harriet) Kim - This tests whether the placement of a tower decreases the tower inventory in the Player.
+    // Tested at easy difficulty, tower one and two.
+    @Test
+    public void testPlaceTowerDecreaseInv() {
+        Player testPlayer1 = new Player("Harriet", new GameConfiguration(Difficulty.Easy));
+        testPlayer1.initialConfiguration(0); // Easy
+        testPlayer1.buyTower(0); // buy tower one
+        testPlayer1.buyTower(1); // buy tower two
+        testPlayer1.buyTower(1); // buy tower two
+        testPlayer1.placeTower(0); // place tower one
+        testPlayer1.placeTower(1); // place tower two
+        assertEquals(0, testPlayer1.getTowerOneInv());
+        assertEquals(1, testPlayer1.getTowerTwoInv());
+    }
+
+    // M3 - Hyun Soo (Harriet) Kim - This tests whether a placement with insufficient inventory is processed or not.
+    // Tested at normal difficulty, tower three. Expects not place the tower after 2 successful placement.
+    @Test
+    public void testPlaceTowerInsufficientInv() {
+        Player testPlayer2 = new Player("Harriet", new GameConfiguration(Difficulty.Normal));
+        testPlayer2.initialConfiguration(1); // Normal
+        testPlayer2.buyTower(2); // buy tower three
+        testPlayer2.buyTower(2); // buy tower three
+        testPlayer2.placeTower(2); // place tower three
+        assertEquals(1, testPlayer2.getTowerThreeInv());
+        testPlayer2.placeTower(2); // place tower three
+        assertEquals(0, testPlayer2.getTowerThreeInv());
+        testPlayer2.placeTower(2); // place tower three (not enough inventory for tower three)
+        assertEquals(0, testPlayer2.getTowerThreeInv());
+    }
 }
