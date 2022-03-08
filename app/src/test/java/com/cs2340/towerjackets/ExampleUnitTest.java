@@ -109,4 +109,41 @@ public class ExampleUnitTest {
         testPlayer2.placeTower(2); // place tower three (not enough inventory for tower three)
         assertEquals(0, testPlayer2.getTowerThreeInv());
     }
+
+    // M3 - Tomer Shmul - This tests the functions for changing the player's health and getting the
+    // player's health, which will both be used when enemies damage the monument hive. When health
+    // reaches a value below 0, it should default to 0.
+    @Test
+    public void testChangingPlayerHealth() {
+        Player testPlayer1 = new Player("Tomer", new GameConfiguration(Difficulty.Easy));
+
+        testPlayer1.setHealth(80);
+        assertEquals(testPlayer1.getHealth(), 80);
+
+        testPlayer1.setHealth(0);
+        assertEquals(testPlayer1.getHealth(), 0);
+
+        // A value below 0 for health should return 0 health regardless
+        testPlayer1.setHealth(-10);
+        assertEquals(testPlayer1.getHealth(), 0);
+    }
+
+    // M3 - Tomer Shmul - This tests the functions for changing the player's money and getting the
+    // player's money, which will both be used when enemies are killed and coins are picked up by
+    // the player.
+    @Test
+    public void testChangingPlayerMoney() {
+        Player testPlayer1 = new Player("Tomer", new GameConfiguration(Difficulty.Normal));
+
+        testPlayer1.setMoney(80);
+        assertEquals(testPlayer1.getMoney(), 80);
+
+        testPlayer1.setMoney(0);
+        assertEquals(testPlayer1.getMoney(), 0);
+
+        testPlayer1.setMoney(1000);
+        assertEquals(testPlayer1.getMoney(), 1000);
+    }
+
+
 }
