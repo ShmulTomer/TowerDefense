@@ -145,5 +145,35 @@ public class ExampleUnitTest {
         assertEquals(testPlayer1.getMoney(), 1000);
     }
 
+    // M3 - Ori Yoked - This tests whether buying a tower increases the tower inventory in the Player.
+    // Tested at easy difficulty, tower one and two.
+    @Test
+    public void testBuyTowerIncreaseInv() {
+        Player testPlayer = new Player("Ori", new GameConfiguration(Difficulty.Easy));
+        testPlayer.initialConfiguration(0); // Easy
+        testPlayer.buyTower(0); // buy tower one
+        testPlayer.buyTower(1); // buy tower two
+        testPlayer.buyTower(1); // buy tower two
+        assertEquals(1, testPlayer.getTowerOneInv());
+        assertEquals(2, testPlayer.getTowerTwoInv());
+    }
+
+    // M3 - Ori Yoked - This tests whether choosing a difficulty gives the correct health to the Player.
+    // Tested at easy, normal, and hard difficulty
+    @Test
+    public void testCorrectHealthForDifficulty() {
+        Player testPlayer1 = new Player("Ori", new GameConfiguration(Difficulty.Easy));
+        testPlayer1.initialConfiguration(0); // Easy
+        assertEquals(100, testPlayer1.getHealth());
+
+        Player testPlayer2 = new Player("Ori", new GameConfiguration(Difficulty.Easy));
+        testPlayer2.initialConfiguration(1); // Normal
+        assertEquals(80, testPlayer2.getHealth());
+
+        Player testPlayer3 = new Player("Ori", new GameConfiguration(Difficulty.Easy));
+        testPlayer3.initialConfiguration(2); // Hard
+        assertEquals(50, testPlayer3.getHealth());
+    }
+
 
 }

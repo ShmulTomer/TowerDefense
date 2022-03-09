@@ -44,4 +44,9 @@ should not have negative health.
 functionality for the tower features, such as buying (for this milestone thus far). Therefore,
 it is important to make sure that this core functionality remains consistent with this unit test.
 
-9.
+9. testBuyTowerIncreaseInv() - Ori Yoked
+* This test tests whether the placement of a tower increases the tower inventory in the Player. A
+player with easy difficulty is created. We attempt to purchase tower one one time and tower two two times. Then, we expect the tower inventory of the tower one be 1 and that of the tower two be 2. This functionality is important because if the inventory doesn't increase when a tower is bought, the player will never be able to place a tower and defeat the enemies.
+
+10. testCorrectHealthForDifficulty() - Ori Yoked
+* This test tests the functionality of having a different starting health when choosing a difficulty for the game. This is meaningful because the health is important for combating enemies and keeping the monument safe, so we want to ensure that this is more or less difficult to do based on what the player chooses. Therefore, the player's health should be different for the easy, normal, and hard difficulty.
