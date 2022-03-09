@@ -3,10 +3,10 @@
 ## M3 Testing Writeup
 
 1. nameIsNull() - Anh Le
-*
+* This test checks whether the name the Player entered into (to name the Character) is null or not. The tests expect our Player constructor to throw IllegalArgumentException when the name entered is null (The caller of this function will then take care of prompting the player to enter a valid name again before proceeding).  A Player object is created, with a null name passed in as an argument to test the method. 
 
 2. testNameDifficultyCorrectlyStored() - Anh Le
-* 
+* This test checks whether the name entered (assuming it's valid) and the Difficulty selected is correctly stored in our Intial_Configuration object. Test 3 different cases. 3 different Player object is created, with different GameConfiguration objects (different difficulty passed in) passed in as parameters. The test check the actual saved object has the correct configuration - correct name, correct difficulty. 
 
 3. testTowerPurchaseStored() - Helen Chen
 * This test tests whether the purchase of a tower in the shop is correctly stored in the Player.
