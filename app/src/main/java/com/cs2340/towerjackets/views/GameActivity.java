@@ -7,7 +7,6 @@ import com.cs2340.towerjackets.R;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -44,26 +43,9 @@ public class GameActivity extends AppCompatActivity {
         // Hide status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         areaLayout = findViewById(R.id.relativeLayout);
-        ImageButton menuButton = findViewById(R.id.towerMenuB);
         Player player = InitialConfiguration.getPlayer();
-
-        moneyView = findViewById(R.id.moneyV);
-        healthView = findViewById(R.id.hpV);
-        towerOneView = findViewById(R.id.towerOneV);
-        towerTwoView = findViewById(R.id.towerTwoV);
-        towerThreeView = findViewById(R.id.towerThreeV);
-        setValues();
-
-        // Add event listeners for button
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intention = new Intent(GameActivity.this, TowerActivity.class);
-                startActivity(intention);
-            }
-        });
+        configViews();
 
         placeT1 = findViewById(R.id.towerOneB);
         placeT1.setEnabled(false);
@@ -73,9 +55,7 @@ public class GameActivity extends AppCompatActivity {
         placeT1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                placeT1.setEnabled(false);
-                placeT2.setEnabled(false);
-                placeT3.setEnabled(false);
+                enableAllFalse();
                 if (player.getTowerOneInv() > 0) {
                     placed1 = true;
                     areaLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -85,18 +65,9 @@ public class GameActivity extends AppCompatActivity {
                                 placed1 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                Log.i("X: ", x + "");
-                                Log.i("Y: ", y + "");
-                                /*(x > 1149 && y < 205 && y > 436) ||
-                                (x < 899 && x > 1149 && y < 329 && y > 811) ||
-                                (x < 891 && y < 711 && y > 943)*/
-                                if (!(x < 1149 && y > 205 && y < 436)
-                                        && !(x > 899 && x < 1149 && y > 329 && y < 811)
-                                        && !(x > 891 && y > 711 && y < 943)) {
-                                    RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                if (checkValidPlacement(x, y)) {
+                                    RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
-                                    // Hard coded the size of the image in
-                                    // - that's where 100 and 90 came in.
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
                                     param.setMargins(x, y, 0, 0);
                                     iv.setLayoutParams(param);
@@ -108,30 +79,9 @@ public class GameActivity extends AppCompatActivity {
                                     player.setTowerOneInv(player.getTowerOneInv() - 1);
                                     setValues();
                                 } else {
-                                    AlertDialog.Builder builder;
-                                    builder = new AlertDialog.Builder(GameActivity.this);
-                                    builder.setCancelable(true);
-                                    builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path. "
-                                            + "Try again.");
-
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.cancel();
-                                        }
-                                    });
-                                    builder.show();
+                                    alertPath();
                                 }
-                                if (player.getTowerOneInv() > 0) {
-                                    placeT1.setEnabled(true);
-                                }
-                                if (player.getTowerTwoInv() > 0) {
-                                    placeT2.setEnabled(true);
-                                }
-                                if (player.getTowerThreeInv() > 0) {
-                                    placeT3.setEnabled(true);
-                                }
+                                updateEnabled(player);
                             }
                             return true;
                         }
@@ -148,9 +98,7 @@ public class GameActivity extends AppCompatActivity {
         placeT2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                placeT1.setEnabled(false);
-                placeT2.setEnabled(false);
-                placeT3.setEnabled(false);
+                enableAllFalse();
                 if (player.getTowerTwoInv() > 0) {
                     setValues();
                     placed2 = true;
@@ -161,12 +109,9 @@ public class GameActivity extends AppCompatActivity {
                                 placed2 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
-                                    RelativeLayout.LayoutParams param =
-                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
+                                if (checkValidPlacement(x, y)) {
+                                    RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
-                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
                                     param.setMargins(x, y, 0, 0);
                                     iv.setLayoutParams(param);
@@ -178,30 +123,9 @@ public class GameActivity extends AppCompatActivity {
                                     player.setTowerTwoInv(player.getTowerTwoInv() - 1);
                                     setValues();
                                 } else {
-                                    AlertDialog.Builder builder;
-                                    builder = new AlertDialog.Builder(GameActivity.this);
-                                    builder.setCancelable(true);
-                                    builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path."
-                                            + " Try again.");
-
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.cancel();
-                                        }
-                                    });
-                                    builder.show();
+                                    alertPath();
                                 }
-                                if (player.getTowerOneInv() > 0) {
-                                    placeT1.setEnabled(true);
-                                }
-                                if (player.getTowerTwoInv() > 0) {
-                                    placeT2.setEnabled(true);
-                                }
-                                if (player.getTowerThreeInv() > 0) {
-                                    placeT3.setEnabled(true);
-                                }
+                                updateEnabled(player);
                             }
                             return true;
                         }
@@ -219,9 +143,7 @@ public class GameActivity extends AppCompatActivity {
         placeT3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                placeT1.setEnabled(false);
-                placeT2.setEnabled(false);
-                placeT3.setEnabled(false);
+                enableAllFalse();
                 if (player.getTowerThreeInv() > 0) {
                     setValues();
                     placed3 = true;
@@ -232,15 +154,9 @@ public class GameActivity extends AppCompatActivity {
                                 placed3 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (!(x < 1149 && y > 205 && y < 436)
-                                        && !(x > 899 && x < 1149 && y > 329 && y < 811)
-                                        && !(x > 891 && y > 711 && y < 943)) {
-                                    RelativeLayout.LayoutParams param =
-                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
+                                if (checkValidPlacement(x, y)) {
+                                    RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
-                                    // Hard coded the size of the image in
-                                    // - that's where 100 and 90 came in.
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
                                     param.setMargins(x, y, 0, 0);
                                     iv.setLayoutParams(param);
@@ -252,35 +168,33 @@ public class GameActivity extends AppCompatActivity {
                                     player.setTowerThreeInv(player.getTowerThreeInv() - 1);
                                     setValues();
                                 } else {
-                                    AlertDialog.Builder builder;
-                                    builder = new AlertDialog.Builder(GameActivity.this);
-                                    builder.setCancelable(true);
-                                    builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path."
-                                            + " Try again.");
-
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.cancel();
-                                        }
-                                    });
-                                    builder.show();
+                                    alertPath();
                                 }
-                                if (player.getTowerOneInv() > 0) {
-                                    placeT1.setEnabled(true);
-                                }
-                                if (player.getTowerTwoInv() > 0) {
-                                    placeT2.setEnabled(true);
-                                }
-                                if (player.getTowerThreeInv() > 0) {
-                                    placeT3.setEnabled(true);
-                                }
+                                updateEnabled(player);
                             }
                             return true;
                         }
                     });
                 }
+            }
+        });
+    }
+
+    private void configViews() {
+        moneyView = findViewById(R.id.moneyV);
+        healthView = findViewById(R.id.hpV);
+        towerOneView = findViewById(R.id.towerOneV);
+        towerTwoView = findViewById(R.id.towerTwoV);
+        towerThreeView = findViewById(R.id.towerThreeV);
+        setValues();
+
+        ImageButton menuButton = findViewById(R.id.towerMenuB);
+        // Add event listeners for button
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intention = new Intent(GameActivity.this, TowerActivity.class);
+                startActivity(intention);
             }
         });
     }
@@ -292,5 +206,52 @@ public class GameActivity extends AppCompatActivity {
         towerOneView.setText(Integer.toString(player.getTowerOneInv()));
         towerTwoView.setText(Integer.toString(player.getTowerTwoInv()));
         towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
+    }
+
+    private void enableAllFalse() {
+        placeT1.setEnabled(false);
+        placeT2.setEnabled(false);
+        placeT3.setEnabled(false);
+    }
+
+    private void updateEnabled(Player player) {
+        if (player.getTowerOneInv() > 0) {
+            placeT1.setEnabled(true);
+        }
+        if (player.getTowerTwoInv() > 0) {
+            placeT2.setEnabled(true);
+        }
+        if (player.getTowerThreeInv() > 0) {
+            placeT3.setEnabled(true);
+        }
+    }
+
+    private void alertPath() {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(GameActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Invalid Tower Placement");
+        builder.setMessage("You placed the tower on the path."
+                + " Try again.");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private RelativeLayout.LayoutParams createParam() {
+        RelativeLayout.LayoutParams param =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+        return param;
+    }
+
+    private boolean checkValidPlacement(int x, int y) {
+        return !(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811)
+                && !(x > 891 && y > 711 && y < 943);
     }
 }

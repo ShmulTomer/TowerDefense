@@ -7,8 +7,6 @@ import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 
 import static org.junit.Assert.*;
 
-import android.widget.Button;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -20,7 +18,8 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    // M3 - Anh Le - This tests whether our program would throw an exception when the input name is null
+    // M3 - Anh Le - This tests whether our program would throw an exception when the input name
+    // is null.
     @Test (expected = IllegalArgumentException.class)
     public void nameIsNull() {
         Difficulty diff = Difficulty.Easy;
@@ -28,7 +27,8 @@ public class ExampleUnitTest {
         Player newPlayer = new Player(null, new GameConfiguration(diff));
     }
 
-    // M3 - Anh Le - This tests whether our program would correctly store the information input by the users
+    // M3 - Anh Le - This tests whether our program would correctly store the information input
+    // by the users.
     // Tested on all difficulties. Tested with 3 different input name strings.
     @Test
     public void testNameDifficultyCorrectlyStored() {
@@ -48,7 +48,7 @@ public class ExampleUnitTest {
         assertEquals(Difficulty.Hard, newPlayer3.getConfig().getGameDifficulty());
     }
 
-    // M3 - Helen Chen - This tests whether the purchase of a tower in the shop is stored in the Player.
+    // M3 - Helen Chen - This tests whether the purchase of a tower in the shop is stored in Player.
     // Tested at easy and normal difficulty with tower two and tower one respectively.
     @Test
     public void testTowerPurchaseStored() {
@@ -79,7 +79,8 @@ public class ExampleUnitTest {
         assertEquals(3, player3.getTowerThreeInv());
     }
 
-    // M3 - Hyun Soo (Harriet) Kim - This tests whether the placement of a tower decreases the tower inventory in the Player.
+    // M3 - Hyun Soo (Harriet) Kim - This tests whether the placement of a tower decreases the tower
+    // inventory in the Player.
     // Tested at easy difficulty, tower one and two.
     @Test
     public void testPlaceTowerDecreaseInv() {
@@ -94,8 +95,10 @@ public class ExampleUnitTest {
         assertEquals(1, testPlayer1.getTowerTwoInv());
     }
 
-    // M3 - Hyun Soo (Harriet) Kim - This tests whether a placement with insufficient inventory is processed or not.
-    // Tested at normal difficulty, tower three. Expects not place the tower after 2 successful placement.
+    // M3 - Hyun Soo (Harriet) Kim - This tests whether a placement with insufficient inventory is
+    // processed or not.
+    // Tested at normal difficulty, tower three. Expects not place the tower after 2 successful
+    // placements.
     @Test
     public void testPlaceTowerInsufficientInv() {
         Player testPlayer2 = new Player("Harriet", new GameConfiguration(Difficulty.Normal));
@@ -145,7 +148,8 @@ public class ExampleUnitTest {
         assertEquals(testPlayer1.getMoney(), 1000);
     }
 
-    // M3 - Ori Yoked - This tests whether buying a tower increases the tower inventory in the Player.
+    // M3 - Ori Yoked - This tests whether buying a tower increases the tower inventory in the
+    // Player.
     // Tested at easy difficulty, tower one and two.
     @Test
     public void testBuyTowerIncreaseInv() {
@@ -158,7 +162,8 @@ public class ExampleUnitTest {
         assertEquals(2, testPlayer.getTowerTwoInv());
     }
 
-    // M3 - Ori Yoked - This tests whether choosing a difficulty gives the correct health to the Player.
+    // M3 - Ori Yoked - This tests whether choosing a difficulty gives the correct health to the
+    // Player.
     // Tested at easy, normal, and hard difficulty
     @Test
     public void testCorrectHealthForDifficulty() {
