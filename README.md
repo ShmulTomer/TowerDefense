@@ -19,16 +19,29 @@ This test also shows that tower costs vary based on difficulty level.
 A player with hard difficulty is created and an attempt to purchase tower three is made four times.
 However, the player will no longer have sufficient funds after three purchases. Therefore, it is
 expected that the player can only purchase three towers, not four.
+  
+5. testPlaceTowerDecreaseInv() - Hyun Soo (Harriet) Kim
+* This test tests whether the placement of a tower decreases the tower inventory in the Player.
+A player with easy difficulty is created. We attempt to purchase tower one one time and 
+  tower two two times. Then, we attempt to place tower one and tower two one time each. Then we 
+  expect the tower inventory of the tower one be 1 - 1 = 0 and that of the tower two be 2 - 1 = 1.
 
-5. testChangingPlayerHealth() - Tomer Shmul
+6. testPlaceTowerInsufficientInv() - Hyun Soo (Harriet) Kim
+* This test tests whether a placement with insufficient inventory is processed or not. A player with 
+normal difficulty is created. We attempt to purchase tower three two times and place tower three 
+  three times. However, the player will no longer have sufficient inventory after two placements. 
+  Therefore, it is expected that the player can only place two towers, not three.
+
+
+7. testChangingPlayerHealth() - Tomer Shmul
 * This test tests the functionality of adjusting the player's health throughout the game. This tests
 both changing and getting the player's health, which has functionality beyond just setter and getter.
 When changing the health, if the health falls below 0, it will default the health to 0, as the player
 should not have negative health.
 
-6. testChangingPlayerMoney() - Tomer Shmul
+8. testChangingPlayerMoney() - Tomer Shmul
 * This test tests the functionality of adjusting the player's money, which is an essential
 functionality for the tower features, such as buying (for this milestone thus far). Therefore,
 it is important to make sure that this core functionality remains consistent with this unit test.
 
-6.
+9.
