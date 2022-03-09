@@ -81,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
                         public boolean onTouch(View view, MotionEvent motionEvent) {
                             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && placed1) {
                                 placed1 = false;
+                                
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
                                 RelativeLayout.LayoutParams param =
