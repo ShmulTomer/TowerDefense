@@ -1,10 +1,14 @@
 package com.cs2340.towerjackets.views;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cs2340.towerjackets.R;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -73,30 +77,50 @@ public class GameActivity extends AppCompatActivity {
                 placeT2.setEnabled(false);
                 placeT3.setEnabled(false);
                 if (player.getTowerOneInv() > 0) {
-                    player.setTowerOneInv(player.getTowerOneInv() - 1);
-                    setValues();
                     placed1 = true;
                     areaLayout.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View view, MotionEvent motionEvent) {
                             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && placed1) {
                                 placed1 = false;
-                                
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                RelativeLayout.LayoutParams param =
-                                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                Log.i("X: ", x + "");
+                                Log.i("Y: ", y + "");
+                                /*(x > 1149 && y < 205 && y > 436) ||
+                                (x < 899 && x > 1149 && y < 329 && y > 811) ||
+                                (x < 891 && y < 711 && y > 943)*/
+                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
+                                    RelativeLayout.LayoutParams param =
+                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                                ImageView iv = new ImageView(getApplicationContext());
-                                // Hard coded the size of the image in - that's where 100 and 90 came in.
-                                // Size of bee image: 100x90 where 100 is width, 90 is height
-                                param.setMargins(x, y, 0, 0);
-                                iv.setLayoutParams(param);
-                                iv.getLayoutParams().width = 100;
-                                iv.getLayoutParams().height = 100;
-                                iv.requestLayout();
-                                iv.setImageResource(R.drawable.hornet);
-                                areaLayout.addView(iv);
+                                    ImageView iv = new ImageView(getApplicationContext());
+                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                    // Size of bee image: 100x90 where 100 is width, 90 is height
+                                    param.setMargins(x, y, 0, 0);
+                                    iv.setLayoutParams(param);
+                                    iv.getLayoutParams().width = 100;
+                                    iv.getLayoutParams().height = 100;
+                                    iv.requestLayout();
+                                    iv.setImageResource(R.drawable.hornet);
+                                    areaLayout.addView(iv);
+                                    player.setTowerOneInv(player.getTowerOneInv() - 1);
+                                    setValues();
+                                } else {
+                                    AlertDialog.Builder builder;
+                                    builder = new AlertDialog.Builder(GameActivity.this);
+                                    builder.setCancelable(true);
+                                    builder.setTitle("Invalid Tower Placement");
+                                    builder.setMessage("You placed the tower on the path. Try again.");
+
+                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                                    builder.show();
+                                }
                                 if (player.getTowerOneInv() > 0) {
                                     placeT1.setEnabled(true);
                                 }
@@ -126,7 +150,6 @@ public class GameActivity extends AppCompatActivity {
                 placeT2.setEnabled(false);
                 placeT3.setEnabled(false);
                 if (player.getTowerTwoInv() > 0) {
-                    player.setTowerTwoInv(player.getTowerTwoInv() - 1);
                     setValues();
                     placed2 = true;
                     areaLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -136,19 +159,37 @@ public class GameActivity extends AppCompatActivity {
                                 placed2 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                RelativeLayout.LayoutParams param =
-                                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
+                                    RelativeLayout.LayoutParams param =
+                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                                ImageView iv = new ImageView(getApplicationContext());
-                                // Hard coded the size of the image in - that's where 100 and 90 came in.
-                                // Size of bee image: 100x90 where 100 is width, 90 is height
-                                param.setMargins(x, y, 0, 0);
-                                iv.setLayoutParams(param);
-                                iv.getLayoutParams().width = 100;
-                                iv.getLayoutParams().height = 100;
-                                iv.requestLayout();
-                                iv.setImageResource(R.drawable.bee);
-                                areaLayout.addView(iv);
+                                    ImageView iv = new ImageView(getApplicationContext());
+                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                    // Size of bee image: 100x90 where 100 is width, 90 is height
+                                    param.setMargins(x, y, 0, 0);
+                                    iv.setLayoutParams(param);
+                                    iv.getLayoutParams().width = 100;
+                                    iv.getLayoutParams().height = 100;
+                                    iv.requestLayout();
+                                    iv.setImageResource(R.drawable.bee);
+                                    areaLayout.addView(iv);
+                                    player.setTowerTwoInv(player.getTowerTwoInv() - 1);
+                                    setValues();
+                                } else {
+                                    AlertDialog.Builder builder;
+                                    builder = new AlertDialog.Builder(GameActivity.this);
+                                    builder.setCancelable(true);
+                                    builder.setTitle("Invalid Tower Placement");
+                                    builder.setMessage("You placed the tower on the path. Try again.");
+
+                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                                    builder.show();
+                                }
                                 if (player.getTowerOneInv() > 0) {
                                     placeT1.setEnabled(true);
                                 }
@@ -179,7 +220,6 @@ public class GameActivity extends AppCompatActivity {
                 placeT2.setEnabled(false);
                 placeT3.setEnabled(false);
                 if (player.getTowerThreeInv() > 0) {
-                    player.setTowerThreeInv(player.getTowerThreeInv() - 1);
                     setValues();
                     placed3 = true;
                     areaLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -189,19 +229,37 @@ public class GameActivity extends AppCompatActivity {
                                 placed3 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                RelativeLayout.LayoutParams param =
-                                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
+                                    RelativeLayout.LayoutParams param =
+                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                                ImageView iv = new ImageView(getApplicationContext());
-                                // Hard coded the size of the image in - that's where 100 and 90 came in.
-                                // Size of bee image: 100x90 where 100 is width, 90 is height
-                                param.setMargins(x, y, 0, 0);
-                                iv.setLayoutParams(param);
-                                iv.getLayoutParams().width = 160;
-                                iv.getLayoutParams().height = 160;
-                                iv.requestLayout();
-                                iv.setImageResource(R.drawable.wasp);
-                                areaLayout.addView(iv);
+                                    ImageView iv = new ImageView(getApplicationContext());
+                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                    // Size of bee image: 100x90 where 100 is width, 90 is height
+                                    param.setMargins(x, y, 0, 0);
+                                    iv.setLayoutParams(param);
+                                    iv.getLayoutParams().width = 100;
+                                    iv.getLayoutParams().height = 100;
+                                    iv.requestLayout();
+                                    iv.setImageResource(R.drawable.wasp);
+                                    areaLayout.addView(iv);
+                                    player.setTowerThreeInv(player.getTowerThreeInv() - 1);
+                                    setValues();
+                                } else {
+                                    AlertDialog.Builder builder;
+                                    builder = new AlertDialog.Builder(GameActivity.this);
+                                    builder.setCancelable(true);
+                                    builder.setTitle("Invalid Tower Placement");
+                                    builder.setMessage("You placed the tower on the path. Try again.");
+
+                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                                    builder.show();
+                                }
                                 if (player.getTowerOneInv() > 0) {
                                     placeT1.setEnabled(true);
                                 }
