@@ -7,7 +7,6 @@ import com.cs2340.towerjackets.R;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,7 +42,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
         // Hide status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         areaLayout = findViewById(R.id.relativeLayout);
         ImageButton menuButton = findViewById(R.id.towerMenuB);
@@ -90,12 +90,13 @@ public class GameActivity extends AppCompatActivity {
                                 /*(x > 1149 && y < 205 && y > 436) ||
                                 (x < 899 && x > 1149 && y < 329 && y > 811) ||
                                 (x < 891 && y < 711 && y > 943)*/
-                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
-                                    RelativeLayout.LayoutParams param =
-                                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
+                                if (!(x < 1149 && y > 205 && y < 436)
+                                        && !(x > 899 && x < 1149 && y > 329 && y < 811)
+                                        && !(x > 891 && y > 711 && y < 943)) {
+                                    RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                                     ImageView iv = new ImageView(getApplicationContext());
-                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                    // Hard coded the size of the image in
+                                    // - that's where 100 and 90 came in.
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
                                     param.setMargins(x, y, 0, 0);
                                     iv.setLayoutParams(param);
@@ -111,7 +112,8 @@ public class GameActivity extends AppCompatActivity {
                                     builder = new AlertDialog.Builder(GameActivity.this);
                                     builder.setCancelable(true);
                                     builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path. Try again.");
+                                    builder.setMessage("You placed the tower on the path. "
+                                            + "Try again.");
 
                                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
@@ -180,7 +182,8 @@ public class GameActivity extends AppCompatActivity {
                                     builder = new AlertDialog.Builder(GameActivity.this);
                                     builder.setCancelable(true);
                                     builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path. Try again.");
+                                    builder.setMessage("You placed the tower on the path."
+                                            + " Try again.");
 
                                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
@@ -229,12 +232,15 @@ public class GameActivity extends AppCompatActivity {
                                 placed3 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (!(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811) && !(x > 891 && y > 711 && y < 943)) {
+                                if (!(x < 1149 && y > 205 && y < 436)
+                                        && !(x > 899 && x < 1149 && y > 329 && y < 811)
+                                        && !(x > 891 && y > 711 && y < 943)) {
                                     RelativeLayout.LayoutParams param =
                                             new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
                                     ImageView iv = new ImageView(getApplicationContext());
-                                    // Hard coded the size of the image in - that's where 100 and 90 came in.
+                                    // Hard coded the size of the image in
+                                    // - that's where 100 and 90 came in.
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
                                     param.setMargins(x, y, 0, 0);
                                     iv.setLayoutParams(param);
@@ -250,7 +256,8 @@ public class GameActivity extends AppCompatActivity {
                                     builder = new AlertDialog.Builder(GameActivity.this);
                                     builder.setCancelable(true);
                                     builder.setTitle("Invalid Tower Placement");
-                                    builder.setMessage("You placed the tower on the path. Try again.");
+                                    builder.setMessage("You placed the tower on the path."
+                                            + " Try again.");
 
                                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override

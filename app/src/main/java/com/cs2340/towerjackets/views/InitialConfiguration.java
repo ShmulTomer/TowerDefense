@@ -65,7 +65,8 @@ public class InitialConfiguration extends AppCompatActivity {
                     builder.show();
                 } else {
                     player = new Player(nameField.getText().toString(), config);
-                    Difficulty difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
+                    Difficulty difficulty;
+                    difficulty = InitialConfiguration.getPlayer().getConfig().getGameDifficulty();
                     player.initialConfiguration(difficulty.ordinal());
                     // open game activity screen
                     Intent intention = new Intent(InitialConfiguration.this, GameActivity.class);

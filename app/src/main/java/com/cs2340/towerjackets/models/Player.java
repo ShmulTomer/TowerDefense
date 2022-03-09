@@ -1,8 +1,6 @@
 package com.cs2340.towerjackets.models;
 
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
-import com.cs2340.towerjackets.views.InitialConfiguration;
-import com.cs2340.towerjackets.views.TowerActivity;
 
 
 public class Player {
@@ -87,19 +85,25 @@ public class Player {
         return towerInv[0];
     }
 
-    public void setTowerOneInv(int towerOneInv) { towerInv[0] = towerOneInv; }
+    public void setTowerOneInv(int towerOneInv) {
+        towerInv[0] = towerOneInv;
+    }
 
     public int getTowerTwoInv() {
         return towerInv[1];
     }
 
-    public void setTowerTwoInv(int towerTwoInv) { towerInv[1] = towerTwoInv; }
+    public void setTowerTwoInv(int towerTwoInv) {
+        towerInv[1] = towerTwoInv;
+    }
 
     public int getTowerThreeInv() {
         return towerInv[2];
     }
 
-    public void setTowerThreeInv(int towerThreeInv) { towerInv[2] = towerThreeInv; }
+    public void setTowerThreeInv(int towerThreeInv) {
+        towerInv[2] = towerThreeInv;
+    }
 
     public int getTowerOneCost() {
         return towerCost[0];
