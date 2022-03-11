@@ -65,7 +65,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed1 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(0, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -76,7 +76,6 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.hornet);
                                     areaLayout.addView(iv);
-                                    player.setTowerOneInv(player.getTowerOneInv() - 1);
                                     setValues();
                                 } else {
                                     alertPath();
@@ -109,7 +108,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed2 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(1, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -120,7 +119,6 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.bee);
                                     areaLayout.addView(iv);
-                                    player.setTowerTwoInv(player.getTowerTwoInv() - 1);
                                     setValues();
                                 } else {
                                     alertPath();
@@ -154,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed3 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(2, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -165,7 +163,6 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.wasp);
                                     areaLayout.addView(iv);
-                                    player.setTowerThreeInv(player.getTowerThreeInv() - 1);
                                     setValues();
                                 } else {
                                     alertPath();
@@ -248,10 +245,5 @@ public class GameActivity extends AppCompatActivity {
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT);
         return param;
-    }
-
-    private boolean checkValidPlacement(int x, int y) {
-        return !(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811)
-                && !(x > 891 && y > 711 && y < 943);
     }
 }

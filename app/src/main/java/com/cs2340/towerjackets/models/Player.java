@@ -1,6 +1,12 @@
 package com.cs2340.towerjackets.models;
 
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
+import com.cs2340.towerjackets.models.tower.BeeTower;
+import com.cs2340.towerjackets.models.tower.HornetTower;
+import com.cs2340.towerjackets.models.tower.Tower;
+import com.cs2340.towerjackets.models.tower.WaspTower;
+
+import java.util.LinkedList;
 
 
 public class Player {
@@ -8,8 +14,8 @@ public class Player {
     private GameConfiguration config;
     private int money;
     private int health;
-    private int[] towerInv = new int[3];
-    private int[] towerCost = new int[towerInv.length];
+    private Tower[] towerInv = new Tower[Tower.getTotalTowerTypes()];
+    private int[] towerAvailable = new int[Tower.getTotalTowerTypes()];
 
     /**
      * Constructor for creating a new Player. More can be added later if needed.
@@ -30,6 +36,12 @@ public class Player {
         }
         this.name = name;
         this.config = config;
+        towerInv[0] = new HornetTower();
+        towerInv[1] = new BeeTower();
+        towerInv[2] = new WaspTower();
+
+        // ordinal() will get the corresponding integer to the difficulty level
+        initialConfiguration(config.getGameDifficulty().ordinal());
     }
 
     public void setName(String name) {
@@ -82,77 +94,74 @@ public class Player {
     }
 
     public int getTowerOneInv() {
-        return towerInv[0];
-    }
-
-    public void setTowerOneInv(int towerOneInv) {
-        towerInv[0] = towerOneInv;
+        return towerAvailable[0];
     }
 
     public int getTowerTwoInv() {
-        return towerInv[1];
-    }
-
-    public void setTowerTwoInv(int towerTwoInv) {
-        towerInv[1] = towerTwoInv;
+        return towerAvailable[1];
     }
 
     public int getTowerThreeInv() {
-        return towerInv[2];
-    }
-
-    public void setTowerThreeInv(int towerThreeInv) {
-        towerInv[2] = towerThreeInv;
+        return towerAvailable[2];
     }
 
     public int getTowerOneCost() {
-        return towerCost[0];
+        return towerInv[0].getCost();
     }
 
     public int getTowerTwoCost() {
-        return towerCost[1];
+        return towerInv[1].getCost();
     }
 
     public int getTowerThreeCost() {
-        return towerCost[2];
+        return towerInv[2].getCost();
     }
 
     public void initialConfiguration(int difficulty) {
-        for (int i = 0; i < towerInv.length; i++) {
-            towerInv[i] = 0;
-        }
         if (difficulty == 0) { // easy
             money = 1000;
             health = 100;
-            towerCost[0] = 60;
-            towerCost[1] = 80;
-            towerCost[2] = 110;
+            towerInv[0].setCost(60);
+            towerInv[1].setCost(80);
+            towerInv[2].setCost(110);
         } else if (difficulty == 1) { // normal
             money = 800;
             health = 80;
-            towerCost[0] = 55;
-            towerCost[1] = 90;
-            towerCost[2] = 120;
+            towerInv[0].setCost(55);
+            towerInv[1].setCost(90);
+            towerInv[2].setCost(120);
         } else if (difficulty == 2) { // hard
             money = 500;
             health = 50;
-            towerCost[0] = 50;
-            towerCost[1] = 100;
-            towerCost[2] = 130;
+            towerInv[0].setCost(50);
+            towerInv[1].setCost(100);
+            towerInv[2].setCost(130);
         }
     }
 
     public void buyTower(int tower) {
-        if (money >= towerCost[tower]) {
-            money -= towerCost[tower];
-            towerInv[tower]++;
+        if (money >= towerInv[tower].getCost()) {
+            money -= towerInv[tower].getCost();
+            towerAvailable[tower]++;
         }
     }
 
-    public void placeTower(int tower) {
-        if (towerInv[tower] >= 1) {
-            towerInv[tower]--;
+    public boolean placeTower(int tower, int x, int y) {
+        if (checkValidPlacement(x, y)) {
+            if (towerAvailable[tower] >= 1) {
+                towerAvailable[tower]--;
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 
+    private boolean checkValidPlacement(int x, int y) {
+        return !(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811)
+                && !(x > 891 && y > 711 && y < 943);
+    }
 }
