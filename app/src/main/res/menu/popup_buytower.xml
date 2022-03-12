@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/Hornet"
+    <item android:id="@+id/HornetBuyTower"
         android:title="Triple Shot"/>
 
-    <item android:id="@+id/Bee"
+    <item android:id="@+id/BeeBuyTower"
         android:title="Honey Bomber"/>
 
-    <item android:id="@+id/Wasp"
+    <item android:id="@+id/WaspBuyTower"
         android:title="Wasp Sniper"/>
 </menu>

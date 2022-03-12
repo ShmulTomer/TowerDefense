@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,7 +38,9 @@ public class GameActivity extends AppCompatActivity {
     private Button placeT2;
     private Button placeT3;
 
-    Player player;
+    private Menu buyTowerMenu;
+
+    private Player player;
 
     private RelativeLayout areaLayout;
     private GameActivityViewModel gameActivityViewModel;
@@ -57,6 +60,8 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         areaLayout = findViewById(R.id.relativeLayout);
         player = InitialConfiguration.getPlayer();
+
+        // Populating the views with appropriate text and images
         configViews();
 
         // Set buttons
@@ -202,26 +207,37 @@ public class GameActivity extends AppCompatActivity {
         towerThreeView = findViewById(R.id.towerThreeV);
         setValues();
 
+
         ImageButton menuButton = findViewById(R.id.towerMenuB);
+
         // Add event listeners for button
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(menuButton.getContext(), view);
                 popupMenu.inflate(R.menu.popup_buytower);
+
+                // Setting titles of menu items
+                MenuItem item = popupMenu.getMenu().findItem(R.id.HornetBuyTower);
+                item.setTitle("Triple Shot $" + player.getTowerOneCost());
+                item = popupMenu.getMenu().findItem(R.id.BeeBuyTower);
+                item.setTitle("Honey Bomber $" + player.getTowerTwoCost());
+                item = popupMenu.getMenu().findItem(R.id.WaspBuyTower);
+                item.setTitle("Wasp Sniper $" + player.getTowerThreeCost());
+
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int id = menuItem.getItemId();
                         int idToBuy;
                         switch(id) {
-                            case(R.id.Hornet):
+                            case(R.id.HornetBuyTower):
                                 idToBuy = 0;
                                 break;
-                            case(R.id.Bee):
+                            case(R.id.BeeBuyTower):
                                 idToBuy = 1;
                                 break;
-                            case(R.id.Wasp):
+                            case(R.id.WaspBuyTower):
                                 idToBuy = 2;
                                 break;
                             default:
@@ -236,8 +252,10 @@ public class GameActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+
     }
 
+    // Update the health, money, number of towers available on UI elements
     private void setValues() {
         Player player = InitialConfiguration.getPlayer();
         healthView.setText(Integer.toString(player.getHealth()));
@@ -247,6 +265,7 @@ public class GameActivity extends AppCompatActivity {
         towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
     }
 
+    // Disable all buttons used to place towers
     private void enableAllFalse() {
         placeT1.setEnabled(false);
         placeT2.setEnabled(false);
