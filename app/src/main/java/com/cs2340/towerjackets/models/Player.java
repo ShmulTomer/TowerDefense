@@ -36,6 +36,7 @@ public class Player {
         }
         this.name = name;
         this.config = config;
+
         towerInv[0] = new HornetTower();
         towerInv[1] = new BeeTower();
         towerInv[2] = new WaspTower();
@@ -150,7 +151,6 @@ public class Player {
         if (checkValidPlacement(x, y)) {
             if (towerAvailable[tower] >= 1) {
                 towerAvailable[tower]--;
-
                 return true;
             } else {
                 return false;
