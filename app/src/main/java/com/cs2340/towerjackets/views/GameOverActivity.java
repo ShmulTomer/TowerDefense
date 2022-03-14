@@ -34,8 +34,8 @@ public class GameOverActivity extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-                System.exit(0);
+                Intent intention = new Intent(GameOverActivity.this, MainActivity.class);
+                startActivity(intention);
             }
         });
     }
