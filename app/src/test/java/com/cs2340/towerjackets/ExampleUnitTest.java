@@ -89,8 +89,8 @@ public class ExampleUnitTest {
         testPlayer1.buyTower(0); // buy tower one
         testPlayer1.buyTower(1); // buy tower two
         testPlayer1.buyTower(1); // buy tower two
-        testPlayer1.placeTower(0); // place tower one
-        testPlayer1.placeTower(1); // place tower two
+        testPlayer1.placeTower(0, 0, 0); // place tower one
+        testPlayer1.placeTower(1, 0, 0); // place tower two
         assertEquals(0, testPlayer1.getTowerOneInv());
         assertEquals(1, testPlayer1.getTowerTwoInv());
     }
@@ -105,11 +105,11 @@ public class ExampleUnitTest {
         testPlayer2.initialConfiguration(1); // Normal
         testPlayer2.buyTower(2); // buy tower three
         testPlayer2.buyTower(2); // buy tower three
-        testPlayer2.placeTower(2); // place tower three
+        testPlayer2.placeTower(2, 0, 0); // place tower three
         assertEquals(1, testPlayer2.getTowerThreeInv());
-        testPlayer2.placeTower(2); // place tower three
+        testPlayer2.placeTower(2, 0, 0); // place tower three
         assertEquals(0, testPlayer2.getTowerThreeInv());
-        testPlayer2.placeTower(2); // place tower three (not enough inventory for tower three)
+        testPlayer2.placeTower(2, 0, 0); // place tower three (not enough inventory for tower three)
         assertEquals(0, testPlayer2.getTowerThreeInv());
     }
 

@@ -7,16 +7,24 @@ import com.cs2340.towerjackets.R;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.MotionEvent;
 import com.cs2340.towerjackets.models.Player;
+import com.cs2340.towerjackets.models.tower.Tower;
+import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 
 public class GameActivity extends AppCompatActivity {
     private TextView moneyView;
@@ -30,7 +38,12 @@ public class GameActivity extends AppCompatActivity {
     private Button placeT2;
     private Button placeT3;
 
+    private Menu buyTowerMenu;
+
+    private Player player;
+
     private RelativeLayout areaLayout;
+    private GameActivityViewModel gameActivityViewModel;
 
     private boolean placed1 = false;
     private boolean placed2 = false;
@@ -40,18 +53,24 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
+        gameActivityViewModel = new ViewModelProvider(this).get(GameActivityViewModel.class);
+
         // Hide status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         areaLayout = findViewById(R.id.relativeLayout);
-        Player player = InitialConfiguration.getPlayer();
+        player = InitialConfiguration.getPlayer();
+
+        // Populating the views with appropriate text and images
         configViews();
 
+        // Set buttons
         placeT1 = findViewById(R.id.towerOneB);
         placeT1.setEnabled(false);
         if (player.getTowerOneInv() > 0) {
             placeT1.setEnabled(true);
         }
+
         placeT1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +84,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed1 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(0, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -76,8 +95,8 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.hornet);
                                     areaLayout.addView(iv);
-                                    player.setTowerOneInv(player.getTowerOneInv() - 1);
                                     setValues();
+                                    gameActivityViewModel.addTower(0, x, y);
                                 } else {
                                     alertPath();
                                 }
@@ -109,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed2 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(1, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -120,8 +139,8 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.bee);
                                     areaLayout.addView(iv);
-                                    player.setTowerTwoInv(player.getTowerTwoInv() - 1);
                                     setValues();
+                                    gameActivityViewModel.addTower(1, x, y);
                                 } else {
                                     alertPath();
                                 }
@@ -154,7 +173,7 @@ public class GameActivity extends AppCompatActivity {
                                 placed3 = false;
                                 int x = (int) motionEvent.getX();  // get x-Coordinate
                                 int y = (int) motionEvent.getY();  // get y-Coordinate
-                                if (checkValidPlacement(x, y)) {
+                                if (player.placeTower(2, x, y)) {
                                     RelativeLayout.LayoutParams param = createParam();
                                     ImageView iv = new ImageView(getApplicationContext());
                                     // Size of bee image: 100x90 where 100 is width, 90 is height
@@ -165,8 +184,8 @@ public class GameActivity extends AppCompatActivity {
                                     iv.requestLayout();
                                     iv.setImageResource(R.drawable.wasp);
                                     areaLayout.addView(iv);
-                                    player.setTowerThreeInv(player.getTowerThreeInv() - 1);
                                     setValues();
+                                    gameActivityViewModel.addTower(2, x, y);
                                 } else {
                                     alertPath();
                                 }
@@ -188,17 +207,55 @@ public class GameActivity extends AppCompatActivity {
         towerThreeView = findViewById(R.id.towerThreeV);
         setValues();
 
+
         ImageButton menuButton = findViewById(R.id.towerMenuB);
+
         // Add event listeners for button
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intention = new Intent(GameActivity.this, TowerActivity.class);
-                startActivity(intention);
+                PopupMenu popupMenu = new PopupMenu(menuButton.getContext(), view);
+                popupMenu.inflate(R.menu.popup_buytower);
+
+                // Setting titles of menu items
+                MenuItem item = popupMenu.getMenu().findItem(R.id.HornetBuyTower);
+                item.setTitle("Triple Shot $" + player.getTowerOneCost());
+                item = popupMenu.getMenu().findItem(R.id.BeeBuyTower);
+                item.setTitle("Honey Bomber $" + player.getTowerTwoCost());
+                item = popupMenu.getMenu().findItem(R.id.WaspBuyTower);
+                item.setTitle("Wasp Sniper $" + player.getTowerThreeCost());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        int id = menuItem.getItemId();
+                        int idToBuy;
+                        switch(id) {
+                            case(R.id.HornetBuyTower):
+                                idToBuy = 0;
+                                break;
+                            case(R.id.BeeBuyTower):
+                                idToBuy = 1;
+                                break;
+                            case(R.id.WaspBuyTower):
+                                idToBuy = 2;
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Invalid item to buy.");
+                        }
+                        player.buyTower(idToBuy);
+                        setValues();
+                        updateEnabled(player);
+                        return true;
+                    }
+                });
+                popupMenu.show();
             }
         });
+
     }
 
+    // Update the health, money, number of towers available on UI elements
     private void setValues() {
         Player player = InitialConfiguration.getPlayer();
         healthView.setText(Integer.toString(player.getHealth()));
@@ -208,6 +265,7 @@ public class GameActivity extends AppCompatActivity {
         towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
     }
 
+    // Disable all buttons used to place towers
     private void enableAllFalse() {
         placeT1.setEnabled(false);
         placeT2.setEnabled(false);
@@ -250,8 +308,4 @@ public class GameActivity extends AppCompatActivity {
         return param;
     }
 
-    private boolean checkValidPlacement(int x, int y) {
-        return !(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811)
-                && !(x > 891 && y > 711 && y < 943);
-    }
 }
