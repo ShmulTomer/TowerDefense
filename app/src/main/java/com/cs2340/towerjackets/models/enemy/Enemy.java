@@ -9,12 +9,16 @@ public abstract class Enemy {
     private int health;
     private int speed;
     private int damage;
+    private boolean alive;
     private static final int totalEnemyTypes = 3;
 
 
     public Enemy() {
-        // Let the children class sets the private fields.
+        alive = true;
+        // children set the other fields
     }
+
+    public boolean getAlive() { return alive; }
 
     public int getDrawableNumber() {
         return drawableID;
@@ -44,6 +48,9 @@ public abstract class Enemy {
         return totalEnemyTypes;
     }
 
+    public void setAlive(boolean b) {
+        alive = b;
+    }
     public void setDrawableID(int ID) {
         drawableID = ID;
     }

@@ -8,11 +8,7 @@ public class Monument {
     }
 
     public void setHealth(int health) {
-        if (health <= 0) {
-            //game over
-        } else {
-            this.health = health;
-        }
+        this.health = health;
     }
 
     public int getHealth() {

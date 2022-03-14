@@ -4,9 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cs2340.towerjackets.R;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,9 +26,17 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.MotionEvent;
+
+import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
+import com.cs2340.towerjackets.models.enemy.BlueEnemy;
+import com.cs2340.towerjackets.models.enemy.Enemy;
+import com.cs2340.towerjackets.models.enemy.GreenEnemy;
+import com.cs2340.towerjackets.models.enemy.PurpleEnemy;
 import com.cs2340.towerjackets.models.tower.Tower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
+
+import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
     private TextView moneyView;
@@ -38,6 +50,8 @@ public class GameActivity extends AppCompatActivity {
     private Button placeT2;
     private Button placeT3;
 
+    private Button start;
+
     private Menu buyTowerMenu;
 
     private Player player;
@@ -49,6 +63,13 @@ public class GameActivity extends AppCompatActivity {
     private boolean placed2 = false;
     private boolean placed3 = false;
 
+    private Monument hive;
+
+//
+//    ObjectAnimator animation;
+//    ObjectAnimator animation2;
+//    ObjectAnimator animation3;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +80,51 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         areaLayout = findViewById(R.id.relativeLayout);
+
         player = InitialConfiguration.getPlayer();
+
+
+        //Setting up the monument
+        hive = new Monument();
+        hive.setHealth(player.getHealth());
+        startHive();
+
 
         // Populating the views with appropriate text and images
         configViews();
 
+
         // Set buttons
+        start = findViewById(R.id.startCombatB);
+        start.setVisibility(View.VISIBLE);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start.setVisibility(View.GONE);
+                int x = 30;
+                int y = 330;
+
+                setValues();
+
+
+                ImageView iv = new ImageView(getApplicationContext());
+                Enemy curr = createEnemy(0, x, y-40, iv);
+                moveEnemy(curr, iv);
+
+                ImageView iv2 = new ImageView(getApplicationContext());
+                Enemy curr2 = createEnemy(1, x-10, y, iv2);
+                moveEnemy(curr2, iv2);
+
+                ImageView iv3 = new ImageView(getApplicationContext());
+                Enemy curr3 = createEnemy(2, x, y+40, iv3);
+                moveEnemy(curr3, iv3);
+
+                ImageView iv4 = new ImageView(getApplicationContext());
+                Enemy curr4 = createEnemy(1, x+30, y+30, iv4);
+                moveEnemy(curr4, iv4);
+            }
+        });
+
         placeT1 = findViewById(R.id.towerOneB);
         placeT1.setEnabled(false);
         if (player.getTowerOneInv() > 0) {
@@ -258,7 +318,7 @@ public class GameActivity extends AppCompatActivity {
     // Update the health, money, number of towers available on UI elements
     private void setValues() {
         Player player = InitialConfiguration.getPlayer();
-        healthView.setText(Integer.toString(player.getHealth()));
+        healthView.setText(Integer.toString(hive.getHealth()));
         moneyView.setText("$" + player.getMoney());
         towerOneView.setText(Integer.toString(player.getTowerOneInv()));
         towerTwoView.setText(Integer.toString(player.getTowerTwoInv()));
@@ -306,6 +366,134 @@ public class GameActivity extends AppCompatActivity {
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT);
         return param;
+    }
+
+    private void startHive() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                for(Enemy curr: gameActivityViewModel.getListOfEnemyMonument()) {
+                    if (curr.getAlive()) {
+                        hive.setHealth(hive.getHealth() - 5);
+                        healthView.setText(Integer.toString(hive.getHealth()));
+                    }
+
+                }
+                if (hive.getHealth() <= 0) {
+                    Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
+                    startActivity(intention);
+
+                } else {
+                    startHive();
+                }
+            }
+        }, 1000);
+    }
+    private void moveEnemy(Enemy curr, ImageView iv) {
+
+        //Move along first part of path
+        final int[] moveX = new int[1];
+        moveX[0] = 100;
+
+        final ObjectAnimator[] animArr = new ObjectAnimator[3];
+        animArr[0] = ObjectAnimator.ofFloat(iv, "translationX", moveX[0]);
+        animArr[0].setDuration(1000);
+
+        animArr[0].addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anima) {
+                int[] location = new int[2];
+                iv.getLocationOnScreen(location);
+                curr.setLocationX(location[0]);
+                curr.setLocationX(location[1]);
+                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
+                if (location[0] > 1100) {
+                    animArr[1].start();
+                } else {
+                    //System.out.println("HERE!");
+                    moveX[0] += randInt(70,130);
+                    animArr[0].setFloatValues(moveX[0]);
+                    animArr[0].start();
+                }
+            }
+        });
+        animArr[0].start();
+
+        final int[] moveY = new int[1];
+        moveY[0] = 100;
+
+        animArr[1] = ObjectAnimator.ofFloat(iv, "translationY", moveY[0]);
+        animArr[1].setDuration(600);
+        animArr[1].addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anima) {
+                int[] location = new int[2];
+                iv.getLocationOnScreen(location);
+                curr.setLocationX(location[0]);
+                curr.setLocationX(location[1]);
+                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
+                if (location[1] > 800) {
+                    moveX[0] = 1200;
+                    animArr[2].start();
+                } else {
+                    //System.out.println("HERE!");
+                    moveY[0] += randInt(30,70);
+                    animArr[1].setFloatValues(moveY[0]);
+                    animArr[1].start();
+                }
+            }
+        });
+
+        animArr[2] = ObjectAnimator.ofFloat(iv, "translationX", 1100);
+        animArr[2].setDuration(1000);
+        animArr[2].addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anima) {
+                int[] location = new int[2];
+                iv.getLocationOnScreen(location);
+                curr.setLocationX(location[0]);
+                curr.setLocationX(location[1]);
+                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
+                if (location[0] > 2000) {
+                    iv.clearAnimation();
+                    gameActivityViewModel.addEnemyMonument(curr);
+                } else {
+                   // System.out.println("HERE!");
+                    moveX[0] += randInt(70,130);
+                    animArr[2].setFloatValues(moveX[0]);
+                    animArr[2].start();
+                }
+            }
+        });
+
+
+    }
+    public Enemy createEnemy(int enemy, int x, int y, ImageView iv) {
+        RelativeLayout.LayoutParams param = createParam();
+
+        param.setMargins(x, y, 0, 0);
+        iv.setLayoutParams(param);
+        iv.getLayoutParams().width = 100;
+        iv.getLayoutParams().height = 100;
+        iv.requestLayout();
+        if (enemy == 0) {
+
+            iv.setImageResource(R.drawable.purple);
+        } else if (enemy == 1) {
+            iv.setImageResource(R.drawable.blue);
+        } else if (enemy == 2) {
+            iv.setImageResource(R.drawable.green);
+        } else {
+            throw new java.lang.IllegalArgumentException("Invalid enemy type. We only have 3 types of enemies.");
+        }
+        areaLayout.addView(iv);
+        gameActivityViewModel.addEnemy(enemy, x, y);
+        return gameActivityViewModel.getListOfEnemy().peekLast();
+    }
+    public static int randInt(int min, int max) {
+
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 
 }
