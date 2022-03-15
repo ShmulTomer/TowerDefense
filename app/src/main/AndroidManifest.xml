@@ -26,6 +26,10 @@
             android:parentActivityName="com.cs2340.towerjackets.views.MainActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.cs2340.towerjackets.views.GameOverActivity"
+            android:screenOrientation="landscape"/>
+
         <activity android:name="com.cs2340.towerjackets.views.GameActivity"
             android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity"
