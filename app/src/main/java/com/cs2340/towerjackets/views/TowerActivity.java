@@ -92,11 +92,11 @@ public class TowerActivity extends AppCompatActivity {
         Player player = InitialConfiguration.getPlayer();
         healthView.setText(Integer.toString(player.getHealth()));
         moneyView.setText("$" + player.getMoney());
-        towerOneView.setText(Integer.toString(player.getTowerOneInv()));
-        towerTwoView.setText(Integer.toString(player.getTowerTwoInv()));
-        towerThreeView.setText(Integer.toString(player.getTowerThreeInv()));
-        towerOneCostV.setText("$" + player.getTowerOneCost());
-        towerTwoCostV.setText("$" + player.getTowerTwoCost());
-        towerThreeCostV.setText("$" + player.getTowerThreeCost());
+        towerOneView.setText(Integer.toString(player.getTowerInv(0)));
+        towerTwoView.setText(Integer.toString(player.getTowerInv(1)));
+        towerThreeView.setText(Integer.toString(player.getTowerInv(2)));
+        towerOneCostV.setText("$" + player.getTowerCost(0));
+        towerTwoCostV.setText("$" + player.getTowerCost(1));
+        towerThreeCostV.setText("$" + player.getTowerCost(2));
     }
 }

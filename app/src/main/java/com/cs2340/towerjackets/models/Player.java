@@ -6,9 +6,6 @@ import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.Tower;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 
-import java.util.LinkedList;
-
-
 public class Player {
     private String name;
     private GameConfiguration config;
@@ -23,19 +20,8 @@ public class Player {
      * @param config - a GameConfiguration objects which tell us the difficulty selected.
      */
     public Player(String name, GameConfiguration config) {
-        // Preprocessing to check argument validity
-        if ((name == null) || (config == null)) {
-            throw new java.lang.IllegalArgumentException("Can't proceed without "
-                    + "name and difficulty level.");
-        }
-
-        // Check to see if name is empty or contain only white-space
-        if (name.trim().length() <= 0) {
-            throw new java.lang.IllegalArgumentException("Name must not be "
-                    + "null, empty, or only contain white spaces");
-        }
-        this.name = name;
-        this.config = config;
+        setName(name);
+        setConfig(config);
 
         towerInv[0] = new HornetTower();
         towerInv[1] = new BeeTower();
@@ -46,14 +32,9 @@ public class Player {
     }
 
     public void setName(String name) {
-        if (name == null) {
+        if (name == null || name.trim().length() <= 0) {
             throw new java.lang.IllegalArgumentException("Name must not be "
                     + "null, empty, or only contain white spaces.");
-        }
-        // Check to see if name is empty or contain only white-space
-        if (name.trim().length() <= 0) {
-            throw new java.lang.IllegalArgumentException("Name must not be "
-                    + "null, empty, or only contain white spaces");
         }
         this.name = name;
     }
@@ -87,35 +68,15 @@ public class Player {
     }
 
     public void setHealth(int health) {
-        if (health < 0) {
-            this.health = 0;
-        } else {
-            this.health = health;
-        }
+        this.health = Math.max(health, 0);
     }
 
-    public int getTowerOneInv() {
-        return towerAvailable[0];
+    public int getTowerInv(int i) {
+        return towerAvailable[i];
     }
 
-    public int getTowerTwoInv() {
-        return towerAvailable[1];
-    }
-
-    public int getTowerThreeInv() {
-        return towerAvailable[2];
-    }
-
-    public int getTowerOneCost() {
-        return towerInv[0].getCost();
-    }
-
-    public int getTowerTwoCost() {
-        return towerInv[1].getCost();
-    }
-
-    public int getTowerThreeCost() {
-        return towerInv[2].getCost();
+    public int getTowerCost(int i) {
+        return towerInv[i].getCost();
     }
 
     public void initialConfiguration(int difficulty) {
@@ -140,10 +101,10 @@ public class Player {
         }
     }
 
-    public void buyTower(int tower) {
-        if (money >= towerInv[tower].getCost()) {
-            money -= towerInv[tower].getCost();
-            towerAvailable[tower]++;
+    public void buyTower(int i) {
+        if (money >= towerInv[i].getCost()) {
+            money -= towerInv[i].getCost();
+            towerAvailable[i]++;
         }
     }
 

@@ -1,6 +1,4 @@
 package com.cs2340.towerjackets.models.enemy;
-import com.cs2340.towerjackets.R;
-import androidx.annotation.DrawableRes;
 
 public abstract class Enemy {
     private int drawableID;
@@ -10,7 +8,7 @@ public abstract class Enemy {
     private int speed;
     private int damage;
     private boolean alive;
-    private static final int totalEnemyTypes = 3;
+    private static final int TOTAL_ENEMY_TYPES = 3;
 
 
     public Enemy() {
@@ -18,7 +16,9 @@ public abstract class Enemy {
         // children set the other fields
     }
 
-    public boolean getAlive() { return alive; }
+    public boolean getAlive() {
+        return alive;
+    }
 
     public int getDrawableNumber() {
         return drawableID;
@@ -45,14 +45,15 @@ public abstract class Enemy {
     }
 
     public static int getTotalEnemyTypes() {
-        return totalEnemyTypes;
+        return TOTAL_ENEMY_TYPES;
     }
 
     public void setAlive(boolean b) {
         alive = b;
     }
-    public void setDrawableID(int ID) {
-        drawableID = ID;
+
+    public void setDrawableID(int id) {
+        drawableID = id;
     }
 
     public void setLocationX(int x) {
