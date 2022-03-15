@@ -1,14 +1,11 @@
 package com.cs2340.towerjackets.models.tower;
-import com.cs2340.towerjackets.R;
-import androidx.annotation.DrawableRes;
 
 public abstract class Tower {
     private int drawableID;
     private int locationX;
     private int locationY;
     private int cost;
-    private static final int totalTowerTypes = 3;
-
+    private static final int TOTAL_TOWER_TYPES = 3;
 
     public Tower() {
         // Let the children class sets the private fields.
@@ -31,11 +28,11 @@ public abstract class Tower {
     }
 
     public static int getTotalTowerTypes() {
-        return totalTowerTypes;
+        return TOTAL_TOWER_TYPES;
     }
 
-    public void setDrawableID(int ID) {
-        drawableID = ID;
+    public void setDrawableID(int id) {
+        drawableID = id;
     }
 
     public void setLocationX(int x) {

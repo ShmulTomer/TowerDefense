@@ -1,8 +1,6 @@
 package com.cs2340.towerjackets.viewmodels;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
-
 import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.Tower;
@@ -11,12 +9,11 @@ import com.cs2340.towerjackets.models.enemy.Enemy;
 import com.cs2340.towerjackets.models.enemy.PurpleEnemy;
 import com.cs2340.towerjackets.models.enemy.BlueEnemy;
 import com.cs2340.towerjackets.models.enemy.GreenEnemy;
-
 import java.util.LinkedList;
 
 public class GameActivityViewModel extends ViewModel {
     // A list of Tower objects - the Tower objects know where they are
-    LinkedList<Tower> listOfTower = new LinkedList<>();
+    private LinkedList<Tower> listOfTower = new LinkedList<>();
 
     public LinkedList<Tower> getListOfTower() {
         return listOfTower;
@@ -31,7 +28,8 @@ public class GameActivityViewModel extends ViewModel {
         } else if (tower == 2) {
             newTower = new WaspTower();
         } else {
-            throw new java.lang.IllegalArgumentException("Invalid tower type. We only have 3 types of towers.");
+            throw new java.lang.IllegalArgumentException("Invalid tower type."
+                    + " We only have 3 types of towers.");
         }
 
         newTower.setLocationX(x);
@@ -39,9 +37,11 @@ public class GameActivityViewModel extends ViewModel {
         listOfTower.add(newTower);
     }
 
-    LinkedList<Enemy> listOfEnemy = new LinkedList<>();
+    private LinkedList<Enemy> listOfEnemy = new LinkedList<>();
 
-    public LinkedList<Enemy> getListOfEnemy() { return listOfEnemy; }
+    public LinkedList<Enemy> getListOfEnemy() {
+        return listOfEnemy;
+    }
 
     public void addEnemy(int enemy, int x, int y) {
         Enemy newEnemy;
@@ -52,7 +52,8 @@ public class GameActivityViewModel extends ViewModel {
         } else if (enemy == 2) {
             newEnemy = new GreenEnemy();
         } else {
-            throw new java.lang.IllegalArgumentException("Invalid enemy type. We only have 3 types of enemies.");
+            throw new java.lang.IllegalArgumentException("Invalid enemy type."
+                    + " We only have 3 types of enemies.");
         }
 
         newEnemy.setLocationX(x);
@@ -61,9 +62,11 @@ public class GameActivityViewModel extends ViewModel {
 
     }
 
-    LinkedList<Enemy> listOfEnemyMonument = new LinkedList<>();
+    private LinkedList<Enemy> listOfEnemyMonument = new LinkedList<>();
 
-    public LinkedList<Enemy> getListOfEnemyMonument() { return listOfEnemyMonument; }
+    public LinkedList<Enemy> getListOfEnemyMonument() {
+        return listOfEnemyMonument;
+    }
 
     public void addEnemyMonument(Enemy curr) {
         listOfEnemyMonument.add(curr);

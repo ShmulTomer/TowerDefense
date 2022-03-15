@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class M3UnitTest {
     @Test
     public void additionIsCorrect() {
         assertEquals(4, 2 + 2);
@@ -56,13 +56,13 @@ public class ExampleUnitTest {
         player1.initialConfiguration(0); // easy
         player1.buyTower(1); // tower two
         assertEquals(920, player1.getMoney());
-        assertEquals(1, player1.getTowerTwoInv());
+        assertEquals(1, player1.getTowerInv(1));
 
         Player player2 = new Player("tower tester", new GameConfiguration(Difficulty.Normal));
         player2.initialConfiguration(1); // normal
         player2.buyTower(0); // tower one
         assertEquals(745, player2.getMoney());
-        assertEquals(1, player2.getTowerOneInv());
+        assertEquals(1, player2.getTowerInv(0));
     }
 
     // M3 - Helen Chen - This tests whether a purchase with insufficient funds is processed or not.
@@ -76,7 +76,7 @@ public class ExampleUnitTest {
         player3.buyTower(2); // tower three: money = 110
         player3.buyTower(2); // tower three: money = 110 (not enough funds)
         assertEquals(110, player3.getMoney());
-        assertEquals(3, player3.getTowerThreeInv());
+        assertEquals(3, player3.getTowerInv(2));
     }
 
     // M3 - Hyun Soo (Harriet) Kim - This tests whether the placement of a tower decreases the tower
@@ -91,8 +91,8 @@ public class ExampleUnitTest {
         testPlayer1.buyTower(1); // buy tower two
         testPlayer1.placeTower(0, 0, 0); // place tower one
         testPlayer1.placeTower(1, 0, 0); // place tower two
-        assertEquals(0, testPlayer1.getTowerOneInv());
-        assertEquals(1, testPlayer1.getTowerTwoInv());
+        assertEquals(0, testPlayer1.getTowerInv(0));
+        assertEquals(1, testPlayer1.getTowerInv(1));
     }
 
     // M3 - Hyun Soo (Harriet) Kim - This tests whether a placement with insufficient inventory is
@@ -106,11 +106,11 @@ public class ExampleUnitTest {
         testPlayer2.buyTower(2); // buy tower three
         testPlayer2.buyTower(2); // buy tower three
         testPlayer2.placeTower(2, 0, 0); // place tower three
-        assertEquals(1, testPlayer2.getTowerThreeInv());
+        assertEquals(1, testPlayer2.getTowerInv(2));
         testPlayer2.placeTower(2, 0, 0); // place tower three
-        assertEquals(0, testPlayer2.getTowerThreeInv());
+        assertEquals(0, testPlayer2.getTowerInv(2));
         testPlayer2.placeTower(2, 0, 0); // place tower three (not enough inventory for tower three)
-        assertEquals(0, testPlayer2.getTowerThreeInv());
+        assertEquals(0, testPlayer2.getTowerInv(2));
     }
 
     // M3 - Tomer Shmul - This tests the functions for changing the player's health and getting the
@@ -158,8 +158,8 @@ public class ExampleUnitTest {
         testPlayer.buyTower(0); // buy tower one
         testPlayer.buyTower(1); // buy tower two
         testPlayer.buyTower(1); // buy tower two
-        assertEquals(1, testPlayer.getTowerOneInv());
-        assertEquals(2, testPlayer.getTowerTwoInv());
+        assertEquals(1, testPlayer.getTowerInv(0));
+        assertEquals(2, testPlayer.getTowerInv(1));
     }
 
     // M3 - Ori Yoked - This tests whether choosing a difficulty gives the correct health to the
