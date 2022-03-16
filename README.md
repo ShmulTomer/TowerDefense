@@ -15,10 +15,10 @@
 * This test checks
   
 5. differentEnemyDamage() - Ori Yoked
-* This test checks
+* This test checks that all the enemies have different damages. This is important because we want to differentiate between how much damage the different types of enemies can have on the towers and the monument, which is just one of the characteristic differences between all three enemies. This allows for the user of the game to strategize on which enemies to try to destroy first.
 
 6. deadEnemies() - Ori Yoked
-* This test checks
+* This test checks that when an enemy loses all its health, it is no longer able to damage the monument. This is essential because we want enemies to damage the monument when they reach it, but once it's dead, the enemy should not have any functionality at all. This test properly tests this by showing that when an enemy is alive and reaches the monument, it does 200 damage to the monument, while a dead enemy does no damage as shown by the full health of the monument.
 
 7. checkGameStatus() - Tomer Shmul
 * This test checks whether doing enough damage to the monument causes the game to end. This is
