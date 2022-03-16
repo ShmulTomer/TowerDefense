@@ -121,7 +121,7 @@ public class Player {
         }
     }
 
-    private boolean checkValidPlacement(int x, int y) {
+    public boolean checkValidPlacement(int x, int y) {
         return !(x < 1149 && y > 205 && y < 436) && !(x > 899 && x < 1149 && y > 329 && y < 811)
                 && !(x > 891 && y > 711 && y < 943);
     }
