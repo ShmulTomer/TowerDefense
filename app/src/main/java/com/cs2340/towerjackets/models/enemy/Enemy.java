@@ -1,9 +1,12 @@
 package com.cs2340.towerjackets.models.enemy;
+import com.cs2340.towerjackets.models.Monument;
+
+import java.util.Random;
 
 public abstract class Enemy {
     private int drawableID;
-    private int locationX;
-    private int locationY;
+    private int locationX = 0;
+    private int locationY = 0;
     private int health;
     private int speed;
     private int damage;
@@ -75,6 +78,21 @@ public abstract class Enemy {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+    // M4 Junit Things
+    private boolean atMonument = false;
+    public void damageMonument(Monument monument) {
+        if (monument.getHealth() >= 0 && locationX >= 2000 && alive) {
+            monument.setHealth(Math.max(monument.getHealth() - damage, 0));
+            monument.checkStatus();
+        }
+    }
+    public void placeEnemy() {
+        Random rand = new Random();
+        locationX = 25 + rand.nextInt(5);
+        locationY = 325 + rand.nextInt(5);
+    }
+    // End of M4 Junit Things
 
     @Override
     protected void finalize() throws Throwable {
