@@ -41,7 +41,7 @@ crucial that enemies are separated and not in the same starting position when th
 for the visual functionality of this game.
 
 9. differentEnemySpeeds() - Harriet Kim
-* This test checks
+* This test checks if the speed of all the three enemies are equal. It is tested by creating one enemy for each enemy class and comparing the speed of the three enemies in pairs. Therefore, there are total three comparisons in this test.
 
 10. monumentHealthZero() - Harriet Kim
-* This test checks
+* This test checks monument stops taking damage after its health reaches 0 and monument health does not become negative. It is important that health decreases each time when an enemy get attacked and the health should be greater or equal than zero to make sure the health does not decrease infinitely.
