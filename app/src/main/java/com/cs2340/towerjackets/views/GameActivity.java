@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,9 +24,12 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import android.view.MotionEvent;
+
+import com.cs2340.towerjackets.models.Coin;
 import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
+import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 import java.util.Random;
 
@@ -39,9 +43,6 @@ public class GameActivity extends AppCompatActivity {
 
     private int numT = 3; // number of towers
 
-    /* private Button placeT1;
-    private Button placeT2;
-    private Button placeT3; */
     private Button[] placeT = new Button[numT];
 
     private Button start;
@@ -56,6 +57,23 @@ public class GameActivity extends AppCompatActivity {
     private boolean[] placed = {false, false, false};
 
     private Monument hive;
+
+    long startTime = 0;
+    boolean done = false;
+
+    //runs without a timer by reposting this handler at the end of the runnable
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            if (seconds > 5) {
+                done = true;
+            }
+            timerHandler.postDelayed(this, 500);
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,16 +106,6 @@ public class GameActivity extends AppCompatActivity {
                 int y = 330;
 
                 setValues();
-
-                // Helen's attempt at trying to combine all the code but doesn't work
-                /* int startingEnemies = 4;
-                Enemy[] curr = new Enemy[startingEnemies];
-                ImageView[] iv = new ImageView[startingEnemies];
-                for (int i = 0; i < startingEnemies; i++) {
-                    iv[i] = new ImageView(getApplicationContext());
-                    curr[i] = createEnemy(i, x + i, y + i, iv[i]);
-                    moveEnemy(curr[i], iv[i]);
-                } */
 
                 ImageView iv = new ImageView(getApplicationContext());
                 Enemy curr = createEnemy(0, x, y - 40, iv);
@@ -163,6 +171,7 @@ public class GameActivity extends AppCompatActivity {
                                         areaLayout.addView(iv);
                                         setValues();
                                         gameActivityViewModel.addTower(finalI, x, y);
+                                        generateMoney();
                                     } else {
                                         alertPath();
                                     }
@@ -175,6 +184,46 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
+
+    }
+
+    private void collectMoney(ImageView iv) {
+        for (int i = 0; i < gameActivityViewModel.getListOfCoin().size(); i++) {
+            // if (gameActivityViewModel.getListOfCoin().get(i).getTimeOver()) {
+            int finalI = i;
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    iv.setVisibility(View.GONE);
+                    gameActivityViewModel.getListOfCoin().remove(finalI);
+                }
+            });
+            // }
+        }
+    }
+
+    private void generateMoney() {
+        for (int i = 0; i < gameActivityViewModel.getListOfTower().size(); i++) {
+            if (gameActivityViewModel.getListOfTower().get(i) instanceof WaspTower) {
+                WaspTower t = (WaspTower) gameActivityViewModel.getListOfTower().get(i);
+                RelativeLayout.LayoutParams param = createParam();
+                ImageView iv = new ImageView(getApplicationContext());
+                param.setMargins(t.getLocationX() + 90, t.getLocationY() + 90, 0, 0);
+                iv.setLayoutParams(param);
+                iv.getLayoutParams().width = 50;
+                iv.getLayoutParams().height = 50;
+                iv.setImageResource(R.drawable.coin);
+                areaLayout.addView(iv);
+                iv.requestLayout();
+                startTime = System.currentTimeMillis();
+                timerHandler.postDelayed(timerRunnable, 0);
+                /* while (!done) {
+                    collectMoney(iv);
+                } */
+                gameActivityViewModel.addCoin(t.getLocationX() + 90, t.getLocationY() + 90);
+            }
+        }
+
     }
 
     private void configViews() {
@@ -320,11 +369,9 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
                 if (location[0] > 1100) {
                     animArr[1].start();
                 } else {
-                    //System.out.println("HERE!");
                     moveX[0] += randInt(70, 130);
                     animArr[0].setFloatValues(moveX[0]);
                     animArr[0].start();
@@ -344,12 +391,10 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
                 if (location[1] > 800) {
                     moveX[0] = 1200;
                     animArr[2].start();
                 } else {
-                    //System.out.println("HERE!");
                     moveY[0] += randInt(30, 70);
                     animArr[1].setFloatValues(moveY[0]);
                     animArr[1].start();
@@ -365,7 +410,6 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                //System.out.println(location[0]+ " IN-LOCATION " +location[1]);
                 if (location[0] > 2000) {
                     iv.clearAnimation();
                     gameActivityViewModel.addEnemyMonument(curr);
@@ -376,9 +420,8 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
+
     public Enemy createEnemy(int enemy, int x, int y, ImageView iv) {
         RelativeLayout.LayoutParams param = createParam();
 

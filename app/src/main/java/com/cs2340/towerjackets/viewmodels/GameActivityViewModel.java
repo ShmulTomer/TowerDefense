@@ -1,6 +1,8 @@
 package com.cs2340.towerjackets.viewmodels;
 
 import androidx.lifecycle.ViewModel;
+
+import com.cs2340.towerjackets.models.Coin;
 import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.Tower;
@@ -12,6 +14,18 @@ import com.cs2340.towerjackets.models.enemy.GreenEnemy;
 import java.util.LinkedList;
 
 public class GameActivityViewModel extends ViewModel {
+    private LinkedList<Coin> listOfCoin = new LinkedList<>();
+
+    public LinkedList<Coin> getListOfCoin() {
+        return listOfCoin;
+    }
+
+    public void addCoin(int x, int y) {
+        Coin c = new Coin(x, y);
+        listOfCoin.add(c);
+    }
+
+
     // A list of Tower objects - the Tower objects know where they are
     private LinkedList<Tower> listOfTower = new LinkedList<>();
 
