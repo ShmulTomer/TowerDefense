@@ -9,11 +9,7 @@ public class Coin {
         locationX = x;
         locationY = y;
     }
-
-    public Coin(Coin c) {
-        this(c.locationX, c.locationY);
-    }
-
+    
     public int getValue() {
         return value;
     }
