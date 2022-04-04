@@ -32,6 +32,8 @@ import com.cs2340.towerjackets.models.enemy.Enemy;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private TextView moneyView;
@@ -47,8 +49,6 @@ public class GameActivity extends AppCompatActivity {
 
     private Button start;
 
-    private Menu buyTowerMenu;
-
     private Player player;
 
     private RelativeLayout areaLayout;
@@ -57,23 +57,6 @@ public class GameActivity extends AppCompatActivity {
     private boolean[] placed = {false, false, false};
 
     private Monument hive;
-
-    long startTime = 0;
-    boolean done = false;
-
-    //runs without a timer by reposting this handler at the end of the runnable
-    Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            if (seconds > 5) {
-                done = true;
-            }
-            timerHandler.postDelayed(this, 500);
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,7 +154,17 @@ public class GameActivity extends AppCompatActivity {
                                         areaLayout.addView(iv);
                                         setValues();
                                         gameActivityViewModel.addTower(finalI, x, y);
-                                        generateMoney();
+                                        Handler handler = new Handler();
+                                        Runnable runnable = new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                /* do what you need to do */
+                                                generateMoney();
+                                                /* and here comes the "trick" */
+                                                handler.postDelayed(this, 5000);
+                                            }
+                                        };
+                                        handler.postDelayed(runnable, 5000);
                                     } else {
                                         alertPath();
                                     }
@@ -183,22 +176,6 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
-
-    }
-
-    private void collectMoney(ImageView iv) {
-        for (int i = 0; i < gameActivityViewModel.getListOfCoin().size(); i++) {
-            // if (gameActivityViewModel.getListOfCoin().get(i).getTimeOver()) {
-            int finalI = i;
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv.setVisibility(View.GONE);
-                    gameActivityViewModel.getListOfCoin().remove(finalI);
-                }
-            });
-            // }
         }
     }
 
@@ -215,12 +192,16 @@ public class GameActivity extends AppCompatActivity {
                 iv.setImageResource(R.drawable.coin);
                 areaLayout.addView(iv);
                 iv.requestLayout();
-                startTime = System.currentTimeMillis();
-                timerHandler.postDelayed(timerRunnable, 0);
-                /* while (!done) {
-                    collectMoney(iv);
-                } */
-                gameActivityViewModel.addCoin(t.getLocationX() + 90, t.getLocationY() + 90);
+                Coin c = new Coin(t.getLocationX() + 90, t.getLocationY() + 90);
+                gameActivityViewModel.addCoin(c);
+                iv.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        player.setMoney(player.getMoney() + c.getValue());
+                        setValues();
+                        iv.setVisibility(View.GONE);
+                        gameActivityViewModel.getListOfCoin().remove(c);
+                    }
+                });
             }
         }
 

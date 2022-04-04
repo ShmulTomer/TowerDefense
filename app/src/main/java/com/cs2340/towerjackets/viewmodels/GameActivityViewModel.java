@@ -20,9 +20,8 @@ public class GameActivityViewModel extends ViewModel {
         return listOfCoin;
     }
 
-    public void addCoin(int x, int y) {
-        Coin c = new Coin(x, y);
-        listOfCoin.add(c);
+    public void addCoin(Coin coin) {
+        listOfCoin.add(coin);
     }
 
 
