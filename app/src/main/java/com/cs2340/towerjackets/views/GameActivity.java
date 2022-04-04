@@ -118,6 +118,17 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
+        // runs generateMoney() every 10 seconds (initial 5 second delay)
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                generateMoney();
+                handler.postDelayed(this, 10000);
+            }
+        };
+        handler.postDelayed(runnable, 5000);
+
         for (int i = 0; i < numT; i++) {
             int finalI = i;
             placeT[i].setOnClickListener(new View.OnClickListener() {
@@ -154,17 +165,6 @@ public class GameActivity extends AppCompatActivity {
                                         areaLayout.addView(iv);
                                         setValues();
                                         gameActivityViewModel.addTower(finalI, x, y);
-                                        Handler handler = new Handler();
-                                        Runnable runnable = new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                /* do what you need to do */
-                                                generateMoney();
-                                                /* and here comes the "trick" */
-                                                handler.postDelayed(this, 5000);
-                                            }
-                                        };
-                                        handler.postDelayed(runnable, 5000);
                                     } else {
                                         alertPath();
                                     }
@@ -185,14 +185,16 @@ public class GameActivity extends AppCompatActivity {
                 WaspTower t = (WaspTower) gameActivityViewModel.getListOfTower().get(i);
                 RelativeLayout.LayoutParams param = createParam();
                 ImageView iv = new ImageView(getApplicationContext());
-                param.setMargins(t.getLocationX() + 90, t.getLocationY() + 90, 0, 0);
+                int randX = t.getLocationX() + 80 + randInt(-25, 25);
+                int randY = t.getLocationY() + 80 + randInt(-25, 25);
+                param.setMargins(randX, randY, 0, 0);
                 iv.setLayoutParams(param);
                 iv.getLayoutParams().width = 50;
                 iv.getLayoutParams().height = 50;
                 iv.setImageResource(R.drawable.coin);
                 areaLayout.addView(iv);
                 iv.requestLayout();
-                Coin c = new Coin(t.getLocationX() + 90, t.getLocationY() + 90);
+                Coin c = new Coin(randX, randY);
                 gameActivityViewModel.addCoin(c);
                 iv.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
