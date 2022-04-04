@@ -3,10 +3,14 @@
 ## M4 Testing Writeup
 
 1. enemyOnPath() - Anh Le
-* This test checks
+* This test checks whether placeEnemy() actually puts an enemy on the path. The test also makes sure
+that the enemy can only be placed on the path - not on the grass or anywhere else.
 
 2. enemiesOnMonument() - Anh Le
-* This test checks
+* This test checks to make sure that only enemies who have reached monument can damage monument. An
+enemy that is not at the monument's location won't be able to decrease monument's health even if
+damageMonument was called. Also, check that for an enemy that is at the monument, when damageMonument()
+is called, the monument health actually decreases.
 
 3. differentEnemyHealth() - Helen Chen
 * This test checks whether the three different enemies in the game have different starting healths.
@@ -37,7 +41,7 @@ crucial that enemies are separated and not in the same starting position when th
 for the visual functionality of this game.
 
 9. differentEnemySpeeds() - Harriet Kim
-* This test checks
+* This test checks if the speed of all the three enemies are equal. It is tested by creating one enemy for each enemy class and comparing the speed of the three enemies in pairs. Therefore, there are total three comparisons in this test.
 
 10. monumentHealthZero() - Harriet Kim
-* This test checks
+* This test checks monument stops taking damage after its health reaches 0 and monument health does not become negative. It is important that health decreases each time when an enemy get attacked and the health should be greater or equal than zero to make sure the health does not decrease infinitely.
