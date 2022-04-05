@@ -59,8 +59,9 @@ public class GameActivityViewModel extends ViewModel {
         newEnemy.setLocationX(x);
         newEnemy.setLocationY(y);
         listOfEnemy.add(newEnemy);
-
     }
+
+
 
     private LinkedList<Enemy> listOfEnemyMonument = new LinkedList<>();
 
