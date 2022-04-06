@@ -20,7 +20,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/monument_background.xml" value="0.1755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24409637451171878" />
-        <entry key="app/src/main/res/layout/game_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/game_over.xml" value="0.36684782608695654" />
+        <entry key="app/src/main/res/layout/game_screen.xml" value="0.5246478873239436" />
         <entry key="app/src/main/res/layout/initial_config.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/tower_menu.xml" value="0.335" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/monument.xml" value="0.1755" />

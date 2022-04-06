@@ -12,6 +12,7 @@ import com.cs2340.towerjackets.models.enemy.PurpleEnemy;
 import com.cs2340.towerjackets.models.enemy.BlueEnemy;
 import com.cs2340.towerjackets.models.enemy.GreenEnemy;
 import java.util.LinkedList;
+import com.cs2340.towerjackets.models.Player;
 
 public class GameActivityViewModel extends ViewModel {
     private LinkedList<Coin> listOfCoin = new LinkedList<>();
