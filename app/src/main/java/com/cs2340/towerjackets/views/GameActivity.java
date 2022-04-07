@@ -7,12 +7,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.ImageButton;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.lifecycle.ViewModelProvider;
 import android.view.MotionEvent;
 
@@ -34,11 +28,8 @@ import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
 import com.cs2340.towerjackets.models.tower.WaspTower;
-import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private TextView moneyView;
@@ -57,7 +48,6 @@ public class GameActivity extends AppCompatActivity {
     private Player player;
 
     private RelativeLayout areaLayout;
-    private ConstraintLayout constraintLayout;
     private GameActivityViewModel gameActivityViewModel;
 
     private boolean[] placed = {false, false, false};
@@ -470,14 +460,15 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < gameActivityViewModel.getListOfTower().size(); i++) {
             int x = gameActivityViewModel.getListOfTower().get(i).getLocationX();
             int y = gameActivityViewModel.getListOfTower().get(i).getLocationY();
-            if (Math.abs(enemy.getLocationX() - x) > 30 || Math.abs(enemy.getLocationY() - y) > 30) {
+            if (Math.abs(enemy.getLocationX() - x) > 30
+                    || Math.abs(enemy.getLocationY() - y) > 30) {
                 enemy.setHealth(enemy.getHealth() - 10);
             }
         }
     }
 
     public boolean isHealthZero(Enemy enemy) {
-        if(enemy.getHealth() <= 0) {
+        if (enemy.getHealth() <= 0) {
             return true;
         }
         return false;
