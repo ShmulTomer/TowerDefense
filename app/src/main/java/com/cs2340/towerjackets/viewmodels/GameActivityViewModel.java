@@ -53,6 +53,11 @@ public class GameActivityViewModel extends ViewModel {
     private LinkedList<Enemy> listOfEnemy = new LinkedList<>();
 
     public LinkedList<Enemy> getListOfEnemy() {
+        for (Enemy e: listOfEnemy) {
+            if (e.getHealth() <= 0) {
+                listOfEnemy.remove(e);
+            }
+        }
         return listOfEnemy;
     }
 
@@ -73,8 +78,6 @@ public class GameActivityViewModel extends ViewModel {
         newEnemy.setLocationY(y);
         listOfEnemy.add(newEnemy);
     }
-
-
 
     private LinkedList<Enemy> listOfEnemyMonument = new LinkedList<>();
 
