@@ -48,7 +48,7 @@ public class M5UnitTest {
     // Helen Chen - tests that placing a Hornet Tower and enemy not within proximity does not do anything.
     public void enemyNotWithinProximity() {
         HornetTower hornetTower = new HornetTower(500, 500);
-        Enemy enemy = new BlueEnemy(100, 100);
+        BlueEnemy enemy = new BlueEnemy(100, 100);
         hornetTower.attackEnemy(enemy);
         assertEquals(200, enemy.getHealth());
     }
@@ -57,7 +57,7 @@ public class M5UnitTest {
     // Helen Chen - tests that placing a Hornet Tower and enemy within proximity decreases enemy health.
     public void enemyWithinProximity() {
         HornetTower hornetTower = new HornetTower(500, 500);
-        Enemy enemy = new BlueEnemy(450, 550);
+        BlueEnemy enemy = new BlueEnemy(450, 550);
         hornetTower.attackEnemy(enemy);
         assertEquals(190, enemy.getHealth());
     }
@@ -82,9 +82,14 @@ public class M5UnitTest {
     }
 
     @Test
-    // Tomer Shmul -
-    public void xxx() {
-
+    // Tomer Shmul - tests that a moving enemy can still be attacked twice by the same tower.
+    public void enemyAttackedTwice() {
+        HornetTower hornetTower = new HornetTower(500, 500);
+        BlueEnemy enemy = new BlueEnemy(450, 450);
+        hornetTower.attackEnemy(enemy);
+        enemy.move();
+        hornetTower.attackEnemy(enemy);
+        assertEquals(180, enemy.getHealth());
     }
 
     @Test
@@ -94,7 +99,7 @@ public class M5UnitTest {
     }
 
     @Test
-    // Harriet Kim - all towers function well together
+    // Harriet Kim -
     public void zzz() {
 
     }

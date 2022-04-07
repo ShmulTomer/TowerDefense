@@ -16,6 +16,10 @@ public class BlueEnemy extends Enemy {
         setLocationX(x);
         setLocationY(y);
     }
+    public void move() {
+        setLocationX(getLocationX() + 50);
+        setLocationY(getLocationY() + 50);
+    }
     // End of M5 JUnit Things
 
     @Override
