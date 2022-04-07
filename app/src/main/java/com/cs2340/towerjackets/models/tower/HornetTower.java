@@ -19,7 +19,10 @@ public class HornetTower extends Tower {
     public void attackEnemy(Enemy e) {
         if (e.getLocationX() + 100 > getLocationX() && e.getLocationX() - 100 < getLocationX()
             && e.getLocationY() + 100 > getLocationY() && e.getLocationY() - 100 < getLocationY()) {
-            e.setHealth(e.getHealth() - 10);
+            e.setHealth(e.getHealth() - 50);
+            if (e.getHealth() < 0) {
+                e.setAlive(false);
+            }
         }
     }
     // End of M5 JUnit Things

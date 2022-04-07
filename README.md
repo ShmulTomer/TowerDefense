@@ -36,11 +36,16 @@ generates the coin, the user is in charge of collecting the coin so the player m
 any enemy within proximity, it should be able to attack an enemy more than once, even if the enemy moves.
 This test ensures that even after an enemy moves, the tower is still able to attack the enemy.
 
-8. () - Tomer Shmul
-*
+8. differentEnemyFunctionality() - Tomer Shmul
+* This test checks to make sure that different enemy types have distinct gameplay. One of the features
+is having different damage levels, so that they cause different levels of damage on monuments. This is
+a crucial feature to the game since it helps the user consider which enemies to first attack with the hornet tower.
 
-9. () - Harriet Kim
-* 
+9. distinctBehavior() - Harriet Kim
+* This test checks to make sure that all three towers have different functionalities and can affect the
+same player in different ways. This is important because it adds more variety to the game and makes the user
+weigh the importance of each tower to decide which tower to buy.
 
-10. () - Harriet Kim
-*
+10. slowDeath() - Harriet Kim
+* This test checks to make sure that enemies are slowly killed by towers, rather than in an instant. This
+allows the game to add visual or descriptive aids so the player knows that the enemy is taking damage.

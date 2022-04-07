@@ -59,7 +59,7 @@ public class M5UnitTest {
         HornetTower hornetTower = new HornetTower(500, 500);
         BlueEnemy enemy = new BlueEnemy(450, 550);
         hornetTower.attackEnemy(enemy);
-        assertEquals(190, enemy.getHealth());
+        assertEquals(150, enemy.getHealth());
     }
 
     @Test
@@ -89,25 +89,52 @@ public class M5UnitTest {
         hornetTower.attackEnemy(enemy);
         enemy.move();
         hornetTower.attackEnemy(enemy);
-        assertEquals(180, enemy.getHealth());
+        assertEquals(100, enemy.getHealth());
     }
 
     @Test
-    // Tomer Shmul - each enemy has different damage differences.
-    public void yyy() {
-
+    // Tomer Shmul - tests if each enemy has different functionality; ie., different damage potentials.
+    // Tested on three enemies: BlueEnemy, PurpleEnemy, GreenEnemy
+    public void differentEnemyFunctionality() {
+        BlueEnemy blue = new BlueEnemy();
+        PurpleEnemy purple = new PurpleEnemy();
+        GreenEnemy green = new GreenEnemy();
+        assertEquals(false, blue.getDamage() == green.getDamage());
+        assertEquals(false, purple.getDamage() == green.getDamage());
+        assertEquals(false, blue.getDamage() == purple.getDamage());
     }
 
     @Test
-    // Harriet Kim -
-    public void zzz() {
+    // Harriet Kim - ensures that all towers have distinct behaviors and can exist simultaneously.
+    public void distinctBehavior() {
+        Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
+        BeeTower beeTower = new BeeTower(player);
+        HornetTower hornetTower = new HornetTower(500, 500);
+        WaspTower waspTower = new WaspTower(player);
+        BlueEnemy enemy = new BlueEnemy(450, 550);
 
+        beeTower.placeTower();
+        waspTower.placeTower();
+        hornetTower.attackEnemy(enemy);
+        assertEquals(120, player.getHealth());
+        assertEquals(10, waspTower.getCoin().getValue());
+        assertEquals(150, enemy.getHealth());
     }
 
     @Test
-    // Harriet Kim -
-    public void www() {
-
+    // Harriet Kim - ensures that combat does not happen in an instant, but rather happens slowly over time.
+    public void slowDeath() {
+        HornetTower hornetTower = new HornetTower(500, 500);
+        BlueEnemy enemy = new BlueEnemy(450, 450);
+        hornetTower.attackEnemy(enemy);
+        hornetTower.attackEnemy(enemy);
+        assertEquals(true, enemy.getAlive());
+        hornetTower.attackEnemy(enemy);
+        hornetTower.attackEnemy(enemy);
+        hornetTower.attackEnemy(enemy);
+        hornetTower.attackEnemy(enemy);
+        hornetTower.attackEnemy(enemy);
+        assertEquals(false, enemy.getAlive());
     }
 }
 
