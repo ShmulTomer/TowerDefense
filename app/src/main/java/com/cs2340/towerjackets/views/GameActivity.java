@@ -34,6 +34,7 @@ import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
 import com.cs2340.towerjackets.models.tower.WaspTower;
+import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 import java.util.Random;
 import java.util.Timer;
@@ -178,6 +179,7 @@ public class GameActivity extends AppCompatActivity {
                                         }
                                         areaLayout.addView(iv);
                                         setValues();
+                                        monumentHealthTower(finalI);
                                         gameActivityViewModel.addTower(finalI, x, y);
                                     } else {
                                         alertPath();
@@ -221,6 +223,19 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    //increment player's monument health by 20 if place a BeeTower
+    private void monumentHealthTower(int towerNum) {
+        healthView = findViewById(R.id.hpV);
+        if (towerNum == 1) {
+            int hpInt = hive.getHealth();
+            hpInt += 20;
+            hive.setHealth(hpInt);
+            healthView.setText(Integer.toString(hpInt));
+        } else {
+            healthView.setText(Integer.toString(hive.getHealth()));
+        }
     }
 
     private void configViews() {
