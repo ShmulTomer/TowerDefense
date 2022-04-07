@@ -7,6 +7,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
@@ -17,11 +18,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.lifecycle.ViewModelProvider;
 import android.view.MotionEvent;
 
@@ -52,6 +56,7 @@ public class GameActivity extends AppCompatActivity {
     private Player player;
 
     private RelativeLayout areaLayout;
+    private ConstraintLayout constraintLayout;
     private GameActivityViewModel gameActivityViewModel;
 
     private boolean[] placed = {false, false, false};
@@ -89,21 +94,30 @@ public class GameActivity extends AppCompatActivity {
                 int y = 330;
 
                 setValues();
-
+                RelativeLayout.LayoutParams param = createParam();
                 ImageView iv = new ImageView(getApplicationContext());
-                Enemy curr = createEnemy(0, x, y - 40, iv);
+                TextView health = new TextView(getApplicationContext());
+                Enemy curr = createEnemy(0, x, y - 40, iv, health);
+                health.setText(curr.getHealth() + "");
                 moveEnemy(curr, iv);
+                moveEnemy(curr, health);
 
                 ImageView iv2 = new ImageView(getApplicationContext());
-                Enemy curr2 = createEnemy(1, x - 10, y, iv2);
+                TextView health2 = new TextView(getApplicationContext());
+                Enemy curr2 = createEnemy(1, x - 10, y, iv2, health2);
+                health2.setText(curr2.getHealth() + "");
                 moveEnemy(curr2, iv2);
 
                 ImageView iv3 = new ImageView(getApplicationContext());
-                Enemy curr3 = createEnemy(2, x, y + 40, iv3);
+                TextView health3 = new TextView(getApplicationContext());
+                Enemy curr3 = createEnemy(2, x, y + 40, iv3, health3);
+                health3.setText(curr3.getHealth() + "");
                 moveEnemy(curr3, iv3);
 
                 ImageView iv4 = new ImageView(getApplicationContext());
-                Enemy curr4 = createEnemy(1, x + 30, y + 30, iv4);
+                TextView health4 = new TextView(getApplicationContext());
+                Enemy curr4 = createEnemy(1, x + 30, y + 30, iv4, health4);
+                health4.setText(curr4.getHealth() + "");
                 moveEnemy(curr4, iv4);
             }
         });
@@ -336,7 +350,7 @@ public class GameActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void moveEnemy(Enemy curr, ImageView iv) {
+    private void moveEnemy(Enemy curr, View iv) {
 
         //Move along first part of path
         final int[] moveX = new int[1];
@@ -352,10 +366,12 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
+                decreaseHealth(curr);
                 if (location[0] > 1100) {
                     animArr[1].start();
                 } else {
-                    moveX[0] += randInt(70, 130);
+                    int randomInt = randInt(70, 130);
+                    moveX[0] += randomInt;
                     animArr[0].setFloatValues(moveX[0]);
                     animArr[0].start();
                 }
@@ -374,6 +390,7 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
+                decreaseHealth(curr);
                 if (location[1] > 800) {
                     moveX[0] = 1200;
                     animArr[2].start();
@@ -393,6 +410,7 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
+                decreaseHealth(curr);
                 if (location[0] > 2000) {
                     iv.clearAnimation();
                     gameActivityViewModel.addEnemyMonument(curr);
@@ -404,15 +422,19 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
-
-    public Enemy createEnemy(int enemy, int x, int y, ImageView iv) {
+    public Enemy createEnemy(int enemy, int x, int y, ImageView iv, TextView health) {
         RelativeLayout.LayoutParams param = createParam();
-
+        RelativeLayout.LayoutParams param2 = createParam();
         param.setMargins(x, y, 0, 0);
         iv.setLayoutParams(param);
         iv.getLayoutParams().width = 100;
         iv.getLayoutParams().height = 100;
         iv.requestLayout();
+        param2.setMargins(x, y - 50, 0, 0);
+        health.setLayoutParams(param2);
+        health.getLayoutParams().width = 100;
+        health.getLayoutParams().height = 100;
+        health.requestLayout();
         if (enemy == 0) {
             iv.setImageResource(R.drawable.purple);
         } else if (enemy == 1) {
@@ -424,8 +446,26 @@ public class GameActivity extends AppCompatActivity {
                     + "We only have 3 types of enemies.");
         }
         areaLayout.addView(iv);
+        areaLayout.addView(health);
         gameActivityViewModel.addEnemy(enemy, x, y);
         return gameActivityViewModel.getListOfEnemy().peekLast();
+    }
+
+    public void decreaseHealth(Enemy enemy) {
+        for (int i = 0; i < gameActivityViewModel.getListOfTower().size(); i++) {
+            int x = gameActivityViewModel.getListOfTower().get(i).getLocationX();
+            int y = gameActivityViewModel.getListOfTower().get(i).getLocationY();
+            if (Math.abs(enemy.getLocationX() - x) > 30 || Math.abs(enemy.getLocationY() - y) > 30) {
+                enemy.setHealth(enemy.getHealth() - 10);
+            }
+        }
+    }
+
+    public boolean isHealthZero(Enemy enemy) {
+        if(enemy.getHealth() <= 0) {
+            return true;
+        }
+        return false;
     }
 
     public static int randInt(int min, int max) {
