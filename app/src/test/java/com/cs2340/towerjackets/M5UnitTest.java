@@ -12,6 +12,7 @@ import com.cs2340.towerjackets.models.enemy.PurpleEnemy;
 import com.cs2340.towerjackets.models.game_config.Difficulty;
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 import com.cs2340.towerjackets.models.tower.BeeTower;
+import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 
@@ -46,13 +47,19 @@ public class M5UnitTest {
     @Test
     // Helen Chen - tests that placing a Hornet Tower and enemy not within proximity does not do anything.
     public void enemyNotWithinProximity() {
-
+        HornetTower hornetTower = new HornetTower(500, 500);
+        Enemy enemy = new BlueEnemy(100, 100);
+        hornetTower.attackEnemy(enemy);
+        assertEquals(200, enemy.getHealth());
     }
 
     @Test
     // Helen Chen - tests that placing a Hornet Tower and enemy within proximity decreases enemy health.
     public void enemyWithinProximity() {
-
+        HornetTower hornetTower = new HornetTower(500, 500);
+        Enemy enemy = new BlueEnemy(450, 550);
+        hornetTower.attackEnemy(enemy);
+        assertEquals(190, enemy.getHealth());
     }
 
     @Test

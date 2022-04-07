@@ -10,6 +10,14 @@ public class BlueEnemy extends Enemy {
         setDamage(200);
     }
 
+    // M5 JUnit Things
+    public BlueEnemy(int x, int y) {
+        this();
+        setLocationX(x);
+        setLocationY(y);
+    }
+    // End of M5 JUnit Things
+
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
