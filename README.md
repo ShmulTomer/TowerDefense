@@ -2,46 +2,50 @@
 
 ## M4 Testing Writeup
 
-1. enemyOnPath() - Anh Le
-* This test checks whether placeEnemy() actually puts an enemy on the path. The test also makes sure
-that the enemy can only be placed on the path - not on the grass or anywhere else.
+1. beeTowerFunctionality() - Anh Le
+* This test checks whether placing a Bee Tower on the board successfully increases monument health.
+The purpose of the bee tower is to increase monument health, so each time the tower is placed, monument
+health should be increased by 20. This is one of the mechanisms that helps the player defeat the enemies.
 
-2. enemiesOnMonument() - Anh Le
-* This test checks to make sure that only enemies who have reached monument can damage monument. An
-enemy that is not at the monument's location won't be able to decrease monument's health even if
-damageMonument was called. Also, check that for an enemy that is at the monument, when damageMonument()
-is called, the monument health actually decreases.
+2. enemiesHealthZero() - Anh Le
+* This test checks to make sure that enemies disappear from the map when their health reaches zero. This
+is accomplished by removing the enemy from the gameActivityViewModel Linked List. When the health of an
+enemy is zero, they are automatically removed the list of enemies in the game.
 
-3. differentEnemyHealth() - Helen Chen
-* This test checks whether the three different enemies in the game have different starting healths.
-This is one of the main differences between the different types of enemies that will cause them to
-impact combat differently.
+3. enemyNotWithinProximity() - Helen Chen
+* This test checks whether or not a Hornet Tower can attack an enemy not within proximity. This is
+important since the hornet tower is responsible for attacking enemies, but should only be allowed to
+decrease enemy damage when the enemy is close enough.
 
-4. reduceMonumentHealth() - Helen Chen
-* This test checks if different types of enemies hitting the monument reduces the monument health by different
-damages. It is tested on three different types of enemies: the blue enemy, purple enemy, and green enemy.
-  
-5. differentEnemyDamage() - Ori Yoked
-* This test checks that all the enemies have different damages. This is important because we want to differentiate between how much damage the different types of enemies can have on the towers and the monument, which is just one of the characteristic differences between all three enemies. This allows for the user of the game to strategize on which enemies to try to destroy first.
+4. enemyWithinProximity() - Helen Chen
+* This test checks whether or not a Hornet Tower can attack an enemy within promixity. This ensures that
+there is a way for enemy health to decrease, and thus for the enemy to eventually die before reaching
+the monument.
 
-6. deadEnemies() - Ori Yoked
-* This test checks that when an enemy loses all its health, it is no longer able to damage the monument. This is essential because we want enemies to damage the monument when they reach it, but once it's dead, the enemy should not have any functionality at all. This test properly tests this by showing that when an enemy is alive and reaches the monument, it does 200 damage to the monument, while a dead enemy does no damage as shown by the full health of the monument.
+5. waspTowerFunctionality() - Ori Yoked
+* This test checks whether placing a Wasp Tower generates a coin or not. The Wasp Tower is the only way
+the player can gain money throughout the game to purchase more towers, so this functionality is extremely
+important. Placing the tower should generate a coin.
 
-7. checkGameStatus() - Tomer Shmul
-* This test checks whether doing enough damage to the monument causes the game to end. This is
-essential as the game ending properly is a critical function of the game, one that we want to make
-sure always works through iterations of this project. Therefore, this JUnit is essential to check
-to make sure the game is properly functioning, and that enough enemies damaging the hive causes the
-game to enter a game over state.
+6. coinFunctionality() - Ori Yoked
+* This test checks whether or not collecting the coin increases the player money. After the wasp tower
+generates the coin, the user is in charge of collecting the coin so the player money actually increases.
 
-8. towersGameOver() - Tomer Shmul
-* This test checks if the placeEnemy() method places enemy randomly. This is important because when
-the game begins, if the enemies are overlapping, then only one enemy will be shown. Therefore, it is
-crucial that enemies are separated and not in the same starting position when the game starts
-for the visual functionality of this game.
+7. enemyAttackedTwice() - Tomer Shmul
+* This test checks whether a hornet tower can attack an enemy twice. Since a tower should be able to attack
+any enemy within proximity, it should be able to attack an enemy more than once, even if the enemy moves.
+This test ensures that even after an enemy moves, the tower is still able to attack the enemy.
 
-9. differentEnemySpeeds() - Harriet Kim
-* This test checks if the speed of all the three enemies are equal. It is tested by creating one enemy for each enemy class and comparing the speed of the three enemies in pairs. Therefore, there are total three comparisons in this test.
+8. differentEnemyFunctionality() - Tomer Shmul
+* This test checks to make sure that different enemy types have distinct gameplay. One of the features
+is having different damage levels, so that they cause different levels of damage on monuments. This is
+a crucial feature to the game since it helps the user consider which enemies to first attack with the hornet tower.
 
-10. monumentHealthZero() - Harriet Kim
-* This test checks monument stops taking damage after its health reaches 0 and monument health does not become negative. It is important that health decreases each time when an enemy get attacked and the health should be greater or equal than zero to make sure the health does not decrease infinitely.
+9. distinctBehavior() - Harriet Kim
+* This test checks to make sure that all three towers have different functionalities and can affect the
+same player in different ways. This is important because it adds more variety to the game and makes the user
+weigh the importance of each tower to decide which tower to buy.
+
+10. slowDeath() - Harriet Kim
+* This test checks to make sure that enemies are slowly killed by towers, rather than in an instant. This
+allows the game to add visual or descriptive aids so the player knows that the enemy is taking damage.
