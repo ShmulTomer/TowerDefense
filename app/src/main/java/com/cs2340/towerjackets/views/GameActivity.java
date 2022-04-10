@@ -389,7 +389,7 @@ public class GameActivity extends AppCompatActivity {
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
                 }
-                if (location[0] > 1100) {
+                if (location[0] > 1150) {
                     animArr[1].start();
                 } else {
                     moveX[0] += rand;
