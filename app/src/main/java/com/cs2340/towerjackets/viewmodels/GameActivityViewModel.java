@@ -27,15 +27,20 @@ public class GameActivityViewModel extends ViewModel {
 
     // A list of Tower objects - the Tower objects know where they are
     private LinkedList<Tower> listOfTower = new LinkedList<>();
+    private LinkedList<Tower> listOfHornetTower = new LinkedList<>();
 
     public LinkedList<Tower> getListOfTower() {
         return listOfTower;
+    }
+    public LinkedList<Tower> getListOfHornetTower() {
+        return listOfHornetTower;
     }
 
     public void addTower(int tower, int x, int y) {
         Tower newTower;
         if (tower == 0) {
             newTower = new HornetTower();
+            listOfHornetTower.add(newTower);
         } else if (tower == 1) {
             newTower = new BeeTower();
         } else if (tower == 2) {

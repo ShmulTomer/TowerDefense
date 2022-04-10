@@ -7,9 +7,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,8 +29,13 @@ import com.cs2340.towerjackets.models.Coin;
 import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
+import com.cs2340.towerjackets.models.tower.Tower;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
+
+import org.w3c.dom.Text;
+
+import java.util.LinkedList;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -53,6 +60,8 @@ public class GameActivity extends AppCompatActivity {
     private boolean[] placed = {false, false, false};
 
     private Monument hive;
+
+    private LinkedList<Integer> usedTowers = new LinkedList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,28 +97,31 @@ public class GameActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams param = createParam();
                 ImageView iv = new ImageView(getApplicationContext());
                 TextView health = new TextView(getApplicationContext());
+                health.setTextColor(Color.WHITE);
                 Enemy curr = createEnemy(0, x, y - 40, iv, health);
                 health.setText(curr.getHealth() + "");
-                moveEnemy(curr, iv);
-                moveEnemy(curr, health);
+                moveEnemy(curr, iv, health);
 
                 ImageView iv2 = new ImageView(getApplicationContext());
                 TextView health2 = new TextView(getApplicationContext());
+                health2.setTextColor(Color.WHITE);
                 Enemy curr2 = createEnemy(1, x - 10, y, iv2, health2);
                 health2.setText(curr2.getHealth() + "");
-                moveEnemy(curr2, iv2);
+                moveEnemy(curr2, iv2, health2);
 
                 ImageView iv3 = new ImageView(getApplicationContext());
                 TextView health3 = new TextView(getApplicationContext());
+                health3.setTextColor(Color.WHITE);
                 Enemy curr3 = createEnemy(2, x, y + 40, iv3, health3);
                 health3.setText(curr3.getHealth() + "");
-                moveEnemy(curr3, iv3);
+                moveEnemy(curr3, iv3, health3);
 
                 ImageView iv4 = new ImageView(getApplicationContext());
                 TextView health4 = new TextView(getApplicationContext());
+                health4.setTextColor(Color.WHITE);
                 Enemy curr4 = createEnemy(1, x + 30, y + 30, iv4, health4);
                 health4.setText(curr4.getHealth() + "");
-                moveEnemy(curr4, iv4);
+                moveEnemy(curr4, iv4, health4);
             }
         });
 
@@ -355,7 +367,7 @@ public class GameActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void moveEnemy(Enemy curr, View iv) {
+    private void moveView(Enemy curr, View iv, int rand, int rand2, int rand3, boolean isText) {
 
         //Move along first part of path
         final int[] moveX = new int[1];
@@ -371,12 +383,16 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                decreaseHealth(curr);
+                if (isText) {
+                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                }
+                if (isHealthZero(curr)) {
+                    killEnemy(curr, iv);
+                }
                 if (location[0] > 1100) {
                     animArr[1].start();
                 } else {
-                    int randomInt = randInt(70, 130);
-                    moveX[0] += randomInt;
+                    moveX[0] += rand;
                     animArr[0].setFloatValues(moveX[0]);
                     animArr[0].start();
                 }
@@ -395,12 +411,17 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                decreaseHealth(curr);
+                if (isText) {
+                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                }
+                if (isHealthZero(curr)) {
+                    killEnemy(curr, iv);
+                }
                 if (location[1] > 800) {
                     moveX[0] = 1200;
                     animArr[2].start();
                 } else {
-                    moveY[0] += randInt(30, 70);
+                    moveY[0] += rand2;
                     animArr[1].setFloatValues(moveY[0]);
                     animArr[1].start();
                 }
@@ -415,18 +436,32 @@ public class GameActivity extends AppCompatActivity {
                 iv.getLocationOnScreen(location);
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
-                decreaseHealth(curr);
+                if (isText) {
+                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                }
+                if (isHealthZero(curr)) {
+                    killEnemy(curr, iv);
+                }
                 if (location[0] > 2000) {
                     iv.clearAnimation();
                     gameActivityViewModel.addEnemyMonument(curr);
                 } else {
-                    moveX[0] += randInt(70, 130);
+                    moveX[0] += rand3;
                     animArr[2].setFloatValues(moveX[0]);
                     animArr[2].start();
                 }
             }
         });
     }
+
+    private void moveEnemy(Enemy curr, ImageView image, TextView text) {
+        int randomInt = randInt(70, 130);
+        int randomInt2 = randInt(30, 70);
+        int randomInt3 = randInt(70, 130);
+        moveView(curr, image, randomInt, randomInt2, randomInt3, false);
+        moveView(curr, text, randomInt, randomInt2, randomInt3, true);
+    }
+
     public Enemy createEnemy(int enemy, int x, int y, ImageView iv, TextView health) {
         RelativeLayout.LayoutParams param = createParam();
         RelativeLayout.LayoutParams param2 = createParam();
@@ -435,7 +470,7 @@ public class GameActivity extends AppCompatActivity {
         iv.getLayoutParams().width = 100;
         iv.getLayoutParams().height = 100;
         iv.requestLayout();
-        param2.setMargins(x, y - 50, 0, 0);
+        param2.setMargins(x, y - 25, 0, 0);
         health.setLayoutParams(param2);
         health.getLayoutParams().width = 100;
         health.getLayoutParams().height = 100;
@@ -456,15 +491,28 @@ public class GameActivity extends AppCompatActivity {
         return gameActivityViewModel.getListOfEnemy().peekLast();
     }
 
-    public void decreaseHealth(Enemy enemy) {
-        for (int i = 0; i < gameActivityViewModel.getListOfTower().size(); i++) {
-            int x = gameActivityViewModel.getListOfTower().get(i).getLocationX();
-            int y = gameActivityViewModel.getListOfTower().get(i).getLocationY();
-            if (Math.abs(enemy.getLocationX() - x) > 30
-                    || Math.abs(enemy.getLocationY() - y) > 30) {
-                enemy.setHealth(enemy.getHealth() - 10);
+    public void killEnemy(Enemy enemy, View iv) {
+        areaLayout.removeView(iv);
+    }
+    public int decreaseHealth(Enemy enemy, int enemyX, int enemyY) {
+        LinkedList<Tower> list = gameActivityViewModel.getListOfHornetTower();
+        for (int i = 0; i < list.size(); i++) {
+            if (usedTowers.contains(i)) {
+                continue;
+            }
+            int towerX = list.get(i).getLocationX();
+            int towerY = list.get(i).getLocationY();
+            //Log.i("", "Enemy x: " + enemyX + "Enemy y: " + enemyY);
+            //Log.i("difference", "X: " + Math.abs(enemy.getLocationX() - x) + ", Y: " + Math.abs(enemy.getLocationY() - y) + ", health" + enemy.getHealth());
+            if (Math.abs(enemyY - towerY) < 200 && Math.abs(enemyX - towerX) < 100) {
+                //if ((isHorizontalPath && Math.abs(enemyY - towerY) < 200) || (!isHorizontalPath && Math.abs(enemyX - towerX) < 200)) {
+                int newHealth = enemy.getHealth() - 50;
+                enemy.setHealth(newHealth);
+                usedTowers.add(i);
+                return newHealth;
             }
         }
+        return enemy.getHealth();
     }
 
     public boolean isHealthZero(Enemy enemy) {
