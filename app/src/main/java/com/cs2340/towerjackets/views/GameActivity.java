@@ -92,36 +92,21 @@ public class GameActivity extends AppCompatActivity {
                 start.setVisibility(View.GONE);
                 int x = 30;
                 int y = 330;
+                int xArr[] = {x, x - 10, x, x + 30};
+                int yArr[] = {y - 40, y, y + 40, y + 30};
+                int enemyTypeArr[] = {0, 1, 2, 1};
 
                 setValues();
                 RelativeLayout.LayoutParams param = createParam();
-                ImageView iv = new ImageView(getApplicationContext());
-                TextView health = new TextView(getApplicationContext());
-                health.setTextColor(Color.WHITE);
-                Enemy curr = createEnemy(0, x, y - 40, iv, health);
-                health.setText(curr.getHealth() + "");
-                moveEnemy(curr, iv, health);
 
-                ImageView iv2 = new ImageView(getApplicationContext());
-                TextView health2 = new TextView(getApplicationContext());
-                health2.setTextColor(Color.WHITE);
-                Enemy curr2 = createEnemy(1, x - 10, y, iv2, health2);
-                health2.setText(curr2.getHealth() + "");
-                moveEnemy(curr2, iv2, health2);
-
-                ImageView iv3 = new ImageView(getApplicationContext());
-                TextView health3 = new TextView(getApplicationContext());
-                health3.setTextColor(Color.WHITE);
-                Enemy curr3 = createEnemy(2, x, y + 40, iv3, health3);
-                health3.setText(curr3.getHealth() + "");
-                moveEnemy(curr3, iv3, health3);
-
-                ImageView iv4 = new ImageView(getApplicationContext());
-                TextView health4 = new TextView(getApplicationContext());
-                health4.setTextColor(Color.WHITE);
-                Enemy curr4 = createEnemy(1, x + 30, y + 30, iv4, health4);
-                health4.setText(curr4.getHealth() + "");
-                moveEnemy(curr4, iv4, health4);
+                for (int i=0; i < 4; i++) {
+                    ImageView iv = new ImageView(getApplicationContext());
+                    TextView health = new TextView(getApplicationContext());
+                    health.setTextColor(Color.WHITE);
+                    Enemy curr = createEnemy(enemyTypeArr[i], xArr[i], yArr[i], iv, health);
+                    health.setText(curr.getHealth() + "");
+                    moveEnemy(curr, iv, health);
+                }
             }
         });
 
