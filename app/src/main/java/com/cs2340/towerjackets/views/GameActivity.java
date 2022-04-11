@@ -336,7 +336,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 for (Enemy curr: gameActivityViewModel.getListOfEnemyMonument()) {
                     if (curr.getAlive()) {
-                        hive.setHealth(hive.getHealth() - 5);
+                        hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
                         healthView.setText(Integer.toString(hive.getHealth()));
                     }
 
