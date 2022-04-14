@@ -339,6 +339,8 @@ public class GameActivity extends AppCompatActivity {
                             hive.setHealth(hive.getHealth() - 5);
                             healthView.setText(Integer.toString(hive.getHealth()));
                         }
+                        hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
+                        healthView.setText(Integer.toString(hive.getHealth()));
                     }
 
                 }
