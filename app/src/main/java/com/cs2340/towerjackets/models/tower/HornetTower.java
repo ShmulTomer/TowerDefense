@@ -1,6 +1,5 @@
 package com.cs2340.towerjackets.models.tower;
 import com.cs2340.towerjackets.R;
-import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
 
 public class HornetTower extends Tower {

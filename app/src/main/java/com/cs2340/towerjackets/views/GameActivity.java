@@ -32,8 +32,6 @@ import com.cs2340.towerjackets.models.tower.Tower;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
 
-import org.w3c.dom.Text;
-
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -91,14 +89,14 @@ public class GameActivity extends AppCompatActivity {
                 start.setVisibility(View.GONE);
                 int x = 30;
                 int y = 330;
-                int xArr[] = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10};
-                int yArr[] = {y - 40, y, y + 40, y + 30, y + 10, y + 20, y - 10, y - 20};
-                int enemyTypeArr[] = {0, 1, 2, 1, 0, 1, 2, 1};
+                int[] xArr = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10};
+                int[] yArr = {y - 40, y, y + 10, y + 30, y + 10, y + 20, y - 10, y - 20};
+                int[] enemyTypeArr = {0, 1, 2, 1, 0, 1, 2, 1};
 
                 setValues();
                 RelativeLayout.LayoutParams param = createParam();
 
-                for (int i=0; i < 8; i++) {
+                for (int i = 0; i < 8; i++) {
                     ImageView iv = new ImageView(getApplicationContext());
                     TextView health = new TextView(getApplicationContext());
                     health.setTextColor(Color.WHITE);
@@ -372,7 +370,7 @@ public class GameActivity extends AppCompatActivity {
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
                 if (isText) {
-                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                    ((TextView) iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
                 }
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
@@ -400,7 +398,7 @@ public class GameActivity extends AppCompatActivity {
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
                 if (isText) {
-                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                    ((TextView) iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
                 }
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
@@ -425,7 +423,7 @@ public class GameActivity extends AppCompatActivity {
                 curr.setLocationX(location[0]);
                 curr.setLocationX(location[1]);
                 if (isText) {
-                    ((TextView)iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                    ((TextView) iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
                 }
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
@@ -491,10 +489,9 @@ public class GameActivity extends AppCompatActivity {
             int towerX = list.get(i).getLocationX();
             int towerY = list.get(i).getLocationY();
             //Log.i("", "Enemy x: " + enemyX + "Enemy y: " + enemyY);
-            //Log.i("difference", "X: " + Math.abs(enemy.getLocationX() - x) + ", Y: " + Math.abs(enemy.getLocationY() - y) + ", health" + enemy.getHealth());
+
             if (Math.abs(enemyY - towerY) < 200 && Math.abs(enemyX - towerX) < 100) {
-                //if ((isHorizontalPath && Math.abs(enemyY - towerY) < 200) || (!isHorizontalPath && Math.abs(enemyX - towerX) < 200)) {
-                int newHealth = enemy.getHealth() - 25;
+                int newHealth = enemy.getHealth() - 5;
                 enemy.setHealth(newHealth);
                 //usedTowers.add(i);
                 return newHealth;
