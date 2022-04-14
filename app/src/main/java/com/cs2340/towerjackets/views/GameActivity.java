@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -92,14 +91,14 @@ public class GameActivity extends AppCompatActivity {
                 start.setVisibility(View.GONE);
                 int x = 30;
                 int y = 330;
-                int xArr[] = {x, x - 10, x, x + 30};
-                int yArr[] = {y - 40, y, y + 40, y + 30};
-                int enemyTypeArr[] = {0, 1, 2, 1};
+                int xArr[] = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10};
+                int yArr[] = {y - 40, y, y + 40, y + 30, y + 10, y + 20, y - 10, y - 20};
+                int enemyTypeArr[] = {0, 1, 2, 1, 0, 1, 2, 1};
 
                 setValues();
                 RelativeLayout.LayoutParams param = createParam();
 
-                for (int i=0; i < 4; i++) {
+                for (int i=0; i < 8; i++) {
                     ImageView iv = new ImageView(getApplicationContext());
                     TextView health = new TextView(getApplicationContext());
                     health.setTextColor(Color.WHITE);
@@ -336,8 +335,10 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 for (Enemy curr: gameActivityViewModel.getListOfEnemyMonument()) {
                     if (curr.getAlive()) {
-                        hive.setHealth(hive.getHealth() - 5);
-                        healthView.setText(Integer.toString(hive.getHealth()));
+                        if (hive.getHealth() >= 5) {
+                            hive.setHealth(hive.getHealth() - 5);
+                            healthView.setText(Integer.toString(hive.getHealth()));
+                        }
                     }
 
                 }
@@ -491,9 +492,9 @@ public class GameActivity extends AppCompatActivity {
             //Log.i("difference", "X: " + Math.abs(enemy.getLocationX() - x) + ", Y: " + Math.abs(enemy.getLocationY() - y) + ", health" + enemy.getHealth());
             if (Math.abs(enemyY - towerY) < 200 && Math.abs(enemyX - towerX) < 100) {
                 //if ((isHorizontalPath && Math.abs(enemyY - towerY) < 200) || (!isHorizontalPath && Math.abs(enemyX - towerX) < 200)) {
-                int newHealth = enemy.getHealth() - 50;
+                int newHealth = enemy.getHealth() - 25;
                 enemy.setHealth(newHealth);
-                usedTowers.add(i);
+                //usedTowers.add(i);
                 return newHealth;
             }
         }
