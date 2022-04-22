@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -59,6 +60,9 @@ public class GameActivity extends AppCompatActivity {
     private Monument hive;
 
     private LinkedList<Integer> usedTowers = new LinkedList<>();
+    private LinkedList<Integer> usedHornetTowers = new LinkedList<>();
+    private LinkedList<Integer> usedBeeTowers = new LinkedList<>();
+    private LinkedList<Integer> usedWaspTowers = new LinkedList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -155,11 +159,11 @@ public class GameActivity extends AppCompatActivity {
                                         iv.getLayoutParams().height = 100;
                                         iv.requestLayout();
                                         if (finalI == 0) {
-                                            iv.setImageResource(R.drawable.hornet);
+                                            iv.setImageResource(R.drawable.bee_tower_default);
                                         } else if (finalI == 1) {
-                                            iv.setImageResource(R.drawable.bee);
+                                            iv.setImageResource(R.drawable.heart_tower_default);
                                         } else if (finalI == 2) {
-                                            iv.setImageResource(R.drawable.wasp);
+                                            iv.setImageResource(R.drawable.coin_tower_default);
                                         }
                                         areaLayout.addView(iv);
                                         setValues();
@@ -240,33 +244,75 @@ public class GameActivity extends AppCompatActivity {
                 PopupMenu popupMenu = new PopupMenu(menuButton.getContext(), view);
                 popupMenu.inflate(R.menu.popup_buytower);
 
-                // Setting titles of menu items
-                MenuItem item = popupMenu.getMenu().findItem(R.id.HornetBuyTower);
-                item.setTitle("Triple Shot $" + player.getTowerCost(0));
+                MenuItem item;
+                item = popupMenu.getMenu().findItem(R.id.HornetBuyTower);
+                item.setTitle("Buy Bee Tower $" + player.getTowerCost(0));
+                if (player.getMoney() < player.getTowerCost(0)) {
+                    item.setEnabled(false);
+                }
+                item = popupMenu.getMenu().findItem(R.id.HornetUpgradeTower);
+                item.setTitle("Upgrade Bee Tower $" + player.getTowerUpgradeCost(0));
+                if (gameActivityViewModel.getListOfHornetTower().size() == usedHornetTowers.size()) {
+                    item.setEnabled(false);
+                }
                 item = popupMenu.getMenu().findItem(R.id.BeeBuyTower);
-                item.setTitle("Honey Bomber $" + player.getTowerCost(1));
+                item.setTitle("Buy Heart Tower $" + player.getTowerCost(1));
+                if (player.getMoney() < player.getTowerCost(1)) {
+                    item.setEnabled(false);
+                }
+                item = popupMenu.getMenu().findItem(R.id.BeeUpgradeTower);
+                item.setTitle("Upgrade Heart Tower $" + player.getTowerUpgradeCost(1));
+                if (gameActivityViewModel.getListOfBeeTower().size() == usedBeeTowers.size()) {
+                    item.setEnabled(false);
+                }
                 item = popupMenu.getMenu().findItem(R.id.WaspBuyTower);
-                item.setTitle("Wasp Sniper $" + player.getTowerCost(2));
+                item.setTitle("Buy Coin Tower $" + player.getTowerCost(2));
+                if (player.getMoney() < player.getTowerCost(2)) {
+                    item.setEnabled(false);
+                }
+                item = popupMenu.getMenu().findItem(R.id.WaspUpgradeTower);
+                item.setTitle("Upgrade Coin Tower $" + player.getTowerUpgradeCost(2));
+                if (gameActivityViewModel.getListOfWaspTower().size() == usedWaspTowers.size()) {
+                    item.setEnabled(false);
+                }
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int id = menuItem.getItemId();
-                        int idToBuy;
+                        int idToBuy = -1;
+                        int idToUpgrade = -1;
                         switch (id) {
                             case(R.id.HornetBuyTower):
                                 idToBuy = 0;
                                 break;
+                            case(R.id.HornetUpgradeTower):
+                                idToUpgrade = 0;
+                                player.setMoney(player.getMoney() - player.getTowerUpgradeCost(0));
+                                break;
                             case(R.id.BeeBuyTower):
                                 idToBuy = 1;
+                                break;
+                            case(R.id.BeeUpgradeTower):
+                                idToUpgrade = 1;
+                                player.setMoney(player.getMoney() - player.getTowerUpgradeCost(1));
                                 break;
                             case(R.id.WaspBuyTower):
                                 idToBuy = 2;
                                 break;
+                            case(R.id.WaspUpgradeTower):
+                                idToUpgrade = 2;
+                                player.setMoney(player.getMoney() - player.getTowerUpgradeCost(2));
+                                break;
                             default:
                                 throw new IllegalArgumentException("Invalid item to buy.");
                         }
-                        player.buyTower(idToBuy);
+                        if (idToBuy != -1) {
+                            player.buyTower(idToBuy);
+                        }
+                        if (idToUpgrade != -1) {
+                            upgradeTower(idToUpgrade);
+                        }
                         setValues();
                         updateEnabled(player);
                         return true;
@@ -333,19 +379,16 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 for (Enemy curr: gameActivityViewModel.getListOfEnemyMonument()) {
                     if (curr.getAlive()) {
-                        if (hive.getHealth() >= 5) {
-                            hive.setHealth(hive.getHealth() - 5);
+                        if (hive.getHealth() >= curr.getDamage() / 50) {
+                            hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
                             healthView.setText(Integer.toString(hive.getHealth()));
                         }
-                        hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
-                        healthView.setText(Integer.toString(hive.getHealth()));
                     }
 
                 }
                 if (hive.getHealth() <= 0) {
                     Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
                     startActivity(intention);
-
                 } else {
                     startHive();
                 }
@@ -491,13 +534,66 @@ public class GameActivity extends AppCompatActivity {
             //Log.i("", "Enemy x: " + enemyX + "Enemy y: " + enemyY);
 
             if (Math.abs(enemyY - towerY) < 200 && Math.abs(enemyX - towerX) < 100) {
-                int newHealth = enemy.getHealth() - 5;
+                int newHealth;
+                if (list.get(i).getUpgraded()) {
+                    newHealth = enemy.getHealth() - 15;
+                } else {
+                    newHealth = enemy.getHealth() - 10;
+                }
                 enemy.setHealth(newHealth);
                 //usedTowers.add(i);
                 return newHealth;
             }
         }
         return enemy.getHealth();
+    }
+
+    public void upgradeTower(int id) {
+        LinkedList<Tower> list;
+        if (id == 0) {
+            list = gameActivityViewModel.getListOfHornetTower();
+        } else if (id == 1) {
+            list = gameActivityViewModel.getListOfBeeTower();
+        } else if (id == 2) {
+            list = gameActivityViewModel.getListOfWaspTower();
+        } else {
+            list = gameActivityViewModel.getListOfWaspTower();
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (id == 0 && usedHornetTowers.contains(i)) {
+                continue;
+            }
+            else if (id == 1 && usedBeeTowers.contains(i)) {
+                continue;
+            } else if (id == 2 && usedWaspTowers.contains(i)) {
+                continue;
+            }
+            int x = list.get(i).getLocationX();
+            int y = list.get(i).getLocationY();
+            RelativeLayout.LayoutParams param = createParam();
+            ImageView iv = new ImageView(getApplicationContext());
+            // Bee image size: 100x90 (100 is width, 90 is height)
+            param.setMargins(x, y, 0, 0);
+            iv.setLayoutParams(param);
+            iv.getLayoutParams().width = 100;
+            iv.getLayoutParams().height = 100;
+            iv.requestLayout();
+            if (id == 0) {
+                iv.setImageResource(R.drawable.bee_tower_default);
+                usedHornetTowers.add(i);
+                gameActivityViewModel.getListOfHornetTower().get(i).setUpgraded(true);
+            } else if (id == 1) {
+                iv.setImageResource(R.drawable.heart_tower_upgraded);
+                usedBeeTowers.add(i);
+                gameActivityViewModel.getListOfBeeTower().get(i).setUpgraded(true);
+            } else if (id == 2) {
+                iv.setImageResource(R.drawable.coin_tower_upgraded);
+                usedWaspTowers.add(i);
+                gameActivityViewModel.getListOfWaspTower().get(i).setUpgraded(true);
+            }
+            areaLayout.addView(iv);
+            break;
+        }
     }
 
     public boolean isHealthZero(Enemy enemy) {

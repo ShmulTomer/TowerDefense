@@ -28,12 +28,20 @@ public class GameActivityViewModel extends ViewModel {
     // A list of Tower objects - the Tower objects know where they are
     private LinkedList<Tower> listOfTower = new LinkedList<>();
     private LinkedList<Tower> listOfHornetTower = new LinkedList<>();
+    private LinkedList<Tower> listOfBeeTower = new LinkedList<>();
+    private LinkedList<Tower> listOfWaspTower = new LinkedList<>();
 
     public LinkedList<Tower> getListOfTower() {
         return listOfTower;
     }
     public LinkedList<Tower> getListOfHornetTower() {
         return listOfHornetTower;
+    }
+    public LinkedList<Tower> getListOfBeeTower() {
+        return listOfBeeTower;
+    }
+    public LinkedList<Tower> getListOfWaspTower() {
+        return listOfWaspTower;
     }
 
     public void addTower(int tower, int x, int y) {
@@ -43,8 +51,10 @@ public class GameActivityViewModel extends ViewModel {
             listOfHornetTower.add(newTower);
         } else if (tower == 1) {
             newTower = new BeeTower();
+            listOfBeeTower.add(newTower);
         } else if (tower == 2) {
             newTower = new WaspTower();
+            listOfWaspTower.add(newTower);
         } else {
             throw new java.lang.IllegalArgumentException("Invalid tower type."
                     + " We only have 3 types of towers.");

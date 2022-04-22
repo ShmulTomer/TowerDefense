@@ -79,6 +79,10 @@ public class Player {
         return towerInv[i].getCost();
     }
 
+    public int getTowerUpgradeCost(int i) {
+        return towerInv[i].getUpgradeCost();
+    }
+
     public void initialConfiguration(int difficulty) {
         if (difficulty == 0) { // easy
             money = 1000;
@@ -86,18 +90,27 @@ public class Player {
             towerInv[0].setCost(60);
             towerInv[1].setCost(80);
             towerInv[2].setCost(110);
+            towerInv[0].setUpgradeCost(45);
+            towerInv[1].setUpgradeCost(65);
+            towerInv[2].setUpgradeCost(95);
         } else if (difficulty == 1) { // normal
             money = 800;
             health = 80;
             towerInv[0].setCost(55);
             towerInv[1].setCost(90);
             towerInv[2].setCost(120);
+            towerInv[0].setUpgradeCost(40);
+            towerInv[1].setUpgradeCost(75);
+            towerInv[2].setUpgradeCost(105);
         } else if (difficulty == 2) { // hard
             money = 500;
             health = 50;
             towerInv[0].setCost(50);
             towerInv[1].setCost(100);
             towerInv[2].setCost(130);
+            towerInv[0].setUpgradeCost(35);
+            towerInv[1].setUpgradeCost(85);
+            towerInv[2].setUpgradeCost(115);
         }
     }
 

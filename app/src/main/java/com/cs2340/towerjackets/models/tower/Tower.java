@@ -5,6 +5,8 @@ public abstract class Tower {
     private int locationX;
     private int locationY;
     private int cost;
+    private int upgradeCost;
+    private boolean upgraded;
     private static final int TOTAL_TOWER_TYPES = 3;
 
     public Tower() {
@@ -27,6 +29,14 @@ public abstract class Tower {
         return cost;
     }
 
+    public int getUpgradeCost() {
+        return upgradeCost;
+    }
+
+    public boolean getUpgraded() {
+        return upgraded;
+    }
+
     public static int getTotalTowerTypes() {
         return TOTAL_TOWER_TYPES;
     }
@@ -45,6 +55,14 @@ public abstract class Tower {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public void setUpgradeCost(int upgradeCost) {
+        this.upgradeCost = upgradeCost;
+    }
+
+    public void setUpgraded(boolean upgraded) {
+        this.upgraded = upgraded;
     }
 
     @Override
