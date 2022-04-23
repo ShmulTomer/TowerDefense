@@ -3,6 +3,7 @@ package com.cs2340.towerjackets.viewmodels;
 import androidx.lifecycle.ViewModel;
 
 import com.cs2340.towerjackets.models.Coin;
+import com.cs2340.towerjackets.models.enemy.FinalBoss;
 import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.Tower;
@@ -74,9 +75,11 @@ public class GameActivityViewModel extends ViewModel {
             newEnemy = new BlueEnemy();
         } else if (enemy == 2) {
             newEnemy = new GreenEnemy();
+        } else if (enemy == 3) {
+            newEnemy = new FinalBoss();
         } else {
             throw new java.lang.IllegalArgumentException("Invalid enemy type."
-                    + " We only have 3 types of enemies.");
+                    + " We only have 3 types of enemies and 1 final boss.");
         }
 
         newEnemy.setLocationX(x);

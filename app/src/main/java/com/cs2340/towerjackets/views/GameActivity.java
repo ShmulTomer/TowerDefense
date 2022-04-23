@@ -28,6 +28,7 @@ import com.cs2340.towerjackets.models.Coin;
 import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
+import com.cs2340.towerjackets.models.enemy.FinalBoss;
 import com.cs2340.towerjackets.models.tower.Tower;
 import com.cs2340.towerjackets.models.tower.WaspTower;
 import com.cs2340.towerjackets.viewmodels.GameActivityViewModel;
@@ -89,9 +90,9 @@ public class GameActivity extends AppCompatActivity {
                 start.setVisibility(View.GONE);
                 int x = 30;
                 int y = 330;
-                int[] xArr = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10};
-                int[] yArr = {y - 40, y, y + 10, y + 30, y + 10, y + 20, y - 10, y - 20};
-                int[] enemyTypeArr = {0, 1, 2, 1, 0, 1, 2, 1};
+                int[] xArr = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10, x - 30};
+                int[] yArr = {y - 40, y, y + 10, y + 30, y + 10, y + 20, y - 10, y - 20, y - 30};
+                int[] enemyTypeArr = {0, 1, 2, 1, 0, 1, 2, 1, 3};
 
                 setValues();
                 RelativeLayout.LayoutParams param = createParam();
@@ -104,6 +105,19 @@ public class GameActivity extends AppCompatActivity {
                     health.setText(curr.getHealth() + "");
                     moveEnemy(curr, iv, health);
                 }
+
+                //final boss appears after 10 seconds
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        ImageView iv = new ImageView(getApplicationContext());
+                        TextView health = new TextView(getApplicationContext());
+                        health.setTextColor(Color.WHITE);
+                        Enemy curr = createEnemy(enemyTypeArr[8], xArr[8], yArr[8], iv, health);
+                        health.setText(curr.getHealth() + "");
+                        moveEnemy(curr, iv, health);
+                    }
+                    }, 10000);
             }
         });
 
@@ -214,7 +228,7 @@ public class GameActivity extends AppCompatActivity {
         healthView = findViewById(R.id.hpV);
         if (towerNum == 1) {
             int hpInt = hive.getHealth();
-            hpInt += 20;
+            hpInt += 1000;
             hive.setHealth(hpInt);
             healthView.setText(Integer.toString(hpInt));
         } else {
@@ -340,12 +354,10 @@ public class GameActivity extends AppCompatActivity {
                         hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
                         healthView.setText(Integer.toString(hive.getHealth()));
                     }
-
                 }
                 if (hive.getHealth() <= 0) {
                     Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
                     startActivity(intention);
-
                 } else {
                     startHive();
                 }
@@ -359,7 +371,7 @@ public class GameActivity extends AppCompatActivity {
         final int[] moveX = new int[1];
         moveX[0] = 100;
 
-        final ObjectAnimator[] animArr = new ObjectAnimator[3];
+        final ObjectAnimator[] animArr = new ObjectAnimator[4];
         animArr[0] = ObjectAnimator.ofFloat(iv, "translationX", moveX[0]);
         animArr[0].setDuration(1000);
 
@@ -438,6 +450,31 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+
+        animArr[3] = ObjectAnimator.ofFloat(iv, "translationY", moveY[0]);
+        animArr[3].setDuration(600);
+        animArr[3].addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anima) {
+                int[] location = new int[2];
+                iv.getLocationOnScreen(location);
+                curr.setLocationX(location[0]);
+                curr.setLocationX(location[1]);
+                if (isText) {
+                    ((TextView) iv).setText(decreaseHealth(curr, location[0], location[1]) + "");
+                }
+                if (isHealthZero(curr)) {
+                    killEnemy(curr, iv);
+                }
+                if (location[1] > 800) {
+                    moveX[0] = 1200;
+                    animArr[2].start();
+                } else {
+                    moveY[0] += rand2;
+                    animArr[3].setFloatValues(moveY[0]);
+                    animArr[3].start();
+                }
+            }
+        });
     }
 
     private void moveEnemy(Enemy curr, ImageView image, TextView text) {
@@ -467,9 +504,11 @@ public class GameActivity extends AppCompatActivity {
             iv.setImageResource(R.drawable.blue);
         } else if (enemy == 2) {
             iv.setImageResource(R.drawable.green);
+        } else if (enemy == 3) {
+            iv.setImageResource(R.drawable.boss);
         } else {
             throw new java.lang.IllegalArgumentException("Invalid enemy type."
-                    + "We only have 3 types of enemies.");
+                    + "We only have 3 types of enemies and 1 final boss.");
         }
         areaLayout.addView(iv);
         areaLayout.addView(health);
