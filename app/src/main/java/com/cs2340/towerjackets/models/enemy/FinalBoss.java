@@ -1,13 +1,13 @@
 package com.cs2340.towerjackets.models.enemy;
 import com.cs2340.towerjackets.R;
 
-public class GreenEnemy extends Enemy {
-    public GreenEnemy() {
+public class FinalBoss extends Enemy {
+    public FinalBoss() {
         super();
-        setDrawableID(R.drawable.green);
-        setHealth(250);
-        setSpeed(300);
-        setDamage(300);
+        setDrawableID(R.drawable.boss);
+        setHealth(500);
+        setSpeed(500);
+        setDamage(500);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.cs2340.towerjackets.viewmodels;
 import androidx.lifecycle.ViewModel;
 
 import com.cs2340.towerjackets.models.Coin;
+import com.cs2340.towerjackets.models.enemy.FinalBoss;
 import com.cs2340.towerjackets.models.tower.BeeTower;
 import com.cs2340.towerjackets.models.tower.HornetTower;
 import com.cs2340.towerjackets.models.tower.Tower;
@@ -28,12 +29,20 @@ public class GameActivityViewModel extends ViewModel {
     // A list of Tower objects - the Tower objects know where they are
     private LinkedList<Tower> listOfTower = new LinkedList<>();
     private LinkedList<Tower> listOfHornetTower = new LinkedList<>();
+    private LinkedList<Tower> listOfBeeTower = new LinkedList<>();
+    private LinkedList<Tower> listOfWaspTower = new LinkedList<>();
 
     public LinkedList<Tower> getListOfTower() {
         return listOfTower;
     }
     public LinkedList<Tower> getListOfHornetTower() {
         return listOfHornetTower;
+    }
+    public LinkedList<Tower> getListOfBeeTower() {
+        return listOfBeeTower;
+    }
+    public LinkedList<Tower> getListOfWaspTower() {
+        return listOfWaspTower;
     }
 
     public void addTower(int tower, int x, int y) {
@@ -43,8 +52,10 @@ public class GameActivityViewModel extends ViewModel {
             listOfHornetTower.add(newTower);
         } else if (tower == 1) {
             newTower = new BeeTower();
+            listOfBeeTower.add(newTower);
         } else if (tower == 2) {
             newTower = new WaspTower();
+            listOfWaspTower.add(newTower);
         } else {
             throw new java.lang.IllegalArgumentException("Invalid tower type."
                     + " We only have 3 types of towers.");
@@ -58,11 +69,11 @@ public class GameActivityViewModel extends ViewModel {
     private LinkedList<Enemy> listOfEnemy = new LinkedList<>();
 
     public LinkedList<Enemy> getListOfEnemy() {
-        for (Enemy e: listOfEnemy) {
+        /*for (Enemy e: listOfEnemy) {
             if (e.getHealth() <= 0) {
                 listOfEnemy.remove(e);
             }
-        }
+        }*/
         return listOfEnemy;
     }
 
@@ -74,11 +85,12 @@ public class GameActivityViewModel extends ViewModel {
             newEnemy = new BlueEnemy();
         } else if (enemy == 2) {
             newEnemy = new GreenEnemy();
+        } else if (enemy == 3) {
+            newEnemy = new FinalBoss();
         } else {
             throw new java.lang.IllegalArgumentException("Invalid enemy type."
-                    + " We only have 3 types of enemies.");
+                    + " We only have 4 types of enemies.");
         }
-
         newEnemy.setLocationX(x);
         newEnemy.setLocationY(y);
         listOfEnemy.add(newEnemy);

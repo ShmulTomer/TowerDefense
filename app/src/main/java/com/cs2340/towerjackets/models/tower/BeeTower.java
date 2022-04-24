@@ -6,7 +6,7 @@ public class BeeTower extends Tower {
 
     public BeeTower() {
         super();
-        setDrawableID(R.drawable.bee);
+        setDrawableID(R.drawable.bee_tower_default);
         setCost(90);
     }
 

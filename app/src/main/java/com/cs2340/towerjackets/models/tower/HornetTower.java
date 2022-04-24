@@ -6,7 +6,7 @@ public class HornetTower extends Tower {
 
     public HornetTower() {
         super();
-        setDrawableID(R.drawable.hornet);
+        setDrawableID(R.drawable.old_hornet);
         setCost(55);
     }
 

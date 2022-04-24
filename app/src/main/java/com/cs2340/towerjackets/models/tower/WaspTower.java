@@ -7,7 +7,7 @@ public class WaspTower extends Tower {
 
     public WaspTower() {
         super();
-        setDrawableID(R.drawable.wasp);
+        setDrawableID(R.drawable.old_wasp);
         setCost(120);
     }
 

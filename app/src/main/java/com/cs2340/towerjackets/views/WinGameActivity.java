@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cs2340.towerjackets.R;
 
-public class GameOverActivity extends AppCompatActivity {
+public class WinGameActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_over);
+        setContentView(R.layout.win_game);
 
         // Show statistics
         Intent intent = getIntent();
@@ -38,7 +38,7 @@ public class GameOverActivity extends AppCompatActivity {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intention = new Intent(GameOverActivity.this, InitialConfiguration.class);
+                Intent intention = new Intent(WinGameActivity.this, InitialConfiguration.class);
                 startActivity(intention);
             }
         });
@@ -48,9 +48,10 @@ public class GameOverActivity extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intention = new Intent(GameOverActivity.this, MainActivity.class);
+                Intent intention = new Intent(WinGameActivity.this, MainActivity.class);
                 startActivity(intention);
             }
         });
     }
 }
+
