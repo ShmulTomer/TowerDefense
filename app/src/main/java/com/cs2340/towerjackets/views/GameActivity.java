@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.PopupMenu;
@@ -47,6 +48,10 @@ public class GameActivity extends AppCompatActivity {
     private int numT = 3; // number of towers
 
     private int killCount = 0; // number of enemies killed
+
+    private int purchaseCount = 0; // number of towers purchased
+
+    private int upgradeCount = 0; //number of upgrades
 
     private boolean killedEnemies = false;
 
@@ -291,23 +296,35 @@ public class GameActivity extends AppCompatActivity {
                         switch (id) {
                             case(R.id.HornetBuyTower):
                                 idToBuy = 0;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.HornetUpgradeTower):
                                 idToUpgrade = 0;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(0));
                                 break;
                             case(R.id.BeeBuyTower):
                                 idToBuy = 1;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.BeeUpgradeTower):
                                 idToUpgrade = 1;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(1));
+                                //increment player's monument health by 25 if upgrade a BeeTower
+                                healthView = findViewById(R.id.hpV);
+                                int hpInt = hive.getHealth();
+                                hpInt += 25;
+                                hive.setHealth(hpInt);
+                                healthView.setText(Integer.toString(hpInt));
                                 break;
                             case(R.id.WaspBuyTower):
                                 idToBuy = 2;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.WaspUpgradeTower):
                                 idToUpgrade = 2;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(2));
                                 break;
                             default:
@@ -412,7 +429,15 @@ public class GameActivity extends AppCompatActivity {
                 }
                 if (hive.getHealth() <= 0 && !gameOver) {
                     gameOver = true;
+                    // for game over screen statistics
+                    TextView tv = (TextView)findViewById(R.id.moneyV);
+                    String finalMoney = tv.getText().toString();
+                    String finalTower = Integer.toString(purchaseCount);
+                    String finalUpgrade = Integer.toString(upgradeCount);
                     Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
+                    intention.putExtra("finalMoney", finalMoney);
+                    intention.putExtra("finalTower", finalTower);
+                    intention.putExtra("finalUpgrade", finalUpgrade);
                     startActivity(intention);
                 } else {
                     startHive();
@@ -585,7 +610,15 @@ public class GameActivity extends AppCompatActivity {
         }
         if (killCount == 9 && !gameOver) {
             gameOver = true;
+            // for win screen statistics
+            TextView tv = (TextView)findViewById(R.id.moneyV);
+            String finalMoney = tv.getText().toString();
+            String finalTower = Integer.toString(purchaseCount);
+            String finalUpgrade = Integer.toString(upgradeCount);
             Intent intention = new Intent(GameActivity.this, WinGameActivity.class);
+            intention.putExtra("finalMoney", finalMoney);
+            intention.putExtra("finalTower", finalTower);
+            intention.putExtra("finalUpgrade", finalUpgrade);
             startActivity(intention);
         }
     }
@@ -663,7 +696,7 @@ public class GameActivity extends AppCompatActivity {
             iv.getLayoutParams().height = 100;
             iv.requestLayout();
             if (id == 0) {
-                iv.setImageResource(R.drawable.bee_tower_default);
+                iv.setImageResource(R.drawable.bee_tower_upgraded);
                 usedHornetTowers.add(i);
                 gameActivityViewModel.getListOfHornetTower().get(i).setUpgraded(true);
             } else if (id == 1) {

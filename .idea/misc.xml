@@ -20,10 +20,11 @@
         <entry key="app/src/main/res/drawable/monument_background.xml" value="0.1755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24409637451171878" />
         <entry key="app/src/main/res/layout/game_over.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/game_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/game_screen.xml" value="0.8418777465820313" />
         <entry key="app/src/main/res/layout/game_win.xml" value="0.19630192502532928" />
         <entry key="app/src/main/res/layout/initial_config.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/tower_menu.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/win_game.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/menu/popup_buytower.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/monument.xml" value="0.1755" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/monument_round.xml" value="0.1755" />
