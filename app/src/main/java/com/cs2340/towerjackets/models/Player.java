@@ -121,6 +121,19 @@ public class Player {
         }
     }
 
+    // M6 JUnit Things
+    private int[] upgradedTower = new int[Tower.getTotalTowerTypes()];
+    public void upgradeTower(int i) {
+        if (money >= towerInv[i].getCost() && towerAvailable[i] - upgradedTower[i] > 0) {
+            money -= towerInv[i].getCost();
+            upgradedTower[i]++;
+        }
+    }
+    public int getUpgradedTower(int i) {
+        return upgradedTower[i];
+    }
+    // End of M6 JUnit Things
+
     public boolean placeTower(int tower, int x, int y) {
         if (checkValidPlacement(x, y)) {
             if (towerAvailable[tower] >= 1) {

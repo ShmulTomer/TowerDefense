@@ -198,7 +198,12 @@ public class GameActivity extends AppCompatActivity {
                 iv.setImageResource(R.drawable.coin);
                 areaLayout.addView(iv);
                 iv.requestLayout();
-                Coin c = new Coin(randX, randY);
+                Coin c;
+                if (t.getUpgraded()) {
+                    c = new Coin(randX, randY, 20);
+                } else {
+                    c = new Coin(randX, randY, 10);
+                }
                 gameActivityViewModel.addCoin(c);
                 iv.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -579,7 +584,7 @@ public class GameActivity extends AppCompatActivity {
             iv.getLayoutParams().height = 100;
             iv.requestLayout();
             if (id == 0) {
-                iv.setImageResource(R.drawable.bee_tower_default);
+                iv.setImageResource(R.drawable.bee_tower_upgraded);
                 usedHornetTowers.add(i);
                 gameActivityViewModel.getListOfHornetTower().get(i).setUpgraded(true);
             } else if (id == 1) {

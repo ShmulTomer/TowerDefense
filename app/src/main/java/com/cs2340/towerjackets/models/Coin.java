@@ -5,9 +5,10 @@ public class Coin {
     private int locationY;
     private int value = 10;
 
-    public Coin(int x, int y) {
+    public Coin(int x, int y, int value) {
         locationX = x;
         locationY = y;
+        this.value = value;
     }
 
     // M5 JUnit Things

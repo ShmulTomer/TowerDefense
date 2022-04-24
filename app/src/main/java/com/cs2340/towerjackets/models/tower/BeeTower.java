@@ -18,6 +18,9 @@ public class BeeTower extends Tower {
     public void placeTower() {
         player.setHealth(player.getHealth() + 20);
     }
+    public void upgrade() {
+        player.setHealth(player.getHealth() + 25);
+    }
     // End of M5 JUnit Things
 
     @Override

@@ -11,6 +11,7 @@ public class HornetTower extends Tower {
     }
 
     // M5 JUnit Things
+    private int damage = 50;
     public HornetTower(int x, int y) {
         setLocationX(x);
         setLocationY(y);
@@ -18,11 +19,17 @@ public class HornetTower extends Tower {
     public void attackEnemy(Enemy e) {
         if (e.getLocationX() + 100 > getLocationX() && e.getLocationX() - 100 < getLocationX()
             && e.getLocationY() + 100 > getLocationY() && e.getLocationY() - 100 < getLocationY()) {
-            e.setHealth(e.getHealth() - 50);
+            e.setHealth(e.getHealth() - damage);
             if (e.getHealth() < 0) {
                 e.setAlive(false);
             }
         }
+    }
+    public void upgrade() {
+        damage = 75;
+    }
+    public int getDamage() {
+        return damage;
     }
     // End of M5 JUnit Things
 
