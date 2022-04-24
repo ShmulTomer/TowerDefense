@@ -49,7 +49,6 @@ public class M6UnitTest {
         hornetTower.attackEnemy(enemy);
         assertEquals(150, enemy.getHealth());
         hornetTower.upgrade();
-        System.out.println(hornetTower.getDamage());
         hornetTower.attackEnemy(enemy);
         assertEquals(75, enemy.getHealth());
     }
