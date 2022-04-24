@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -257,7 +256,8 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.HornetUpgradeTower);
                 item.setTitle("Upgrade Bee Tower $" + player.getTowerUpgradeCost(0));
-                if (gameActivityViewModel.getListOfHornetTower().size() == usedHornetTowers.size()) {
+                if (gameActivityViewModel.getListOfHornetTower().size()
+                        == usedHornetTowers.size()) {
                     item.setEnabled(false);
                 }
                 item = popupMenu.getMenu().findItem(R.id.BeeBuyTower);
@@ -567,8 +567,7 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < list.size(); i++) {
             if (id == 0 && usedHornetTowers.contains(i)) {
                 continue;
-            }
-            else if (id == 1 && usedBeeTowers.contains(i)) {
+            } else if (id == 1 && usedBeeTowers.contains(i)) {
                 continue;
             } else if (id == 2 && usedWaspTowers.contains(i)) {
                 continue;

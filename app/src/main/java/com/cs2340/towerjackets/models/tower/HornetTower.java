@@ -1,5 +1,6 @@
 package com.cs2340.towerjackets.models.tower;
 import com.cs2340.towerjackets.R;
+import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
 
 public class HornetTower extends Tower {
@@ -15,6 +16,9 @@ public class HornetTower extends Tower {
     public HornetTower(int x, int y) {
         setLocationX(x);
         setLocationY(y);
+    }
+    public HornetTower(Player player) {
+        player.incrementTowerAvailable(1);
     }
     public void attackEnemy(Enemy e) {
         if (e.getLocationX() + 100 > getLocationX() && e.getLocationX() - 100 < getLocationX()

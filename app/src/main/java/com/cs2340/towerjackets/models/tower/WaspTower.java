@@ -16,12 +16,14 @@ public class WaspTower extends Tower {
     private Player player;
     public WaspTower(Player player) {
         this.player = player;
+        player.incrementTowerAvailable(2);
     }
     public void placeTower() {
         c = new Coin(10, 10, 10);
     }
     public void upgrade() {
         c = new Coin(10, 10, 20);
+        player.setMoney(player.getMoney() - 110);
     }
     public Coin getCoin() {
         return c;

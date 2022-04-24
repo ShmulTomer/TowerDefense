@@ -2,8 +2,12 @@ package com.cs2340.towerjackets;
 
 import static org.junit.Assert.assertEquals;
 
+import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.BlueEnemy;
+import com.cs2340.towerjackets.models.enemy.Enemy;
+import com.cs2340.towerjackets.models.enemy.GreenEnemy;
+import com.cs2340.towerjackets.models.enemy.PurpleEnemy;
 import com.cs2340.towerjackets.models.game_config.Difficulty;
 import com.cs2340.towerjackets.models.game_config.GameConfiguration;
 import com.cs2340.towerjackets.models.tower.BeeTower;
@@ -15,7 +19,8 @@ import org.junit.Test;
 public class M6UnitTest {
 
     @Test
-    // Anh Le - tests that upgrading a wasp tower increases the value of the coin dropped by the tower.
+    // Anh Le - tests that upgrading a wasp tower increases the
+    // value of the coin dropped by the tower.
     public void waspTowerUpgrade() {
         Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
         WaspTower waspTower = new WaspTower(player);
@@ -67,7 +72,6 @@ public class M6UnitTest {
     public void allowedTowerUpgrade() {
         Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
         WaspTower waspTower = new WaspTower(player);
-        player.buyTower(2);
         waspTower.placeTower();
         player.upgradeTower(2);
         assertEquals(1, player.getUpgradedTower(2));
@@ -76,32 +80,77 @@ public class M6UnitTest {
     }
 
     @Test
-    // Tomer Shmul -
+    // Tomer Shmul - checks that final boss difficulty is greater than a typical blue enemy.
     public void finalBossDifficulty() {
-
+        BlueEnemy enemy = new BlueEnemy(false);
+        BlueEnemy bossEnemy = new BlueEnemy(true);
+        assertEquals(true, enemy.getDamage() < bossEnemy.getDamage());
+        assertEquals(true, enemy.getHealth() < bossEnemy.getHealth());
+        assertEquals(300, bossEnemy.getDamage());
+        assertEquals(300, bossEnemy.getHealth());
     }
 
     @Test
-    // Harriet Kim -
+    // Harriet Kim - tests that once the boss dies, the game is over (and won),
+    // and the monument is still alive.
     public void gameOverAfterBoss() {
-
+        Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
+        Monument monument = new Monument(player);
+        BlueEnemy bossEnemy = new BlueEnemy(true);
+        bossEnemy.setHealth(0);
+        bossEnemy.checkStatus(monument);
+        assertEquals(true, monument.getHealth() > 0);
+        assertEquals(true, monument.getGameOver());
     }
 
     @Test
-    // Harriet Kim -
-    public void updateStatistics() {
-
+    // Harriet Kim - since the statistics need to be shown at the end of the game,
+    // this tests whether the number of enemies defeated is updated throughout the game.
+    public void updateEnemiesDefeated() {
+        Enemy.setEnemiesDefeated(0);
+        BlueEnemy blue = new BlueEnemy(450, 550);
+        blue.setHealth(0);
+        assertEquals(1, Enemy.getEnemiesDefeated());
+        GreenEnemy green = new GreenEnemy();
+        green.setHealth(0);
+        assertEquals(2, Enemy.getEnemiesDefeated());
+        PurpleEnemy purple = new PurpleEnemy();
+        purple.setHealth(0);
+        assertEquals(3, Enemy.getEnemiesDefeated());
     }
 
     @Test
-    // Ori Yoked -
-    public void finalBossAppear() {
-
+    // Ori Yoked - since the statistics need to be shown at the end of the game,
+    // this tests whether or not the tower inventory is consistently updated.
+    public void updateTowerInventory() {
+        Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
+        BeeTower beeTower1 = new BeeTower(player);
+        assertEquals(1, player.getTowerAvailable(0));
+        HornetTower hornetTower1 = new HornetTower(player);
+        assertEquals(1, player.getTowerAvailable(1));
+        WaspTower waspTower1 = new WaspTower(player);
+        assertEquals(1, player.getTowerAvailable(2));
+        assertEquals(3, player.getTotalTowerAvailable());
+        BeeTower beeTower2 = new BeeTower(player);
+        assertEquals(2, player.getTowerAvailable(0));
+        HornetTower hornetTower2 = new HornetTower(player);
+        assertEquals(2, player.getTowerAvailable(1));
+        WaspTower waspTower2 = new WaspTower(player);
+        assertEquals(2, player.getTowerAvailable(2));
+        assertEquals(6, player.getTotalTowerAvailable());
     }
 
     @Test
-    // Ori Yoked -
-    public void x() {
-
+    // Ori Yoked - since the statistics need to be shown at the end of the game,
+    // this tests whether or not the player's money is consistently updated.
+    public void updateTotalMoney() {
+        Player player = new Player("player1", new GameConfiguration(Difficulty.Easy));
+        WaspTower waspTower = new WaspTower(player);
+        player.buyTower(2);
+        assertEquals(890, player.getMoney());
+        waspTower.upgrade();
+        assertEquals(780, player.getMoney());
+        waspTower.getCoin().collectCoin(player);
+        assertEquals(800, player.getMoney());
     }
 }

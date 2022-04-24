@@ -22,6 +22,9 @@ public class Monument {
     public boolean getGameOver() {
         return gameOver;
     }
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
     // End of M4 Junit Things
 
     public void setHealth(int health) {

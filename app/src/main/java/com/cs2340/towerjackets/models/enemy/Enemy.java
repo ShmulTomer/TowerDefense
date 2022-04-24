@@ -69,6 +69,7 @@ public abstract class Enemy {
 
     public void setHealth(int health) {
         this.health = health;
+        checkStatus();
     }
 
     public void setSpeed(int speed) {
@@ -80,7 +81,6 @@ public abstract class Enemy {
     }
 
     // M4 Junit Things
-    private boolean atMonument = false;
     public void damageMonument(Monument monument) {
         if (monument.getHealth() >= 0 && locationX >= 2000 && alive) {
             monument.setHealth(Math.max(monument.getHealth() - damage, 0));
@@ -91,6 +91,21 @@ public abstract class Enemy {
         Random rand = new Random();
         locationX = 25 + rand.nextInt(5);
         locationY = 325 + rand.nextInt(5);
+    }
+    private static int enemiesDefeated = 0;
+    public static void setEnemiesDefeated(int e) {
+        enemiesDefeated = e;
+    }
+    public static int getEnemiesDefeated() {
+        return enemiesDefeated;
+    }
+    private boolean notCounted = true;
+    public void checkStatus() {
+        if (health <= 0 && notCounted) {
+            alive = false;
+            notCounted = false;
+            enemiesDefeated++;
+        }
     }
     // End of M4 Junit Things
 

@@ -2,8 +2,6 @@ package com.cs2340.towerjackets;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import com.cs2340.towerjackets.models.Monument;
 import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.BlueEnemy;
 import com.cs2340.towerjackets.models.enemy.Enemy;
@@ -45,7 +43,8 @@ public class M5UnitTest {
     }
 
     @Test
-    // Helen Chen - tests that placing a Hornet Tower and enemy not within proximity does not do anything.
+    // Helen Chen - tests that placing a Hornet Tower and enemy not within proximity
+    // does not do anything.
     public void enemyNotWithinProximity() {
         HornetTower hornetTower = new HornetTower(500, 500);
         BlueEnemy enemy = new BlueEnemy(100, 100);
@@ -54,7 +53,8 @@ public class M5UnitTest {
     }
 
     @Test
-    // Helen Chen - tests that placing a Hornet Tower and enemy within proximity decreases enemy health.
+    // Helen Chen - tests that placing a Hornet Tower and enemy within proximity
+    // decreases enemy health.
     public void enemyWithinProximity() {
         HornetTower hornetTower = new HornetTower(500, 500);
         BlueEnemy enemy = new BlueEnemy(450, 550);
@@ -93,7 +93,8 @@ public class M5UnitTest {
     }
 
     @Test
-    // Tomer Shmul - tests if each enemy has different functionality; ie., different damage potentials.
+    // Tomer Shmul - tests if each enemy has different functionality;
+    // ie.,different damage potentials.
     // Tested on three enemies: BlueEnemy, PurpleEnemy, GreenEnemy
     public void differentEnemyFunctionality() {
         BlueEnemy blue = new BlueEnemy();
@@ -122,7 +123,8 @@ public class M5UnitTest {
     }
 
     @Test
-    // Harriet Kim - ensures that combat does not happen in an instant, but rather happens slowly over time.
+    // Harriet Kim - ensures that combat does not happen in an instant,
+    // but rather happens slowly over time.
     public void slowDeath() {
         HornetTower hornetTower = new HornetTower(500, 500);
         BlueEnemy enemy = new BlueEnemy(450, 450);

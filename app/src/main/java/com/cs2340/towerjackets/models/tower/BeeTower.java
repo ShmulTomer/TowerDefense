@@ -14,6 +14,7 @@ public class BeeTower extends Tower {
     private Player player;
     public BeeTower(Player player) {
         this.player = player;
+        player.incrementTowerAvailable(0);
     }
     public void placeTower() {
         player.setHealth(player.getHealth() + 20);
