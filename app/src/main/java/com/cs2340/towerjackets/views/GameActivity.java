@@ -45,6 +45,16 @@ public class GameActivity extends AppCompatActivity {
 
     private int numT = 3; // number of towers
 
+    private int killCount = 0; // number of enemies killed
+
+    private int purchaseCount = 0; // number of towers purchased
+
+    private int upgradeCount = 0; //number of upgrades
+
+    private boolean killedEnemies = false;
+
+    private boolean gameOver = false;
+
     private Button[] placeT = new Button[numT];
 
     private Button start;
@@ -92,8 +102,8 @@ public class GameActivity extends AppCompatActivity {
                 start.setVisibility(View.GONE);
                 int x = 30;
                 int y = 330;
-                int[] xArr = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10};
-                int[] yArr = {y - 40, y, y + 10, y + 30, y + 10, y + 20, y - 10, y - 20};
+                int[] xArr = {x, x - 10, x, x + 30, x + 10, x + 20, x - 20, x - 10, x};
+                int[] yArr = {y - 40, y, y + 10, y + 20, y + 10, y + 20, y - 10, y - 20};
                 int[] enemyTypeArr = {0, 1, 2, 1, 0, 1, 2, 1};
 
                 setValues();
@@ -105,7 +115,7 @@ public class GameActivity extends AppCompatActivity {
                     health.setTextColor(Color.WHITE);
                     Enemy curr = createEnemy(enemyTypeArr[i], xArr[i], yArr[i], iv, health);
                     health.setText(curr.getHealth() + "");
-                    moveEnemy(curr, iv, health);
+                    moveEnemy(curr, iv, health, enemyTypeArr[i]);
                 }
             }
         });
@@ -256,7 +266,8 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.HornetUpgradeTower);
                 item.setTitle("Upgrade Bee Tower $" + player.getTowerUpgradeCost(0));
-                if (gameActivityViewModel.getListOfHornetTower().size()
+                if (player.getMoney() < player.getTowerUpgradeCost(0)
+                        || gameActivityViewModel.getListOfHornetTower().size()
                         == usedHornetTowers.size()) {
                     item.setEnabled(false);
                 }
@@ -267,7 +278,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.BeeUpgradeTower);
                 item.setTitle("Upgrade Heart Tower $" + player.getTowerUpgradeCost(1));
-                if (gameActivityViewModel.getListOfBeeTower().size() == usedBeeTowers.size()) {
+                if (player.getMoney() < player.getTowerUpgradeCost(1)
+                        || gameActivityViewModel.getListOfBeeTower().size()
+                        == usedBeeTowers.size()) {
                     item.setEnabled(false);
                 }
                 item = popupMenu.getMenu().findItem(R.id.WaspBuyTower);
@@ -277,7 +290,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.WaspUpgradeTower);
                 item.setTitle("Upgrade Coin Tower $" + player.getTowerUpgradeCost(2));
-                if (gameActivityViewModel.getListOfWaspTower().size() == usedWaspTowers.size()) {
+                if (player.getMoney() < player.getTowerUpgradeCost(2)
+                        || gameActivityViewModel.getListOfWaspTower().size()
+                        == usedWaspTowers.size()) {
                     item.setEnabled(false);
                 }
 
@@ -290,23 +305,35 @@ public class GameActivity extends AppCompatActivity {
                         switch (id) {
                             case(R.id.HornetBuyTower):
                                 idToBuy = 0;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.HornetUpgradeTower):
                                 idToUpgrade = 0;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(0));
                                 break;
                             case(R.id.BeeBuyTower):
                                 idToBuy = 1;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.BeeUpgradeTower):
                                 idToUpgrade = 1;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(1));
+                                //increment player's monument health by 25 if upgrade a BeeTower
+                                healthView = findViewById(R.id.hpV);
+                                int hpInt = hive.getHealth();
+                                hpInt += 25;
+                                hive.setHealth(hpInt);
+                                healthView.setText(Integer.toString(hpInt));
                                 break;
                             case(R.id.WaspBuyTower):
                                 idToBuy = 2;
+                                purchaseCount += 1;
                                 break;
                             case(R.id.WaspUpgradeTower):
                                 idToUpgrade = 2;
+                                upgradeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(2));
                                 break;
                             default:
@@ -333,7 +360,9 @@ public class GameActivity extends AppCompatActivity {
     private void setValues() {
         Player player = InitialConfiguration.getPlayer();
         healthView.setText(Integer.toString(hive.getHealth()));
-        moneyView.setText("$" + player.getMoney());
+        if (killCount < 8) {
+            moneyView.setText("$" + player.getMoney());
+        }
         towerOneView.setText(Integer.toString(player.getTowerInv(0)));
         towerTwoView.setText(Integer.toString(player.getTowerInv(1)));
         towerThreeView.setText(Integer.toString(player.getTowerInv(2)));
@@ -371,6 +400,22 @@ public class GameActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private void alertFinalBoss() {
+        AlertDialog.Builder test = new AlertDialog.Builder(GameActivity.this);
+        test.setTitle("Final Boss");
+        test.setCancelable(true);
+        test.setMessage("The final boss is about to come! "
+                + "Add as many towers as you can before he attacks your hive!");
+        AlertDialog testDialog = test.create();
+        testDialog.show();  // to show
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                testDialog.dismiss();  // to dismiss
+            }
+        }, 5000);
+    }
+
     private RelativeLayout.LayoutParams createParam() {
         RelativeLayout.LayoutParams param =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -384,15 +429,25 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 for (Enemy curr: gameActivityViewModel.getListOfEnemyMonument()) {
                     if (curr.getAlive()) {
-                        if (hive.getHealth() >= curr.getDamage() / 50) {
+                        if (hive.getHealth() - curr.getDamage() / 50 < 0) {
+                            hive.setHealth(0);
+                        } else {
                             hive.setHealth(hive.getHealth() - curr.getDamage() / 50);
-                            healthView.setText(Integer.toString(hive.getHealth()));
                         }
+                        healthView.setText(Integer.toString(hive.getHealth()));
                     }
-
                 }
-                if (hive.getHealth() <= 0) {
+                if (hive.getHealth() <= 0 && !gameOver) {
+                    gameOver = true;
+                    // for game over screen statistics
+                    TextView tv = (TextView) findViewById(R.id.moneyV);
+                    String finalMoney = tv.getText().toString();
+                    String finalTower = Integer.toString(purchaseCount);
+                    String finalUpgrade = Integer.toString(upgradeCount);
                     Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
+                    intention.putExtra("finalMoney", finalMoney);
+                    intention.putExtra("finalTower", finalTower);
+                    intention.putExtra("finalUpgrade", finalUpgrade);
                     startActivity(intention);
                 } else {
                     startHive();
@@ -401,8 +456,8 @@ public class GameActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void moveView(Enemy curr, View iv, int rand, int rand2, int rand3, boolean isText) {
-
+    private void moveView(Enemy curr, View iv, int rand,
+                          int rand2, int rand3, boolean isText, int enemyType) {
         //Move along first part of path
         final int[] moveX = new int[1];
         moveX[0] = 100;
@@ -423,12 +478,22 @@ public class GameActivity extends AppCompatActivity {
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
                 }
-                if (location[0] > 1150) {
-                    animArr[1].start();
+                if (enemyType == 3) {
+                    if (location[0] > 1070) {
+                        animArr[1].start();
+                    } else {
+                        moveX[0] += rand;
+                        animArr[0].setFloatValues(moveX[0]);
+                        animArr[0].start();
+                    }
                 } else {
-                    moveX[0] += rand;
-                    animArr[0].setFloatValues(moveX[0]);
-                    animArr[0].start();
+                    if (location[0] > 1150) {
+                        animArr[1].start();
+                    } else {
+                        moveX[0] += rand;
+                        animArr[0].setFloatValues(moveX[0]);
+                        animArr[0].start();
+                    }
                 }
             }
         });
@@ -451,13 +516,24 @@ public class GameActivity extends AppCompatActivity {
                 if (isHealthZero(curr)) {
                     killEnemy(curr, iv);
                 }
-                if (location[1] > 800) {
-                    moveX[0] = 1200;
-                    animArr[2].start();
+                if (enemyType == 3) {
+                    if (location[1] > 700) {
+                        moveX[0] = 1200;
+                        animArr[2].start();
+                    } else {
+                        moveY[0] += rand2;
+                        animArr[1].setFloatValues(moveY[0]);
+                        animArr[1].start();
+                    }
                 } else {
-                    moveY[0] += rand2;
-                    animArr[1].setFloatValues(moveY[0]);
-                    animArr[1].start();
+                    if (location[1] > 800) {
+                        moveX[0] = 1200;
+                        animArr[2].start();
+                    } else {
+                        moveY[0] += rand2;
+                        animArr[1].setFloatValues(moveY[0]);
+                        animArr[1].start();
+                    }
                 }
             }
         });
@@ -488,12 +564,12 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
-    private void moveEnemy(Enemy curr, ImageView image, TextView text) {
+    private void moveEnemy(Enemy curr, ImageView image, TextView text, int enemyType) {
         int randomInt = randInt(70, 130);
         int randomInt2 = randInt(30, 70);
         int randomInt3 = randInt(70, 130);
-        moveView(curr, image, randomInt, randomInt2, randomInt3, false);
-        moveView(curr, text, randomInt, randomInt2, randomInt3, true);
+        moveView(curr, image, randomInt, randomInt2, randomInt3, false, enemyType);
+        moveView(curr, text, randomInt, randomInt2, randomInt3, true, enemyType);
     }
 
     public Enemy createEnemy(int enemy, int x, int y, ImageView iv, TextView health) {
@@ -501,8 +577,13 @@ public class GameActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams param2 = createParam();
         param.setMargins(x, y, 0, 0);
         iv.setLayoutParams(param);
-        iv.getLayoutParams().width = 100;
-        iv.getLayoutParams().height = 100;
+        if (enemy == 3) {
+            iv.getLayoutParams().width = 250;
+            iv.getLayoutParams().height = 250;
+        } else {
+            iv.getLayoutParams().width = 100;
+            iv.getLayoutParams().height = 100;
+        }
         iv.requestLayout();
         param2.setMargins(x, y - 25, 0, 0);
         health.setLayoutParams(param2);
@@ -515,6 +596,9 @@ public class GameActivity extends AppCompatActivity {
             iv.setImageResource(R.drawable.blue);
         } else if (enemy == 2) {
             iv.setImageResource(R.drawable.green);
+        } else if (enemy == 3) {
+            iv.setImageResource(R.drawable.boss);
+
         } else {
             throw new java.lang.IllegalArgumentException("Invalid enemy type."
                     + "We only have 3 types of enemies.");
@@ -527,7 +611,47 @@ public class GameActivity extends AppCompatActivity {
 
     public void killEnemy(Enemy enemy, View iv) {
         areaLayout.removeView(iv);
+        if (enemy.getAlive()) {
+            enemy.setAlive(false);
+            killCount++;
+        }
+        if (killCount == 8 && !killedEnemies) {
+            killedEnemies = true;
+            finalBoss();
+        }
+        if (killCount == 9 && !gameOver) {
+            gameOver = true;
+            // for win screen statistics
+            TextView tv = (TextView) findViewById(R.id.moneyV);
+            String finalMoney = tv.getText().toString();
+            String finalTower = Integer.toString(purchaseCount);
+            String finalUpgrade = Integer.toString(upgradeCount);
+            Intent intention = new Intent(GameActivity.this, WinGameActivity.class);
+            intention.putExtra("finalMoney", finalMoney);
+            intention.putExtra("finalTower", finalTower);
+            intention.putExtra("finalUpgrade", finalUpgrade);
+            startActivity(intention);
+        }
     }
+
+    public void finalBoss() {
+        alertFinalBoss();
+        player.setMoney(100000);
+        moneyView.setText("No limit");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                RelativeLayout.LayoutParams param = createParam();
+                ImageView iv = new ImageView(getApplicationContext());
+                TextView health = new TextView(getApplicationContext());
+                health.setTextColor(Color.WHITE);
+                Enemy curr = createEnemy(3, 30, 230, iv, health);
+                health.setText(curr.getHealth() + "");
+                moveEnemy(curr, iv, health, 3);
+            }
+        }, 10000);
+    }
+
     public int decreaseHealth(Enemy enemy, int enemyX, int enemyY) {
         LinkedList<Tower> list = gameActivityViewModel.getListOfHornetTower();
         for (int i = 0; i < list.size(); i++) {
@@ -541,9 +665,9 @@ public class GameActivity extends AppCompatActivity {
             if (Math.abs(enemyY - towerY) < 200 && Math.abs(enemyX - towerX) < 100) {
                 int newHealth;
                 if (list.get(i).getUpgraded()) {
-                    newHealth = enemy.getHealth() - 15;
+                    newHealth = enemy.getHealth() - 25;
                 } else {
-                    newHealth = enemy.getHealth() - 10;
+                    newHealth = enemy.getHealth() - 15;
                 }
                 enemy.setHealth(newHealth);
                 //usedTowers.add(i);

@@ -22,6 +22,48 @@
         android:textSize="50dp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/playAgainB"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="49dp"
+        android:text="Money Left"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/playAgainB"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="27dp"
+        android:text="Number of Towers Purchased"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/playAgainB"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="5dp"
+        android:text="Number of Towers Upgraded"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/playAgainB"
         android:layout_width="wrap_content"

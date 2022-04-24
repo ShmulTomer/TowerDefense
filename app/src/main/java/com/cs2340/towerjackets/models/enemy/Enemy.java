@@ -11,7 +11,7 @@ public abstract class Enemy {
     private int speed;
     private int damage;
     private boolean alive;
-    private static final int TOTAL_ENEMY_TYPES = 3;
+    private static final int TOTAL_ENEMY_TYPES = 4;
 
 
     public Enemy() {
