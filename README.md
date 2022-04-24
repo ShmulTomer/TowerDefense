@@ -1,6 +1,6 @@
 # TowerDefense - "Hive Defense Game"
 
-## M4 Testing Writeup
+## M6 Testing Writeup
 
 1. waspTowerUpgrade() - Anh Le
 * This tests the functionality of a wasp tower upgrade. The coins the tower initially drop have a
