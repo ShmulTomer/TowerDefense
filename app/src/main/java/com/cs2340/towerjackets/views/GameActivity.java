@@ -320,19 +320,23 @@ public class GameActivity extends AppCompatActivity {
                             case(R.id.HornetBuyTower):
                                 idToBuy = 0;
                                 purchaseCount += 1;
+                                purchaseHornetCount += 1;
                                 break;
                             case(R.id.HornetUpgradeTower):
                                 idToUpgrade = 0;
                                 upgradeCount += 1;
+                                upgradeHornetCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(0));
                                 break;
                             case(R.id.BeeBuyTower):
                                 idToBuy = 1;
                                 purchaseCount += 1;
+                                purchaseBeeCount += 1;
                                 break;
                             case(R.id.BeeUpgradeTower):
                                 idToUpgrade = 1;
                                 upgradeCount += 1;
+                                upgradeBeeCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(1));
                                 //increment player's monument health by 25 if upgrade a BeeTower
                                 healthView = findViewById(R.id.hpV);
@@ -344,10 +348,12 @@ public class GameActivity extends AppCompatActivity {
                             case(R.id.WaspBuyTower):
                                 idToBuy = 2;
                                 purchaseCount += 1;
+                                purchaseWaspCount += 1;
                                 break;
                             case(R.id.WaspUpgradeTower):
                                 idToUpgrade = 2;
                                 upgradeCount += 1;
+                                upgradeWaspCount += 1;
                                 player.setMoney(player.getMoney() - player.getTowerUpgradeCost(2));
                                 break;
                             default:
@@ -454,8 +460,14 @@ public class GameActivity extends AppCompatActivity {
                 if (hive.getHealth() <= 0 && !gameOver) {
                     gameOver = true;
                     // for game over screen statistics
-                    TextView tv = (TextView) findViewById(R.id.moneyV);
-                    String finalMoney = tv.getText().toString();
+                    TextView tv = (TextView)findViewById(R.id.moneyV);
+                    moneyUsed += purchaseHornetCount * player.getTowerCost(0);
+                    moneyUsed += purchaseBeeCount * player.getTowerCost(1);
+                    moneyUsed += purchaseWaspCount * player.getTowerCost(2);
+                    moneyUsed += upgradeHornetCount * player.getTowerUpgradeCost(0);
+                    moneyUsed += upgradeBeeCount * player.getTowerUpgradeCost(1);
+                    moneyUsed += upgradeWaspCount * player.getTowerUpgradeCost(2);
+                    String finalMoney = Integer.toString(moneyUsed);
                     String finalTower = Integer.toString(purchaseCount);
                     String finalUpgrade = Integer.toString(upgradeCount);
                     Intent intention = new Intent(GameActivity.this, GameOverActivity.class);
@@ -636,8 +648,14 @@ public class GameActivity extends AppCompatActivity {
         if (killCount == 9 && !gameOver) {
             gameOver = true;
             // for win screen statistics
-            TextView tv = (TextView) findViewById(R.id.moneyV);
-            String finalMoney = tv.getText().toString();
+            TextView tv = (TextView)findViewById(R.id.moneyV);
+            moneyUsed += purchaseHornetCount * player.getTowerCost(0);
+            moneyUsed += purchaseBeeCount * player.getTowerCost(1);
+            moneyUsed += purchaseWaspCount * player.getTowerCost(2);
+            moneyUsed += upgradeHornetCount * player.getTowerUpgradeCost(0);
+            moneyUsed += upgradeBeeCount * player.getTowerUpgradeCost(1);
+            moneyUsed += upgradeWaspCount * player.getTowerUpgradeCost(2);
+            String finalMoney = Integer.toString(moneyUsed);
             String finalTower = Integer.toString(purchaseCount);
             String finalUpgrade = Integer.toString(upgradeCount);
             Intent intention = new Intent(GameActivity.this, WinGameActivity.class);
