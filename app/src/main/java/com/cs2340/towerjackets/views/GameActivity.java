@@ -49,7 +49,21 @@ public class GameActivity extends AppCompatActivity {
 
     private int purchaseCount = 0; // number of towers purchased
 
+    private int purchaseHornetCount = 0;
+
+    private int purchaseBeeCount = 0;
+
+    private int purchaseWaspCount = 0;
+
     private int upgradeCount = 0; //number of upgrades
+
+    private int upgradeHornetCount = 0;
+
+    private int upgradeBeeCount = 0;
+
+    private int upgradeWaspCount = 0;
+
+    private int moneyUsed = 0;
 
     private boolean killedEnemies = false;
 
@@ -636,7 +650,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void finalBoss() {
         alertFinalBoss();
-        player.setMoney(100000);
+        player.setMoney(150000);
         moneyView.setText("No limit");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
