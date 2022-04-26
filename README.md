@@ -1,51 +1,61 @@
 # TowerDefense - "Hive Defense Game"
 
-## M4 Testing Writeup
+## M6 Testing Writeup
 
-1. beeTowerFunctionality() - Anh Le
-* This test checks whether placing a Bee Tower on the board successfully increases monument health.
-The purpose of the bee tower is to increase monument health, so each time the tower is placed, monument
-health should be increased by 20. This is one of the mechanisms that helps the player defeat the enemies.
+1. waspTowerUpgrade() - Anh Le
+* This tests the functionality of a wasp tower upgrade. The coins the tower initially drop have a
+ value of 10, but after an upgrade, the value of the coins increases to 20. This functionality is
+ important because it provides a way for the user to upgrade the towers they've bought, which increases
+ their defense against enemies.
 
-2. enemiesHealthZero() - Anh Le
-* This test checks to make sure that enemies disappear from the map when their health reaches zero. This
-is accomplished by removing the enemy from the gameActivityViewModel Linked List. When the health of an
-enemy is zero, they are automatically removed the list of enemies in the game.
+2. beeTowerUpgrade() - Anh Le
+* This tests the functionality of a bee tower upgrade. The user's health is increased when the tower
+ is first placed, but upgrading the tower increases the health even more. This functionality is
+ important because it provides a way for the user to upgrade the towers they've bought, which increases
+ their defense against enemies.
 
-3. enemyNotWithinProximity() - Helen Chen
-* This test checks whether or not a Hornet Tower can attack an enemy not within proximity. This is
-important since the hornet tower is responsible for attacking enemies, but should only be allowed to
-decrease enemy damage when the enemy is close enough.
+3. hornetTowerUpgrade() - Helen Chen
+* This tests the functionality of a hornet tower upgrade. After the hornet tower is upgraded, the damage
+done to enemies increases. This functionality is important because it provides a way for the user to upgrade
+the towers they've bought, which increases their defense against enemies.
 
-4. enemyWithinProximity() - Helen Chen
-* This test checks whether or not a Hornet Tower can attack an enemy within promixity. This ensures that
-there is a way for enemy health to decrease, and thus for the enemy to eventually die before reaching
-the monument.
+4. purchaseTowerUpgrade() - Helen Chen
+* This tests whether or not purchases a tower upgrade decreases the player's money and upgrades the tower.
+This ensures that tower upgrades are bought and not freely applied, and also ensures that once a tower
+is upgraded, it gets added to the count of upgraded towers.
 
-5. waspTowerFunctionality() - Ori Yoked
-* This test checks whether placing a Wasp Tower generates a coin or not. The Wasp Tower is the only way
-the player can gain money throughout the game to purchase more towers, so this functionality is extremely
-important. Placing the tower should generate a coin.
+5. allowedTowerUpgrade() - Tomer Shmul
+* This tests whether or not a tower can be upgraded. Only towers that have been purchased can be upgraded,
+so a tower must be first purchased before the upgrade is made. This is an important feature because
+the user should not be allowed to directly purchase an upgraded tower.
 
-6. coinFunctionality() - Ori Yoked
-* This test checks whether or not collecting the coin increases the player money. After the wasp tower
-generates the coin, the user is in charge of collecting the coin so the player money actually increases.
+6. finalBossDifficulty() - Tomer Shmul
+* This test checks the difficulty and health of the final boss and ensures that the final boss is stronger
+than a typical enemy. This is important because the end goal of the game is to defeat the final boss,
+so to increase the difficulty of the game, the final boss should be more difficult to defeat than previous
+enemies.
 
-7. enemyAttackedTwice() - Tomer Shmul
-* This test checks whether a hornet tower can attack an enemy twice. Since a tower should be able to attack
-any enemy within proximity, it should be able to attack an enemy more than once, even if the enemy moves.
-This test ensures that even after an enemy moves, the tower is still able to attack the enemy.
+7. gameOverAfterBoss() - Harriet Kim
+* This test checks that once the boss dies, the game is over and the user wins. It also checks to make sure
+that the monument is alive after the boss dies, since the monument must be alive for the user to win.
+This functionality is important because it is the only way the user can win the game (by killing the boss
+and all previous enemies).
 
-8. differentEnemyFunctionality() - Tomer Shmul
-* This test checks to make sure that different enemy types have distinct gameplay. One of the features
-is having different damage levels, so that they cause different levels of damage on monuments. This is
-a crucial feature to the game since it helps the user consider which enemies to first attack with the hornet tower.
+8. updateEnemiesDefeated() - Harriet Kim
+* Since the statistics need to be shown at the end of the game, this test checks to make sure that the
+number of enemies defeated is consistently updated throughout the game. This is done through a static variable
+in the enemy class. This functionality is important because it lets the user know how many enemies
+they have defeated by the end of the game.
 
-9. distinctBehavior() - Harriet Kim
-* This test checks to make sure that all three towers have different functionalities and can affect the
-same player in different ways. This is important because it adds more variety to the game and makes the user
-weigh the importance of each tower to decide which tower to buy.
+9. updateTowerInventory() - Ori Yoked
+* Since the statistics need to shown at the end of the game, this test checks to make sure that the
+tower inventory is consistently updated. At the end of the game, the user will be able to see how many
+towers of each type they have purchased along with the total number of towers purchased. This functionality
+is important because it lets the user know how many towers they have purchased by the end of the game.
 
-10. slowDeath() - Harriet Kim
-* This test checks to make sure that enemies are slowly killed by towers, rather than in an instant. This
-allows the game to add visual or descriptive aids so the player knows that the enemy is taking damage.
+10. updateTotalMoney() - Ori Yoked
+* Since the statistics need to be shown at the end of the game, this test checks to make sure that the
+user's money is consistently updated throughout the game. First, the purchase of a tower should decrease
+the user's money. The upgrade of a tower should also decrease the money. Finally, collecting a coin should
+increase the user's money. This feature is important because it lets the user know how much money they
+have by the end of the game.

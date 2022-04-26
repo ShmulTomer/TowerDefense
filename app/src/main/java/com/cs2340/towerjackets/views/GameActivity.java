@@ -11,12 +11,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.PopupMenu;
@@ -223,7 +221,12 @@ public class GameActivity extends AppCompatActivity {
                 iv.setImageResource(R.drawable.coin);
                 areaLayout.addView(iv);
                 iv.requestLayout();
-                Coin c = new Coin(randX, randY);
+                Coin c;
+                if (t.getUpgraded()) {
+                    c = new Coin(randX, randY, 20);
+                } else {
+                    c = new Coin(randX, randY, 10);
+                }
                 gameActivityViewModel.addCoin(c);
                 iv.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -277,7 +280,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.HornetUpgradeTower);
                 item.setTitle("Upgrade Bee Tower $" + player.getTowerUpgradeCost(0));
-                if (player.getMoney() < player.getTowerUpgradeCost(0) || gameActivityViewModel.getListOfHornetTower().size() == usedHornetTowers.size()) {
+                if (player.getMoney() < player.getTowerUpgradeCost(0)
+                        || gameActivityViewModel.getListOfHornetTower().size()
+                        == usedHornetTowers.size()) {
                     item.setEnabled(false);
                 }
                 item = popupMenu.getMenu().findItem(R.id.BeeBuyTower);
@@ -287,7 +292,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.BeeUpgradeTower);
                 item.setTitle("Upgrade Heart Tower $" + player.getTowerUpgradeCost(1));
-                if (player.getMoney() < player.getTowerUpgradeCost(1) || gameActivityViewModel.getListOfBeeTower().size() == usedBeeTowers.size()) {
+                if (player.getMoney() < player.getTowerUpgradeCost(1)
+                        || gameActivityViewModel.getListOfBeeTower().size()
+                        == usedBeeTowers.size()) {
                     item.setEnabled(false);
                 }
                 item = popupMenu.getMenu().findItem(R.id.WaspBuyTower);
@@ -297,7 +304,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 item = popupMenu.getMenu().findItem(R.id.WaspUpgradeTower);
                 item.setTitle("Upgrade Coin Tower $" + player.getTowerUpgradeCost(2));
-                if (player.getMoney() < player.getTowerUpgradeCost(2) || gameActivityViewModel.getListOfWaspTower().size() == usedWaspTowers.size()) {
+                if (player.getMoney() < player.getTowerUpgradeCost(2)
+                        || gameActivityViewModel.getListOfWaspTower().size()
+                        == usedWaspTowers.size()) {
                     item.setEnabled(false);
                 }
 
@@ -415,7 +424,8 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog.Builder test = new AlertDialog.Builder(GameActivity.this);
         test.setTitle("Final Boss");
         test.setCancelable(true);
-        test.setMessage("The final boss is about to come! Add as many towers as you can before he attacks your hive!");
+        test.setMessage("The final boss is about to come! "
+                + "Add as many towers as you can before he attacks your hive!");
         AlertDialog testDialog = test.create();
         testDialog.show();  // to show
         Handler handler = new Handler();
@@ -472,7 +482,8 @@ public class GameActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void moveView(Enemy curr, View iv, int rand, int rand2, int rand3, boolean isText, int enemyType) {
+    private void moveView(Enemy curr, View iv, int rand,
+                          int rand2, int rand3, boolean isText, int enemyType) {
         //Move along first part of path
         final int[] moveX = new int[1];
         moveX[0] = 100;
@@ -655,7 +666,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public void finalBoss () {
+    public void finalBoss() {
         alertFinalBoss();
         player.setMoney(150000);
         moneyView.setText("No limit");
