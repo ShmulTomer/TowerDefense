@@ -3,11 +3,12 @@ package com.cs2340.towerjackets.models;
 public class Coin {
     private int locationX;
     private int locationY;
-    private int value = 10;
+    private int value;
 
-    public Coin(int x, int y) {
+    public Coin(int x, int y, int v) {
         locationX = x;
         locationY = y;
+        value = v;
     }
 
     // M5 JUnit Things

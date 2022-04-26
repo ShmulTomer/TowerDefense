@@ -223,7 +223,12 @@ public class GameActivity extends AppCompatActivity {
                 iv.setImageResource(R.drawable.coin);
                 areaLayout.addView(iv);
                 iv.requestLayout();
-                Coin c = new Coin(randX, randY);
+                Coin c;
+                if (t.getUpgraded()) {
+                    c = new Coin(randX, randY, 20);
+                } else {
+                    c = new Coin(randX, randY, 10);
+                }
                 gameActivityViewModel.addCoin(c);
                 iv.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -235,7 +240,6 @@ public class GameActivity extends AppCompatActivity {
                 });
             }
         }
-
     }
 
     //increment player's monument health by 20 if place a BeeTower

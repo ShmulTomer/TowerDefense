@@ -18,7 +18,7 @@ public class WaspTower extends Tower {
         this.player = player;
     }
     public void placeTower() {
-        c = new Coin(10, 10);
+        c = new Coin(10, 10, 10);
     }
     public Coin getCoin() {
         return c;
