@@ -238,8 +238,8 @@ public class GameActivity extends AppCompatActivity {
                 });
             }
         }
-
     }
+
 
     //increment player's monument health by 20 if place a BeeTower
     private void monumentHealthTower(int towerNum) {
