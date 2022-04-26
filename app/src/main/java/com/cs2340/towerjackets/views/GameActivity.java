@@ -646,6 +646,13 @@ public class GameActivity extends AppCompatActivity {
                 TextView health = new TextView(getApplicationContext());
                 health.setTextColor(Color.WHITE);
                 Enemy curr = createEnemy(3, 30, 230, iv, health);
+                if (player.getTowerCost(0) == 60) {
+                    curr.setHealth(400);
+                } else if (player.getTowerCost(0) == 55) {
+                    curr.setHealth(500);
+                } else if (player.getTowerCost(0) == 50) {
+                    curr.setHealth(600);
+                }
                 health.setText(curr.getHealth() + "");
                 moveEnemy(curr, iv, health, 3);
             }
