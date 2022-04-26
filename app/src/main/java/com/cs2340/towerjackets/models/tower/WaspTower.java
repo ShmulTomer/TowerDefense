@@ -11,7 +11,7 @@ public class WaspTower extends Tower {
         setCost(120);
     }
 
-    // M5 JUnit Things
+    // M5&M6 JUnit Things
     private Coin c;
     private Player player;
     public WaspTower(Player player) {
@@ -20,10 +20,14 @@ public class WaspTower extends Tower {
     public void placeTower() {
         c = new Coin(10, 10, 10);
     }
+    public void upgrade() {
+        c = new Coin(10, 10, 20);
+        player.setMoney(player.getMoney() - 110);
+    }
     public Coin getCoin() {
         return c;
     }
-    // End of M5 JUnit Things
+    // End of M5&M6 JUnit Things
 
     @Override
     protected void finalize() throws Throwable {

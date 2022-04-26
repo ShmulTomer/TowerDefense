@@ -1,5 +1,6 @@
 package com.cs2340.towerjackets.models.tower;
 import com.cs2340.towerjackets.R;
+import com.cs2340.towerjackets.models.Player;
 import com.cs2340.towerjackets.models.enemy.Enemy;
 
 public class HornetTower extends Tower {
@@ -11,18 +12,22 @@ public class HornetTower extends Tower {
     }
 
     // M5 JUnit Things
+    private int damage = 50;
     public HornetTower(int x, int y) {
         setLocationX(x);
         setLocationY(y);
     }
     public void attackEnemy(Enemy e) {
         if (e.getLocationX() + 100 > getLocationX() && e.getLocationX() - 100 < getLocationX()
-            && e.getLocationY() + 100 > getLocationY() && e.getLocationY() - 100 < getLocationY()) {
-            e.setHealth(e.getHealth() - 50);
+                && e.getLocationY() + 100 > getLocationY() && e.getLocationY() - 100 < getLocationY()) {
+            e.setHealth(e.getHealth() - damage);
             if (e.getHealth() < 0) {
                 e.setAlive(false);
             }
         }
+    }
+    public void upgrade() {
+        damage = 75;
     }
     // End of M5 JUnit Things
 
