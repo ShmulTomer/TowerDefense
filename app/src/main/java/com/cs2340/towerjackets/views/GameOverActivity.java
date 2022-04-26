@@ -24,7 +24,7 @@ public class GameOverActivity extends AppCompatActivity {
         String finalTower = bundle.getString("finalTower");
         String finalUpgrade = bundle.getString("finalUpgrade");
         TextView tv = findViewById(R.id.textView8);
-        tv.setText("Money Left: " + finalMoney);
+        tv.setText("Money Used: " + finalMoney);
         TextView tv2 = findViewById(R.id.textView9);
         tv2.setText("Number of Towers Purchased: " + finalTower);
         TextView tv3 = findViewById(R.id.textView10);
